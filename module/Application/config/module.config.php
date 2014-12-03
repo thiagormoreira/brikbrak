@@ -210,6 +210,36 @@ return array(
                     )
                 )
             ),
+            'anuncios-para-pessoa-juridica' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/anuncios-para-pessoa-juridica',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Portal',
+                        'action' => 'anunciosParaPessoaJuridica'
+                    )
+                )
+            ),
+            'planos' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/planos',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Portal',
+                        'action' => 'planos'
+                    )
+                )
+            ),
+            'termos-de-uso' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/termos-de-uso',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Portal',
+                        'action' => 'termosDeUso'
+                    )
+                )
+            ),
             // Fim Fix Route
             
             // The following is a route to simplify getting started creating

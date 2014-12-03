@@ -63,4 +63,19 @@ class PortalController extends AbstractActionController
     {
         return new ViewModel();
     }
+    
+    public function anunciosParaPessoaJuridicaAction()
+    {
+        return new ViewModel();
+    }
+    
+    public function planosAction()
+    {
+        return new ViewModel();
+    }
+    
+    public function termosDeUsoAction()
+    {
+        return new ViewModel();
+    }
 }
