@@ -1,0 +1,128 @@
+<div class="container whiteBackground">
+					<!-- Navegação Produto -->
+					<div class="row">
+						<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 navegacaoProduto">
+							<a href="#" class="pull-left">< Voltar para lista anterior</a>
+						</div>
+						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 navegacaoProduto">
+							<!--a href="#" class="pull-right">Nova Busca ></a-->
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<div class="headerTitle">
+								<h1>Detalhes do Veículo</h1>
+							</div>
+						</div>
+					</div>
+                    <?php //foreach($this->advertising as $advertising){ //var_dump($advertising);?>
+					<!-- DETALHES DO PRODUTO -->
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-8">
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
+									<div class="boxFotos">
+										<div class="zoom">
+											<img src="http://lorempixel.com/1280/960/transport/" alt="Foto" class="img-responsive" id="zoomImage">
+										</div>
+										<div class="gallery">
+											<div class="carousel">
+												<ul>
+													<li><a href="http://lorempixel.com/1280/960/transport/1/"><img src="http://lorempixel.com/67/60/transport/1/" alt="Foto"></a></li>
+													<li><a href="http://lorempixel.com/1280/960/transport/2/"><img src="http://lorempixel.com/67/60/transport/2/" alt="Foto"></a></li>
+													<li><a href="http://lorempixel.com/1280/960/transport/3/"><img src="http://lorempixel.com/67/60/transport/3/" alt="Foto"></a></li>
+													<li><a href="http://lorempixel.com/1280/960/transport/4/"><img src="http://lorempixel.com/67/60/transport/4/" alt="Foto"></a></li>
+													<li><a href="http://lorempixel.com/1280/960/transport/5/"><img src="http://lorempixel.com/67/60/transport/5/" alt="Foto"></a></li>
+													<li><a href="http://lorempixel.com/1280/960/transport/6/"><img src="http://lorempixel.com/67/60/transport/6/" alt="Foto"></a></li>
+													<li><a href="http://lorempixel.com/1280/960/transport/7/"><img src="http://lorempixel.com/67/60/transport/7/" alt="Foto"></a></li>
+													<li><a href="http://lorempixel.com/1280/960/transport/8/"><img src="http://lorempixel.com/67/60/transport/8/" alt="Foto"></a></li>
+												</ul>
+											</div>
+											<a href="javascript:void(0);" class="btnNav">&nbsp;</a>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-5 detalhesProduto">
+									<h1><?php echo $this->advertising->getCar()->getModel()->getModelName() ?></h1>
+									<h2><span>preço: </span><?php echo $this->currencyFormat($this->advertising->getCar()->getValue(), "BRL", "pt_BR") ?></h2>
+									<p>
+										Tipo: <?php echo $this->advertising->getCar()->getTypeCar()->getTypeName() ?><br/>
+										marca: <?php echo $this->advertising->getCar()->getModel()->getBrand()->getBrandName() ?><br/>
+										Ano: 92/92<br/>
+										Cor: <?php echo $this->advertising->getCar()->getColor() ?><br/>
+										Combustível: diesel<br/>
+										Transmissão: manual<br/>
+										Quilometragem: <?php echo number_format($this->advertising->getCar()->getKm(), 0, ',', '.') ?>
+									</p>
+									<h3>Acessórios</h3>
+									<ul>
+										<li>- Direção hidráulica</li>
+										<li>- Ar Condicionado</li>
+										<li>- Climatizador</li>
+										<li>- Computador de bordo</li>
+										<li>- Cortinas</li>
+										<li>- Extintor de Incêndio</li>
+										<li>- Freio ABS</li>
+										<li>- Piloto Automático</li>
+										<li>- Pneus 295</li>
+										<li>- Trava Elétrica</li>
+										<li>- Turbo Intercooler</li>
+										<li>- Único Dono</li>
+										<li>- Vidro Elétrico</li>
+									</ul>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detalhesProduto">
+									<h3>Observações</h3>
+									<p class="observacoes">
+									   <?php echo $this->advertising->getText() ?>
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+								<div class="col-lg-12 endereco">
+									<?php echo($advertising->getUser()->getDisplayName()) ?><br/>
+												    <?php foreach($advertising->getUser()->getAddress() as $address){ ?>
+												        <?php echo $address->getAddress() . ' ' . $address->getNumber() . ' ' . $address->getCity()->getCityName() . ' - ' . $address->getCity()->getState()->getUf(); ?>
+												    <?php } ?></p>
+									<p class="indicacao">Ao ligar informe ter visto o anúncio no BRIKEBRAK</p>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 boxProposta">
+									<h1>Envie sua proposta</h1>
+										<div class="formProposta mTop15">
+											<div>
+												<input type="text" name="nome" placeholder="seu nome" class="mTop15"/>
+											</div>
+											<div>
+												<input type="text" name="email" placeholder="seu email"/>
+											</div>
+											<div>
+												<input type="text" name="ddd" placeholder="DDD" class="ddd"/>
+												<input type="text" name="telefone" placeholder="telefone" class="telefone"/>
+											</div>
+											<div>
+												<textarea name="proposta" placeholder="Faça uma proposta de compra ou peça mais informações ao vendedor..." rows="5"></textarea>
+											</div>
+											<div class="txtCheckbox">
+												<span class="inputCheckbox" data-input-id="copiaEmail" data-input-value="1">
+													<input type="hidden" name="copiaemail" id="copiaEmail"/>
+												</span>
+												Quero receber cópia do e-mail
+											</div>
+											<div class="clearfix"></div>
+											<div class="txtCheckbox">
+												<span class="inputCheckbox" data-input-id="promocoes" data-input-value="1">
+													<input type="hidden" name="promocoes" id="promocoes"/>
+												</span>
+												Desejo receber promoções e ofertas exclusivas do BRIKEBRAK e de seus parceiros.
+											</div>
+										</div>
+								</div>
+								<div class="btnEnviarProposta">
+									<input type="button" value="enviar">
+								</div>
+						</div>
+					</div>
+				</div>
+				<?php //} ?>

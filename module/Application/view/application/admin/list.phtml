@@ -1,0 +1,105 @@
+<?php
+function truncate($string, $limit, $break=" ", $pad="...")
+{
+    // return with no change if string is shorter than $limit
+    if(strlen($string) <= $limit) return $string;
+
+    // is $break present between $limit and the end of the string?
+    if(false !== ($breakpoint = strpos($string, $break, $limit))) {
+        if($breakpoint < strlen($string) - 1) {
+            $string = substr($string, 0, $breakpoint) . $pad;
+        }
+    }
+
+    return $string;
+}
+
+
+$getters = array();
+//$elements = new RecursiveIteratorIterator(new RecursiveArrayIterator($this->listElements));
+$elements = new RecursiveIteratorIterator(new RecursiveArrayIterator($this->listElements));
+foreach ($elements as $element) {
+    $parts = explode('_', $element);
+    array_walk($parts, function (&$val) {
+        $val = ucfirst($val);
+    });
+    $getters[$element] = 'get' . implode('', $parts);
+}
+?>
+<div class="page-header">
+<h1>
+	<?php echo $this->translate('Anúncios') ?>
+	<small>
+		<i class="ace-icon fa fa-angle-double-right"></i>
+		Lista
+	</small>
+</h1>
+</div>
+<div class="navbar filter-bar">
+	<div class="navbar-inner">
+		<div class="pull-right">
+			<a href="<?php echo $this->url('zfcadmin/zfcuseradmin/create') ?>"
+				class="btn btn-primary">
+                <?php echo $this->translate('Adicionar') ?>
+            </a>
+		</div>
+	</div>
+</div>
+
+<table class="table">
+	<thead>
+		<tr>
+            <?php foreach ($this->listElements as $name => $element): ?>
+                <th><?php echo $this->escapeHtml($name ? : $element); ?></th>
+            <?php endforeach; ?>
+            <th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+    <?php foreach ($this->list as $curr): ?>
+        <tr>
+            <?php foreach ($this->listElements as $key => $element): ?>
+                <td class="cell cell-<?php //echo $this->escapeHtml($element) ?>">
+                    <?php
+                        //var_dump($element);
+                        // $parts = explode('_', $element);
+                        if (!is_array($element)) {
+                            echo truncate(call_user_func(array($curr, $getters[$element])), 50);
+			//echo $curr->user->getDisplayName();
+                        } else {
+                            foreach ($element as $key2 => $element2) :
+				if (!is_array($element2)) {
+					$obj = call_user_func(array($curr, 'get'.$key2));
+					echo truncate(call_user_func(array($obj, $getters[$element2])), 50);
+				//echo $curr->user->getDisplayName();
+		                } else {
+		                    foreach ($element2 as $key3 => $element3) :
+					$obj = call_user_func(array($curr, 'get'.$key2));
+					$obj2 = call_user_func(array($obj, 'get'.$key3));
+					echo truncate(call_user_func(array($obj2, $getters[$element3])), 50);
+		                    endforeach;
+		                }
+                            endforeach;
+                        }
+                    ?>
+                </td>
+            <?php endforeach; ?>
+            <td class="cell cell-ctrls"><a
+				href="<?php //echo $this->url('zfcadmin/zfcuseradmin/edit', array('userId' => $curr->getId())); ?>">
+                    <?php echo $this->translate('Editar') ?>
+                </a> | <a
+				href="<?php //echo $this->url('zfcadmin/zfcuseradmin/remove', array('userId' => $curr->getId())); ?>"
+				onclick="return confirm('<?php echo $this->translate('tem certeza que deseja deletar esse item?') ?>')">
+                    <?php echo $this->translate('Deletar') ?>
+                </a></td>
+		</tr>
+    <?php endforeach; ?>
+    </tbody>
+	<tfoot>
+		<tr>
+			<td colspan="<?php echo count($this->listElements) + 1; ?>">
+            <?php echo $this->paginationControl($this->list, 'Sliding', 'zfc-user-admin/user-admin/pagination_userlist.phtml'); ?>
+        </td>
+		</tr>
+	</tfoot>
+</table>

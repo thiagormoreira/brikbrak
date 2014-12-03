@@ -1,0 +1,113 @@
+<?php 
+//var_dump($this->advertising_list);
+?>
+            <div class="container whiteBackground">
+                    <!-- Navegação Produto -->
+					<div class="row">
+						<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 navegacaoProduto">
+							<a href="#" class="pull-left">< Voltar para home</a>
+						</div>
+					</div>
+
+					<!-- Navegação Produto -->
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 navegacaoProduto">
+							<h1>Caminhões em São Paulo (SP)</h1>
+						</div>
+						<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 navegacaoProduto">
+							<p>Sua busca retornou 98.771 caminhões novos e usados</p>
+						</div>
+						<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 navegacaoProduto">
+							<!--a href="#" class="pull-right">Nova Busca ></a-->
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<div class="headerTitle">
+								<h1>Anúncios</h1>
+							</div>
+						</div>
+					</div>
+
+					<!-- DETALHES DO PRODUTO -->
+					<div class="row">
+						<div class="col-sm-12 col-sm-9 col-md-10 col-lg-10 boxResultados">
+						
+						  <?php foreach($this->advertising_list as $advertising){ //var_dump($advertising);?>
+						  
+						          <!-- PJ -->
+								<article>
+									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+										<div class="col-sx-12 col-sm-12 col-md-7 col-lg-7">
+											<img src="<?php echo $this->basePath() . '/assets/images/product/' . $advertising->getUser()->getUserId() . '/' . $advertising->getIdadvertising() ?>/img.jpg" class="img-responsive" alt="Produto">
+										</div>
+										<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 addBorder">
+											<h1>Detalhes do Veículo</h1>
+											<p class="modelo"><span>Modelo: </span> <?php echo $advertising->getCar()->getModel()->getBrand()->getBrandName() ?> - <?php echo $advertising->getCar()->getModel()->getModelName() ?></p>
+											<p class="preco"><span>Preço: </span> R$ <?php echo $advertising->getCar()->getValue() ?></p>
+											<p><span>Tipo: </span> <?php echo $advertising->getCar()->getTypeCar()->getTypeName() ?></p>
+											<p><span>Marca: </span> <?php echo $advertising->getCar()->getModel()->getBrand()->getBrandName() ?></p>
+											<p><span>Ano: </span> <?php echo $advertising->getCar()->getYear() ?></p>
+											<p><span>cor: </span> <?php echo $advertising->getCar()->getColor() ?></p>
+											<p><span>Combustível: </span> Diesel</p>
+											<p><span>Transmissão: </span> Manual</p>
+											<p><span>Quilometragem: </span> <?php echo $advertising->getCar()->getKm() ?></p>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+										<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+											<h1>Acessórios</h1>
+											<ul>
+												<li>Ar condicionado</li>
+												<li>Interclima</li>
+												<li>Intercooler</li>
+												<li>Reduzido</li>
+												<li>Cavalo Truck</li>
+												<li>Turbo</li>
+												<li>Direção Hidráulica</li>
+											</ul>
+										</div>
+										<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+											<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+												<?php $attr = array('class' => 'img-responsive'); echo $this->gravatar($advertising->getUser()->getEmail(), NULL,$attr) ?>
+											</div>
+											<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+												<p>
+												    <?php echo($advertising->getUser()->getDisplayName()) ?><br/>
+												    <?php foreach($advertising->getUser()->getAddress() as $address){ ?>
+												        <?php echo $address->getAddress() . ' ' . $address->getNumber() . ' ' . $address->getCity()->getCityName() . ' - ' . $address->getCity()->getState()->getUf(); ?>
+												    <?php } ?></p>
+											</div>
+											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+												<a href="#" class="button">Ver telefones</a>
+											</div>
+											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><a href="/anuncio/<?php echo $advertising->getIdadvertising() ?>" class="button">Ver anúncio completo</a></div>
+										</div>
+									</div>
+								</article>
+								<?php } ?>
+								<?php echo $this->paginationControl($this->advertising_list, 'Sliding', 'helper/pagination_portal.phtml', array('action' => $this->action)); ?>
+
+						</div>
+						<div class="hidden-xs col-sm-2 col-md-2 col-lg-2 boxPublicidade">
+								<a href="#">
+									<img src="/assets/images/banners/grey_120x600.gif" alt="Publicidade"/>
+								</a>
+								<a href="#">
+									<img src="/assets/images/banners/grey_120x90.gif" alt="Publicidade"/>
+								</a>
+								<a href="#">
+									<img src="/assets/images/banners/grey_120x90.gif" alt="Publicidade"/>
+								</a>
+								<a href="#">
+									<img src="/assets/images/banners/grey_120x90.gif" alt="Publicidade"/>
+								</a>
+								<a href="#">
+									<img src="/assets/images/banners/grey_120x600.gif" alt="Publicidade"/>
+								</a>
+
+								<span>Publicidade</span>
+						</div>
+					</div>
+					</div>

@@ -1,0 +1,88 @@
+<?php
+function truncate($string, $limit, $break=" ", $pad="...")
+{
+  // return with no change if string is shorter than $limit
+  if(strlen($string) <= $limit) return $string;
+
+  // is $break present between $limit and the end of the string?
+  if(false !== ($breakpoint = strpos($string, $break, $limit))) {
+    if($breakpoint < strlen($string) - 1) {
+      $string = substr($string, 0, $breakpoint) . $pad;
+    }
+  }
+
+  return $string;
+}
+
+$getters = array();
+foreach ($this->carlistElements as $element) {
+    $parts = explode('_', $element);
+    array_walk($parts, function (&$val) {
+        $val = ucfirst($val);
+    });
+    $getters[$element] = 'get' . implode('', $parts);
+}
+?>
+<div class="page-header">
+	<h1>
+		<?php echo $this->translate('Caminhões') ?>
+		<small>
+			<i class="ace-icon fa fa-angle-double-right"></i>
+			Lista
+		</small>
+	</h1>
+</div><!-- /.page-header -->
+
+<div class="navbar filter-bar">
+    <div class="navbar-inner">
+        <div class="pull-right">
+            <a href="<?php echo $this->url('zfcadmin/zfcuseradmin/create') ?>" class="btn btn-primary">
+                <?php echo $this->translate('Adicionar novo') ?>
+            </a>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <?php foreach ($this->carlistElements as $name => $element): ?>
+                <th><?php echo $this->escapeHtml($name ? : $element); ?></th>
+            <?php endforeach; ?>
+            <th>Item</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($this->cars as $car): ?>
+        <tr>
+            <?php foreach ($this->carlistElements as $element): ?>
+                <td class="cell cell-<?php echo $this->escapeHtml($element) ?>">
+                    <?php $parts = explode('_', $element); ?>
+                    <?php echo truncate(call_user_func(array($car, $getters[$element])), 50); ?>
+                </td>
+            <?php endforeach; ?>
+            <td class="cell cell-ctrls">
+                <?php echo $car->getModel()->getModelName() ?>
+            </td>
+            <td class="cell cell-ctrls">
+                <a href="<?php echo $this->url('zfcadmin/zfcuseradmin/edit', array('carId' => $car->getIdcar())); ?>">
+                    <?php echo $this->translate('Editar') ?>
+                </a>
+                |
+                <a href="<?php echo $this->url('zfcadmin/zfcuseradmin/remove', array('carId' => $car->getIdcar())); ?>"
+                   onclick="return confirm('<?php echo $this->translate('Really delete car?') ?>')">
+                    <?php echo $this->translate('Deletar') ?>
+                </a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="<?php echo count($this->carlistElements) + 1; ?>">
+            <?php echo $this->paginationControl($this->cars, 'Sliding', 'helper/pagination.phtml', array('action' => $this->action)); ?>
+        </td>
+    </tr>
+    </tfoot>
+</table>

@@ -1,0 +1,22 @@
+<?php
+$form = $this->editUserForm;
+$form->prepare();
+$form->setAttribute('action', $this->url('zfcadmin/zfcuseradmin/edit', array(
+    'userId' => $this->userId
+)));
+$form->setAttribute('method', 'post');
+?>
+<div class="page-header">
+	<h1>
+		Usuário <small> <i class="ace-icon fa fa-angle-double-right"></i>
+			Editar
+		</small>
+	</h1>
+</div>
+<?php include '_form.phtml'; ?>
+
+<a
+	href="<?php echo $this->url('zfcadmin/zfcuseradmin/remove', array('userId' => $this->userId)); ?>"
+	onclick="return confirm('<?php echo $this->translate('Deseja deletar usuário?') ?>')">
+    <?php echo $this->translate('Apagar')?>
+</a>

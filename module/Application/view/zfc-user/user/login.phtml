@@ -1,0 +1,84 @@
+<?php
+$form = $this->loginForm;
+$form->prepare();
+$form->setAttribute('action', $this->url('zfcuser/login'));
+$form->setAttribute('method', 'post');
+$form->setAttribute('class', 'form-horizontal');
+?>
+<style>
+/* Credit to bootsnipp.com for the css for the color graph */
+.colorgraph {
+  height: 5px;
+  border-top: 0;
+  background: #c4e17f;
+  border-radius: 5px;
+  background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+}
+.brik{
+    width: 485px;
+}
+</style>
+<?php echo $this->form()->openTag($form) ?>
+<div class="container whiteBackground">
+    <div class="row" style="margin-top:20px">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+    		<?php echo $this->form()->openTag($form) ?>
+    			<fieldset>
+    				<h2>Por favor faça o login</h2>
+    				<hr class="colorgraph">
+    				<?php //$form->get('identity')->setAttribute('class','form-control'); ?>
+                    <?php //$form->get('identity')->setLabelAttributes(array('class' => 'control-label col-lg-2')); ?>
+                    <div class="form-group <?php if ($this->formElementErrors($form->get('identity'))) echo 'has-error'; ?>">
+                        <?php //echo $this->formLabel($form->get('identity')); ?>
+                            <div class="col-lg-3">
+                                <?php echo $this->formInput($form->get('identity')->setAttribute('class','input-lg brik')) ?>
+                            </div>
+                            <?php echo $this->formElementErrors()
+                                    ->setMessageOpenFormat('<span class="help-block">')
+                                    ->setMessageSeparatorString('</span><span class="help-block">')
+                                    ->setMessageCloseString('</span>')
+                                    ->render($form->get('identity')); ?>
+                    </div>
+    				<?php //$form->get('credential')->setAttribute('class','form-control'); ?>
+                    <?php //$form->get('credential')->setLabelAttributes(array('class' => 'control-label col-lg-2')); ?>
+                    <div class="form-group <?php if ($this->formElementErrors($form->get('credential'))) echo 'has-error'; ?>">
+                        <?php //echo $this->formLabel($form->get('credential')); ?>
+                            <div class="col-lg-3">
+                                <div class="input-group">
+                                    <?php echo $this->formInput($form->get('credential')->setAttribute('class','input-lg brik')) ?>
+                                </div>
+                                <?php echo $this->formElementErrors()
+                                        ->setMessageOpenFormat('<span class="help-block">')
+                                        ->setMessageSeparatorString('</span><span class="help-block">')
+                                        ->setMessageCloseString('</span>')
+                                        ->render($form->get('credential')); ?>
+                            </div>
+                    </div>
+    				<span class="button-checkbox">
+    					<button type="button" class="btn" data-color="info">Lembrar Senha</button>
+                        <input type="checkbox" name="remember_me" id="remember_me" checked="checked" class="hidden">
+    					<a href="" class="btn btn-link pull-right">Perdeu a senha?</a>
+    				</span>
+    				<hr class="colorgraph">
+    				<div class="row">
+    					<?php $form->get('submit')->setAttribute('class', 'btn btn-lg btn-success btn-block') ?>
+    					<?php $form->get('submit')->setLabel('Entrar') ?>
+                        <div class="form-group">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <?php echo $this->formButton($form->get('submit')); ?>
+                            </div>
+    					<?php if ($this->enableRegistration) : ?>
+    					<div class="col-xs-6 col-sm-6 col-md-6">
+    						<a href="<?php echo $this->url('zfcuser/register') . ($this->redirect ? '?redirect=' . $this->redirect : '') ?>" class="btn btn-lg btn-primary btn-block">Registrar</a>
+    					</div>
+                        <?php endif; ?>
+                        </div>
+    				</div>
+    			</fieldset>
+    		<?php echo $this->form()->closeTag() ?>
+    	</div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<?php if ($this->pageCount): ?>
+<div class="pagination pagination-centered pagination-small">
+    <ul class="pagination">
+        <?php if (isset($this->previous)) :?>
+        <!-- First page link -->
+        <li<?php echo (isset($this->previous)) ? '' : ' class="disabled"'; ?>>
+            <a href="<?php echo $this->url('teste', array('action' => $this->action, 'page' => $this->first)); ?>">Inicio</a>
+        </li>
+        
+        <?php /*if (($this->previous - 10)  > 0) :?>
+        <!-- Previous page link -->
+        <li<?php echo (isset($this->previous)) ? '' : ' class="disabled"'; ?>>
+            <a href="<?php echo $this->url('teste', array('action' => $this->action, 'page' => $this->previous-9)); ?>">&lt; Previous 10</a>
+        </li>
+        <?php endif; */?>
+        
+        <?php endif; ?>
+        
+        <!-- Numbered page links -->
+        <?php foreach ($this->pagesInRange as $page): ?>
+        <li<?php echo ($page == $this->current) ? ' class="active"' : ''; ?>>
+            <a href="<?php echo $this->url('teste', array('action' => $this->action, 'page' => $page)); ?>"><?php echo $page; ?></a>
+        </li>
+        <?php endforeach; ?>
+        
+        <?php /*if (($this->previous + 10)  <= $this->last) :?>
+        <!-- Next page link -->
+        <li<?php echo (isset($this->next)) ? '' : ' class="disabled"'; ?>>
+            <a href="<?php echo $this->url('teste', array('action' => $this->action, 'page' => $this->next+9)); ?>">Pŕximos 10</a>
+        </li>
+        <?php endif; */?>
+        
+        <!-- Last page link -->
+        <li<?php echo (isset($this->next)) ? '' : ' class="disabled"'; ?>>
+            <a href="<?php echo $this->url('teste', array('action' => $this->action, 'page' => $this->last)); ?>">Fim</a>
+        </li>
+
+    </ul>
+</div>
+<?php endif; ?>
+
+<?php //var_dump($this->_action); ?>
+<?php
+$script = $this->inlineScript();
+$script->appendScript(<<<'EOT'
+    
+$(".pagination .disabled a").click(function() {
+  return false;
+});
+
+EOT
+);

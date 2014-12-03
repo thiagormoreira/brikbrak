@@ -1,0 +1,135 @@
+<?php
+function truncate($string, $limit, $break=" ", $pad="...")
+{
+  // return with no change if string is shorter than $limit
+  if(strlen($string) <= $limit) return $string;
+
+  // is $break present between $limit and the end of the string?
+  if(false !== ($breakpoint = strpos($string, $break, $limit))) {
+    if($breakpoint < strlen($string) - 1) {
+      $string = substr($string, 0, $breakpoint) . $pad;
+    }
+  }
+
+  return $string;
+}
+
+$getters = array();
+$elements = new RecursiveIteratorIterator(new RecursiveArrayIterator($this->advertisinglistElements));
+foreach ($elements as $element) {
+    //if(!is_array($element)){
+    $parts = explode('_', $element);
+    array_walk($parts, function (&$val) {
+        $val = ucfirst($val);
+    });
+    $getters[$element] = 'get' . implode('', $parts);
+    //}
+}
+?>
+<div class="page-header">
+	<h1>
+		<?php echo $this->translate('Anúncios') ?>
+		<small>
+			<i class="ace-icon fa fa-angle-double-right"></i>
+			Lista
+		</small>
+	</h1>
+</div><!-- /.page-header -->
+
+<div class="navbar filter-bar">
+    <div class="navbar-inner">
+        <div class="pull-right">
+            <a href="<?php echo $this->url('zfcadmin/zfcuseradmin/create') ?>" class="btn btn-primary">
+                <?php echo $this->translate('Adicionar novo') ?>
+            </a>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <?php foreach ($this->advertisinglistElements as $name => $element): ?>
+                    <?php //if(!is_array($element)){?>
+                <th><?php echo $this->escapeHtml($name ? : $element); ?></th>
+                <?php //} ?>
+            <?php endforeach; ?>
+            <th>Item</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($this->advertisings as $advertising): ?>
+        <tr>
+            <?php foreach ($this->advertisinglistElements as $element => $subelement): ?>
+            <?php //var_dump(call_user_func(array($advertising, $getters[$subelement]))) ?>
+            <?php //var_dump($subelement) ?>
+                <td class="cell cell-<?php echo $this->escapeHtml($element) ?>">
+                    <?php $parts = explode('_', $element); ?>
+                    <?php //echo truncate(call_user_func(array($advertising, $getters[$element])), 50); 
+//var_dump($getters[$element]);
+                        if(!is_array($subelement))
+                        {
+                            echo truncate(call_user_func(array($advertising, $getters[$subelement])), 50);
+                            //var_dump(call_user_func(array($advertising, $getters[$subelement])));
+                        } else {
+                            //var_dump($subelement);
+                            foreach($subelement as $key => $var){
+                                if(!is_array($var))
+                                {
+                                    //var_dump($key);
+                                    $child[$key] = call_user_func(array($advertising , 'get'.$key));
+                                    echo truncate(call_user_func(array($child[$key], $getters[$var])), 50);
+                                } else {
+                                    foreach($var as $key2 => $var2){
+                                        if(!is_array($var2))
+                                        {
+                                            //var_dump($key2); echo " => "; var_dump($var2);//var_dump($advertising);
+                                            //$child2 = call_user_func(array($child, $getters[$var2]));
+                                            //var_dump($child);
+                                            $child[$key] = call_user_func(array($advertising , 'get'.$key));
+                                            $child2[$key2] = call_user_func(array($child[$key], 'get'.$key2));
+                                            //var_dump($child2[$key2]);
+                                            $child2[$key2];
+                                            //echo truncate(call_user_func(array($child2[$key2], 'get'.$var2)), 50);
+                                        } else {
+                                            foreach($var2 as $key3 => $var3){
+                                                //$child2 = call_user_func(array($child , 'get'.$key2));
+                                                //echo $child2->getModelName();
+                                                //echo truncate(call_user_func(array($child2, $getters[$var2])), 50);
+                                            }
+                                        }
+                                        //$child2 = call_user_func(array($child , 'get'.$key2));
+                                        //echo $child2->getModelName();
+                                        //echo truncate(call_user_func(array($child2, $getters[$var2])), 50);
+                                    }
+                                }
+                            }
+                        }
+                    ?>
+                </td>
+            <?php endforeach; ?>
+            <td class="cell cell-ctrls">
+                <?php echo $advertising->getCar()->getModel()->getModelName() ?>
+            </td>
+            <td class="cell cell-ctrls">
+                <a href="<?php echo $this->url('zfcadmin/zfcuseradmin/edit', array('advertisingId' => $advertising->getIdadvertising())); ?>">
+                    <?php echo $this->translate('Editar') ?>
+                </a>
+                |
+                <a href="<?php echo $this->url('zfcadmin/zfcuseradmin/remove', array('advertisingId' => $advertising->getIdadvertising())); ?>"
+                   onclick="return confirm('<?php echo $this->translate('Really delete advertising?') ?>')">
+                    <?php echo $this->translate('Deletar') ?>
+                </a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="<?php echo count($this->advertisinglistElements) + 1; ?>">
+            <?php echo $this->paginationControl($this->advertisings, 'Sliding', 'helper/pagination.phtml', array('action' => $this->action)); ?>
+        </td>
+    </tr>
+    </tfoot>
+</table>

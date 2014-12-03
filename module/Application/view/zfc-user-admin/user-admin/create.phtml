@@ -1,0 +1,15 @@
+<?php
+$form = $this->createUserForm;
+$form->prepare();
+$form->setAttribute('action', $this->url('zfcadmin/zfcuseradmin/create'));
+$form->setAttribute('method', 'post');
+?>
+<div class="page-header">
+<h1>Usuário
+		<small>
+			<i class="ace-icon fa fa-angle-double-right"></i>
+			Novo
+		</small>
+</h1>
+</div>
+<?php include '_form.phtml'; ?>

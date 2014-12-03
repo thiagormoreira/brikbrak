@@ -1,0 +1,68 @@
+<form action="#" method="POST">
+	<div>
+		<span class="inputRadio" data-input-id="situacao" data-input-value="1">
+			<input type="hidden" name="situacao" id="situacao"/>
+		</span>
+		<label for="estado">O Km</label>
+		<span class="inputRadio" data-input-id="situacao" data-input-value="2"></span>
+		<label for="tipo">Usado</label>
+	</div>
+	<div>
+		<span class="selectOption">
+			<span id="marca">Marca</span>
+			<select name="marca" data-text-id="marca">
+				<option value="">Marca</option>
+				<option value="Fiat">Fiat</option>
+				<option value="">Ford</option>
+			</select>
+		</span>
+	</div>
+	<div>
+		<span class="selectOption">
+			<span id="tipo">Tipo</span>
+			<select name="tipo" data-text-id="tipo">
+				<option value="">Tipo</option>
+			</select>
+		</span>
+	</div>
+	<div>
+		<span class="inputRadio" data-input-id="cambio" data-input-value="1">
+			<input type="hidden" name="cambio" id="cambio"/>
+		</span>
+		<label for="cambio_automatico">Automático</label>
+		<span class="inputRadio" data-input-id="cambio" data-input-value="2"></span>
+		<label for="cambio_manual">Manual</label>
+	</div>
+	<div>
+		ano
+		<input type="text" name="ano_fim" placeholder="até" class="duo">
+		<input type="text" name="ano" placeholder="de" class="duo">
+		<br/><br/>
+	</div>
+	<div>
+		<span class="selectOption">
+			<span id="uf">Estado</span>
+			<select name="uf" data-text-id="uf">
+				<option value="">Estado</option>
+			</select>
+		</span>
+	</div>
+	<div>
+		<span class="selectOption">
+			<span id="cidade">Cidade</span>
+			<select name="cidade" data-text-id="cidade">
+				<option value="">Cidade</option>
+			</select>
+		</span>
+	</div>
+
+	<div>
+		valor
+		<input type="text" name="ano_fim" placeholder="até" class="duo">
+		<input type="text" name="ano" placeholder="de" class="duo">
+	</div>
+	<input type="submit" value="Buscar"/>
+</form>
+
+<!-- Form Actions -->
+<script src="assets/js/form.actions.js"></script>

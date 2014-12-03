@@ -1,0 +1,102 @@
+<?php
+if (!$this->options->isEnabled()) {
+    echo $this->translate('Profile page is disabled');
+    return;
+}
+$form = $this->profileForm;
+$form->prepare();
+$form->setAttribute('action', $this->url('ldc-user-profile'));
+$form->setAttribute('method', 'post');
+?>
+
+    </dl>
+<div class="container-fluid">
+				<div class="container whiteBackground">
+					<!-- Área de Login -->
+					<div class="row">
+						<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 navegacaoProduto">
+							<a href="/" class="pull-left">< Voltar para Página Inicial</a>
+						</div>
+						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 navegacaoProduto">
+							<!--a href="#" class="pull-right">Nova Busca ></a-->
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<div class="headerTitle">
+								<h1>Editar Perfil</h1>
+							</div>
+						</div>
+					</div>
+
+					<!-- Login -->
+				
+				<div class="container">
+    	<hr>
+	<div class="row">
+      <!-- left column -->
+      <div class="col-md-3">
+      <div class="text-center">
+                        <?php $attr = array('class' => 'avatar img-circle');
+                        $settings = array(
+                            'img_size'    => 200,
+                            'default_img' => \Zend\View\Helper\Gravatar::DEFAULT_MM,
+                            'rating'      => \Zend\View\Helper\Gravatar::RATING_G,
+                            'secure'      => null,
+                        );
+                         echo $this->gravatar($this->zfcUserIdentity()->getEmail(), $settings,$attr)?>
+                                         
+                          <h6>Adicione uma Imagem ao seu Perfil...</h6>
+                          
+                          <input type="file" class="form-control">
+                    </div>
+      </div>
+      
+      <!-- edit form column -->
+      <div class="col-md-8 personal-info">
+        <div class="alert alert-info alert-dismissable">
+          <a class="panel-close close" data-dismiss="alert">×</a> 
+          <i class="fa fa-coffee"></i>
+          <?php //var_dump($this->flashMessenger()) ?>
+          <?php $flashMessenger = $this->flashMessenger();
+            if ($flashMessenger->hasMessages('success')) {
+                //$return['messages'] = $flashMessenger->getMessages();
+                //echo $return; 
+                echo $this->flashMessenger()->render('success');
+            } ?>
+          <?php  ?>
+          Preencha o seu <strong> perfil </strong> com os seus dados e clique em salvar.
+        </div>
+        <h3>Informações do Perfil</h3>
+        
+        <?php echo $this->form()->openTag($form) ?>
+
+
+    <dl class="zend_form">
+    <?php foreach ($form->getFieldsets() as $fieldset): ?>
+        <?php echo $this->render('ldc-user-profile/profile/extension/' . $fieldset->getName(), array('fieldset' => $fieldset)); ?>
+    <?php endforeach ?>
+
+    <?php foreach ($form->getElements() as $element): ?>
+        <?php if (!$element instanceof Zend\Form\Element\Button && !$element instanceof Zend\Form\Element\Hidden): ?>
+            <dt><?php echo $this->formLabel($element) ?></dt>
+        <?php endif ?>
+        <br />
+        <?php if ($element instanceof Zend\Form\Element\Button): ?>
+            <dd><?php echo $this->formButton($element) ?></dd>
+        <?php elseif ($element instanceof Zend\Form\Element\Captcha): ?>
+            <dd><?php echo $this->formCaptcha($element) . $this->formElementErrors($element) ?></dd>
+        <?php else: ?>
+            <dd><?php echo $this->formInput($element) . $this->formElementErrors($element) ?></dd>
+        <?php endif ?>
+    <?php endforeach;?>
+        
+          <?php echo $this->form()->closeTag() ?>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>

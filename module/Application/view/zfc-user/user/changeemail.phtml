@@ -1,0 +1,67 @@
+<?php
+$form = $this->changeEmailForm;
+$form->prepare();
+$form->setAttribute('action', $this->url('zfcuser/changeemail'));
+$form->setAttribute('method', 'post');
+$form->setAttribute('class', 'form-horizontal');
+?>
+<?php echo $this->form()->openTag($form) ?>
+<fieldset>
+    <legend>Change E-mail for <?php echo $this->zfcUserDisplayName(); ?></legend>
+    
+    <?php $form->get('newIdentity')->setAttribute('class','form-control'); ?>
+    <?php $form->get('newIdentity')->setLabelAttributes(array('class' => 'control-label col-lg-2')); ?>
+    <div class="form-group <?php if ($this->formElementErrors($form->get('newIdentity'))) echo 'has-error'; ?>">
+        <?php echo $this->formLabel($form->get('newIdentity')); ?>
+            <div class="input-group col-lg-3">
+                <span class="input-group-addon">@</span>
+                <?php echo $this->formInput($form->get('newIdentity')) ?>
+            </div>
+            <?php echo $this->formElementErrors()
+                    ->setMessageOpenFormat('<span class="help-block">')
+                    ->setMessageSeparatorString('</span><span class="help-block">')
+                    ->setMessageCloseString('</span>')
+                    ->render($form->get('newIdentity')); ?>
+    </div>
+    
+    <?php $form->get('newIdentityVerify')->setAttribute('class','form-control'); ?>
+    <?php $form->get('newIdentityVerify')->setLabelAttributes(array('class' => 'control-label col-lg-2')); ?>
+    <div class="form-group <?php if ($this->formElementErrors($form->get('newIdentityVerify'))) echo 'has-error'; ?>">
+        <?php echo $this->formLabel($form->get('newIdentityVerify')); ?>
+            <div class="input-group col-lg-3">
+                <span class="input-group-addon">@</span>
+                <?php echo $this->formInput($form->get('newIdentityVerify')) ?>
+            </div>
+            <?php echo $this->formElementErrors()
+                    ->setMessageOpenFormat('<span class="help-block">')
+                    ->setMessageSeparatorString('</span><span class="help-block">')
+                    ->setMessageCloseString('</span>')
+                    ->render($form->get('newIdentityVerify')); ?>
+    </div>
+    
+    <?php $form->get('credential')->setAttribute('class','form-control'); ?>
+    <?php $form->get('credential')->setLabelAttributes(array('class' => 'control-label col-lg-2')); ?>
+    <div class="form-group <?php if ($this->formElementErrors($form->get('credential'))) echo 'has-error'; ?>">
+        <?php echo $this->formLabel($form->get('credential')); ?>
+            <div class="col-lg-3">
+                <div class="input-group">
+                    <span class="input-group-addon glyphicon glyphicon-lock"></span>
+                    <?php echo $this->formInput($form->get('credential')) ?>
+                </div>
+                <?php echo $this->formElementErrors()
+                    ->setMessageOpenFormat('<span class="help-block">')
+                    ->setMessageSeparatorString('</span><span class="help-block">')
+                    ->setMessageCloseString('</span>')
+                    ->render($form->get('credential')); ?>
+                
+            </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="col-lg-3 col-lg-offset-2">
+            <input class="btn btn-primary"type="submit" value="Submit" />
+        </div>
+    </div>
+    
+</fieldset>
+<?php echo $this->form()->closeTag() ?>

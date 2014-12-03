@@ -1,0 +1,36 @@
+{
+    "name": "zendframework/zendservice-recaptcha",
+    "description": "OOP wrapper for the ReCaptcha web service",
+    "type": "library",
+    "keywords": [
+        "zf2",
+        "recaptcha"
+    ],
+    "homepage": "http://packages.zendframework.com/",
+    "license": "BSD-3-Clause",
+    "autoload": {
+        "psr-0": {
+            "ZendService\\ReCaptcha\\": "library/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.zendframework.com/"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zend-config": ">=2.0.0",
+        "zendframework/zend-http": ">=2.0.0",
+        "zendframework/zend-json": ">=2.0.0"
+    },
+    "require-dev": {
+        "phpunit/PHPUnit": "3.7.*"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
+        }
+    }
+}

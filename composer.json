@@ -1,0 +1,40 @@
+{
+	"name" : "zendframework/skeleton-application",
+	"description" : "Skeleton Application for ZF2",
+	"require" : {
+		"php" : ">=5.3.3",
+		"zendframework/zendframework" : "dev-master",
+		"Zendframework/zendservice-recaptcha" : "2.*",
+		"zendframework/zend-developer-tools" : "dev-master",
+		"doctrine/dbal" : "dev-master",
+		"doctrine/common" : "dev-master",
+		"doctrine/doctrine-module" : "dev-master",
+		"doctrine/doctrine-orm-module" : "dev-master",
+		"doctrine/orm" : "dev-master",
+		"zf-commons/zfc-user" : "1.x-dev",
+		"zf-commons/zfc-admin" : "dev-master",
+		"zf-commons/zfc-user-doctrine-orm" : "dev-master",
+		"adamlundrigan/ldc-user-profile" : "dev-master",
+		"mwillbanks/zfc-twitter-bootstrap" : "dev-master",
+		"hrevert/ht-profile-image": "2.3.*",
+		"danielss89/zfc-user-admin" : "dev-master"
+	},
+	"license" : "BSD-3-Clause",
+	"keywords" : [
+		"framework",
+		"zf2"
+	],
+	"minimum-stability" : "dev",
+	"autoload" : {
+		"psr-0" : {
+			"" : "Entity/"
+		}
+	},
+	"homepage" : "http://framework.zend.com/",
+	"authors" : [{
+			"name" : "Thiago Moreira",
+			"email" : "loganguns@gmail.com",
+			"homepage" : "http://rmoreira.info/"
+		}
+	]
+}
