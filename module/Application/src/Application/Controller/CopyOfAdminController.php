@@ -126,14 +126,14 @@ class AdminController extends AbstractActionController
         // Fim Experimental
     }
     
-    public function carAction()
+    public function itemAction()
     {
         /*
          * @todo Doctrine Pagination
          */
         // Experimental
         $entityManager = $this->getEntityManager();
-        $userMapper = $entityManager->getRepository('Application\Entity\Car');
+        $userMapper = $entityManager->getRepository('Application\Entity\Item');
         //$adapter = new SelectableAdapter($entityManager->getRepository('Application\Entity\Advertising'));
         $users = $userMapper->findAll();
         
@@ -150,7 +150,7 @@ class AdminController extends AbstractActionController
         $this->layout('layout/admin.phtml');
         return array(
             'users' => $paginator,
-            'userlistElements' => $this->getOptions()->getCarListElements()
+            'userlistElements' => $this->getOptions()->getItemListElements()
         );
         // Fim Experimental
     }

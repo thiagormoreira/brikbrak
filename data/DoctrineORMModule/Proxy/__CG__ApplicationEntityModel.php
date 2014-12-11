@@ -64,10 +64,10 @@ class Model extends \Application\Entity\Model implements \Doctrine\ORM\Proxy\Pro
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Model' . "\0" . 'idmodel', '' . "\0" . 'Application\\Entity\\Model' . "\0" . 'modelName', '' . "\0" . 'Application\\Entity\\Model' . "\0" . 'brand');
+            return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Model' . "\0" . 'idmodel', '' . "\0" . 'Application\\Entity\\Model' . "\0" . 'modelName', '' . "\0" . 'Application\\Entity\\Model' . "\0" . 'brand', '' . "\0" . 'Application\\Entity\\Model' . "\0" . 'typeItem');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Model' . "\0" . 'idmodel', '' . "\0" . 'Application\\Entity\\Model' . "\0" . 'modelName', '' . "\0" . 'Application\\Entity\\Model' . "\0" . 'brand');
+        return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Model' . "\0" . 'idmodel', '' . "\0" . 'Application\\Entity\\Model' . "\0" . 'modelName', '' . "\0" . 'Application\\Entity\\Model' . "\0" . 'brand', '' . "\0" . 'Application\\Entity\\Model' . "\0" . 'typeItem');
     }
 
     /**
@@ -191,6 +191,17 @@ class Model extends \Application\Entity\Model implements \Doctrine\ORM\Proxy\Pro
     /**
      * {@inheritDoc}
      */
+    public function getId()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getId', array());
+
+        return parent::getId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setIdmodel($idmodel)
     {
 
@@ -241,6 +252,28 @@ class Model extends \Application\Entity\Model implements \Doctrine\ORM\Proxy\Pro
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBrand', array($brand));
 
         return parent::setBrand($brand);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTypeItem()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTypeItem', array());
+
+        return parent::getTypeItem();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setTypeItem($typeItem)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTypeItem', array($typeItem));
+
+        return parent::setTypeItem($typeItem);
     }
 
 }

@@ -15,7 +15,7 @@ class Bodywork
     /**
      * @var integer
      *
-     * @ORM\Column(name="idsubtype_car", type="integer", nullable=false)
+     * @ORM\Column(name="idbodywork", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -29,14 +29,14 @@ class Bodywork
     private $bodyworkName;
 
     /**
-     * @var \Application\Entity\TypeCar
+     * @var \Application\Entity\Subtype
      *
-     * @ORM\ManyToOne(targetEntity="Application\Entity\TypeCar")
+     * @ORM\ManyToOne(targetEntity="Application\Entity\Subtype")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="type_car_idtype_car", referencedColumnName="idtype_car")
+     *   @ORM\JoinColumn(name="subtype_idsubtype", referencedColumnName="idsubtype")
      * })
      */
-    private $typeCar;
+    private $subtypeItem;
 
     /**
      *
@@ -46,12 +46,16 @@ class Bodywork
     {
         return $this->idbodywork;
     }
+    public function getId()
+    {
+        return $this->idbodywork;
+    }
 
     /**
      *
      * @param integer $idbodywork            
      */
-    public function setIdbodywork(integer $idbodywork)
+    public function setIdbodywork($idbodywork)
     {
         $this->idbodywork = $idbodywork;
         return $this;
@@ -70,7 +74,7 @@ class Bodywork
      *
      * @param string $bodyworkName            
      */
-    public function setBodyworkName(string $bodyworkName)
+    public function setBodyworkName($bodyworkName)
     {
         $this->bodyworkName = $bodyworkName;
         return $this;
@@ -78,21 +82,21 @@ class Bodywork
 
     /**
      *
-     * @return the TypeCar
+     * @return the SubtypeItem
      */
-    public function getTypeCar()
+    public function getSubtypeItem()
     {
-        return $this->typeCar;
+        return $this->subtypeItem;
     }
 
     /**
      *
      * @param
-     *            $typeCar
+     *            $subtypeItem
      */
-    public function setTypeCar($typeCar)
+    public function setSubtypeItem($subtypeItem)
     {
-        $this->typeCar = $typeCar;
+        $this->subtypeItem = $subtypeItem;
         return $this;
     }
  

@@ -21,9 +21,10 @@ use ZfcUser\Controller\Plugin\ZfcUserAuthentication;
 use Zend\Filter\File\UpperCase;
 use Application\Form\Edit;
 use Application\Form\Create;
+use Application\Controller\AbstractController\AbstractAdminCrud;
 //use Zend\Paginator\Paginator;
 
-class AdminController extends AbstractActionController
+class AdminController extends AbstractAdminCrud
 {
     /**
      * @var unknown
@@ -51,99 +52,6 @@ class AdminController extends AbstractActionController
     {
         $this->layout('layout/admin.phtml');
         return new ViewModel();
-    }
-    
-    public function _list($entity)
-    {
-        $entityManager = $this->getEntityManager();
-        $userMapper = $entityManager->getRepository('Application\Entity' . $entity);
-        //$adapter = new SelectableAdapter($entityManager->getRepository('Application\Entity\Advertising'));
-        $users = $userMapper->findAll();
-        
-        if (is_array($users)) {
-            $collection = new \Doctrine\Common\Collections\ArrayCollection($users);
-            $paginator = new \Zend\Paginator\Paginator(new \DoctrineModule\Paginator\Adapter\Collection($collection));
-            //$paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\ArrayAdapter($users));
-    
-            $paginator->setItemCountPerPage(20);
-            $paginator->setCurrentPageNumber($this->getEvent()->getRouteMatch()->getParam('p'));
-        } else {
-            $paginator = $users;
-        }
-        $this->layout('layout/admin.phtml');
-        return array(
-            'users' => $paginator,
-            'userlistElements' => $this->getOptions()->getListElements($entity)
-        );
-    }
-    
-    public function listAction()
-    {
-        $entityManager = $this->getEntityManager();
-        $entity = $this->getEvent()->getRouteMatch()->getParam('entity');
-        $entityMapper = $entityManager->getRepository('Application\Entity\\' . ucwords($entity));
-        //$adapter = new SelectableAdapter($entityManager->getRepository('Application\Entity\Advertising'));
-        $list = $entityMapper->findAll();
-        
-        if (is_array($list)) {
-            $collection = new \Doctrine\Common\Collections\ArrayCollection($list);
-            $paginator = new \Zend\Paginator\Paginator(new \DoctrineModule\Paginator\Adapter\Collection($collection));
-            //$paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\ArrayAdapter($users));
-    
-            $paginator->setItemCountPerPage(20);
-            $paginator->setCurrentPageNumber($this->getEvent()->getRouteMatch()->getParam('p'));
-        } else {
-            $paginator = $list;
-        }
-        $this->layout('layout/admin.phtml');
-        return array(
-            'list' => $paginator,
-            'listElements' => $this->getOptions()->getListElements($entity)
-        );
-    }
-    
-    public function editAction()
-    {
-        $entityManager = $this->getEntityManager();
-        $entity = $this->getEvent()->getRouteMatch()->getParam('entity');
-        $id = $this->getEvent()->getRouteMatch()->getParam('id');
-        $item = $this->getEntityManager()->find('\Application\Entity\\' . ucwords($entity), $id);
-        
-        //$form = new Edit($entity, $this->getOptions()->getListElements($entity));
-        
-        /** @var $request \Zend\Http\Request */
-        $request = $this->getRequest();
-        if ($request->isPost()) {
-        /*
-            $form->setData($request->getPost());
-            if ($form->isValid()) {
-                $user = $this->getAdminUserService()->edit($form, (array)$request->getPost(), $user);
-                if ($user) {
-                    $this->flashMessenger()->addSuccessMessage('The user was edited');
-                    return $this->redirect()->toRoute('zfcadmin/zfcuseradmin/list');
-                }
-            }
-            */
-        } else {
-            //$form->populateForm($item);
-        }
-        
-        return array(
-            'editForm' => $form,
-            'id' => $id,
-            //'listElements' => $this->getOptions()->getListElements($entity)
-        );
-    }
-    
-    public function createAction()
-    {
-        $entityManager = $this->getEntityManager();
-        $entity = $this->getEvent()->getRouteMatch()->getParam('entity');
-        $form = new Create($entity, $this->getOptions()->getListElements($entity));
-        
-        return array(
-            'createForm' => $form,
-            );
     }
 
     public function setOptions(ModuleOptions $_options)

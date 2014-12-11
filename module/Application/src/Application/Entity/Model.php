@@ -39,10 +39,24 @@ class Model
     private $brand;
 
     /**
+     * @var \Application\Entity\TypeItem
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Entity\TypeItem")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="type_item_idtype_item", referencedColumnName="idtype_item")
+     * })
+     */
+    private $typeItem;
+
+    /**
      *
      * @return the integer
      */
     public function getIdmodel()
+    {
+        return $this->idmodel;
+    }
+    public function getId()
     {
         return $this->idmodel;
     }
@@ -97,6 +111,27 @@ class Model
         $this->brand = $brand;
         return $this;
     }
+
+    /**
+     *
+     * @return the TypeItem
+     */
+    public function getTypeItem()
+    {
+        return $this->typeItem;
+    }
+
+    /**
+     *
+     * @param
+     *            $typeItem
+     */
+    public function setTypeItem($typeItem)
+    {
+        $this->typeItem = $typeItem;
+        return $this;
+    }
+ 
  
 
     

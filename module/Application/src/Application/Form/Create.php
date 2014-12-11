@@ -38,8 +38,7 @@ class Create extends Form
                 'advertising',
                 'bodywork',
                 'brand',
-                'car',
-                'cart',
+                'item',
                 'city',
                 'contact',
                 'country',
@@ -47,7 +46,7 @@ class Create extends Form
                 'option',
                 'state',
                 'typeaddress',
-                'typecar',
+                'typeitem',
                 'typecontact',
                 'user',
             );

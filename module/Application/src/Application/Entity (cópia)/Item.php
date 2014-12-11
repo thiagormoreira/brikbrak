@@ -4,22 +4,23 @@ namespace Application\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
- * Car
+ * Item
  *
- * @ORM\Table(name="car")
+ * @ORM\Table(name="item")
  * @ORM\Entity
  */
-class Car
+class Item
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="idcar", type="integer", nullable=false)
+     * @ORM\Column(name="iditem", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idcar;
+    private $iditem;
 
     /**
      * @var \DateTime
@@ -74,14 +75,14 @@ class Car
     private $model;
 
     /**
-     * @var \Application\Entity\TypeCar
+     * @var \Application\Entity\TypeItem
      *
-     * @ORM\ManyToOne(targetEntity="Application\Entity\TypeCar")
+     * @ORM\ManyToOne(targetEntity="Application\Entity\TypeItem")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="type_car_idtype_car", referencedColumnName="idtype_car")
+     *   @ORM\JoinColumn(name="type_item_idtype_item", referencedColumnName="idtype_item")
      * })
      */
-    private $typeCar;
+    private $typeItem;
 
     /**
      * @var \Application\Entity\Option
@@ -92,24 +93,37 @@ class Car
      * })
      */
     private $option;
-
+    
+    /**
+     * @var \Application\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_user_id", referencedColumnName="user_id")
+     * })
+     */
+    public $user;
     /**
      *
      * @return the integer
      */
-    public function getIdcar()
+    public function getIditem()
     {
-        return $this->idcar;
+        return $this->iditem;
+    }
+    public function getId()
+    {
+        return $this->iditem;
     }
 
     /**
      *
      * @param
-     *            $idcar
+     *            $iditem
      */
-    public function setIdcar($idcar)
+    public function setIditem($iditem)
     {
-        $this->idcar = $idcar;
+        $this->iditem = $iditem;
         return $this;
     }
 
@@ -255,21 +269,21 @@ class Car
 
     /**
      *
-     * @return the TypeCar
+     * @return the TypeItem
      */
-    public function getTypeCar()
+    public function getTypeItem()
     {
-        return $this->typeCar;
+        return $this->typeItem;
     }
 
     /**
      *
      * @param
-     *            $typeCar
+     *            $typeItem
      */
-    public function setTypeCar($typeCar)
+    public function setTypeItem($typeItem)
     {
-        $this->typeCar = $typeCar;
+        $this->typeItem = $typeItem;
         return $this;
     }
 
@@ -292,6 +306,27 @@ class Car
         $this->option = $option;
         return $this;
     }
+
+    /**
+     *
+     * @return the User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     *
+     * @param
+     *            $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+        return $this;
+    }
+ 
  
 
     

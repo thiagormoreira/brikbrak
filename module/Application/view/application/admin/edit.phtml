@@ -7,9 +7,14 @@ $form->setAttribute('method', 'post');
 
 <h1>Edit</h1>
 
-<?php //include '_form.phtml'; ?>
+<?php include '_form.phtml'; ?>
 
+    <a href="<?php //echo $this->url('zfcadmin/zfcuseradmin/remove', array('userId' => $this->userId)); ?>"
+   onclick="return confirm('<?php echo $this->translate('Tem certeza que deseja apagar?') ?>')">
+    Apagar
+    </a>
+<?php /*
 <a href="<?php //echo $this->url('zfcadmin/zfcuseradmin/remove', array('userId' => $this->userId)); ?>"
    onclick="return confirm('<?php echo $this->translate('Really delete user?') ?>')">
     <?php echo $this->translate('Delete') ?>
-</a>
+</a> */ ?>

@@ -44,16 +44,16 @@
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-5 detalhesProduto">
-									<h1><?php echo $this->advertising->getCar()->getModel()->getModelName() ?></h1>
-									<h2><span>preço: </span><?php echo $this->currencyFormat($this->advertising->getCar()->getValue(), "BRL", "pt_BR") ?></h2>
+									<h1><?php echo $this->advertising->getItem()->getModel()->getModelName() ?></h1>
+									<h2><span>preço: </span><?php echo $this->currencyFormat($this->advertising->getItem()->getValue(), "BRL", "pt_BR") ?></h2>
 									<p>
-										Tipo: <?php echo $this->advertising->getCar()->getTypeCar()->getTypeName() ?><br/>
-										marca: <?php echo $this->advertising->getCar()->getModel()->getBrand()->getBrandName() ?><br/>
+										Tipo: <?php echo $this->advertising->getItem()->getTypeItem()->getTypeName() ?><br/>
+										marca: <?php echo $this->advertising->getItem()->getModel()->getBrand()->getBrandName() ?><br/>
 										Ano: 92/92<br/>
-										Cor: <?php echo $this->advertising->getCar()->getColor() ?><br/>
+										Cor: <?php echo $this->advertising->getItem()->getColor() ?><br/>
 										Combustível: diesel<br/>
 										Transmissão: manual<br/>
-										Quilometragem: <?php echo number_format($this->advertising->getCar()->getKm(), 0, ',', '.') ?>
+										Quilometragem: <?php echo number_format($this->advertising->getItem()->getKm(), 0, ',', '.') ?>
 									</p>
 									<h3>Acessórios</h3>
 									<ul>

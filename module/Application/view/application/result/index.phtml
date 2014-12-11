@@ -44,15 +44,15 @@
 										</div>
 										<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 addBorder">
 											<h1>Detalhes do Veículo</h1>
-											<p class="modelo"><span>Modelo: </span> <?php echo $advertising->getCar()->getModel()->getBrand()->getBrandName() ?> - <?php echo $advertising->getCar()->getModel()->getModelName() ?></p>
-											<p class="preco"><span>Preço: </span> R$ <?php echo $advertising->getCar()->getValue() ?></p>
-											<p><span>Tipo: </span> <?php echo $advertising->getCar()->getTypeCar()->getTypeName() ?></p>
-											<p><span>Marca: </span> <?php echo $advertising->getCar()->getModel()->getBrand()->getBrandName() ?></p>
-											<p><span>Ano: </span> <?php echo $advertising->getCar()->getYear() ?></p>
-											<p><span>cor: </span> <?php echo $advertising->getCar()->getColor() ?></p>
+											<p class="modelo"><span>Modelo: </span> <?php echo $advertising->getItem()->getModel()->getBrand()->getBrandName() ?> - <?php echo $advertising->getItem()->getModel()->getModelName() ?></p>
+											<p class="preco"><span>Preço: </span> R$ <?php echo $advertising->getItem()->getValue() ?></p>
+											<p><span>Tipo: </span> <?php echo $advertising->getItem()->getTypeItem()->getTypeName() ?></p>
+											<p><span>Marca: </span> <?php echo $advertising->getItem()->getModel()->getBrand()->getBrandName() ?></p>
+											<p><span>Ano: </span> <?php echo $advertising->getItem()->getYear() ?></p>
+											<p><span>cor: </span> <?php echo $advertising->getItem()->getColor() ?></p>
 											<p><span>Combustível: </span> Diesel</p>
 											<p><span>Transmissão: </span> Manual</p>
-											<p><span>Quilometragem: </span> <?php echo $advertising->getCar()->getKm() ?></p>
+											<p><span>Quilometragem: </span> <?php echo $advertising->getItem()->getKm() ?></p>
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">

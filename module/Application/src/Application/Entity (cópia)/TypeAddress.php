@@ -5,26 +5,26 @@ namespace Application\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TypeCar
+ * TypeAddress
  *
- * @ORM\Table(name="type_car")
+ * @ORM\Table(name="type_address")
  * @ORM\Entity
  */
-class TypeCar
+class TypeAddress
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="idtype_car", type="integer", nullable=false)
+     * @ORM\Column(name="idtype_address", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idtypeCar;
+    private $typeAddress;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="type_name", type="string", length=45, nullable=true)
+     * @ORM\Column(name="type_name", type="string", length=15, nullable=true)
      */
     private $typeName;
 
@@ -32,19 +32,19 @@ class TypeCar
      *
      * @return the integer
      */
-    public function getIdtypeCar()
+    public function getTypeAddress()
     {
-        return $this->idtypeCar;
+        return $this->typeAddress;
     }
 
     /**
      *
      * @param
-     *            $idtypeCar
+     *            $typeAddress
      */
-    public function setIdtypeCar($idtypeCar)
+    public function settypeAddress($typeAddress)
     {
-        $this->idtypeCar = $idtypeCar;
+        $this->typeAddress = $typeAddress;
         return $this;
     }
 

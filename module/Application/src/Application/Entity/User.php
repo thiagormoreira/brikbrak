@@ -102,17 +102,12 @@ class User
     private $historyAccess;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var \Application\Entity\Rola
      *
-     * @ORM\ManyToMany(targetEntity="Application\Entity\Role", inversedBy="user")
-     * @ORM\JoinTable(name="user_role_linker",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="role_id", referencedColumnName="id")
-     *   }
-     * )
+     * @ORM\ManyToOne(targetEntity="Application\Entity\Role")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="role_idrole", referencedColumnName="idrole")
+     * })
      */
     private $role;
 

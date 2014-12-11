@@ -110,7 +110,7 @@ foreach ($elements as $element) {
                 </td>
             <?php endforeach; ?>
             <td class="cell cell-ctrls">
-                <?php echo $advertising->getCar()->getModel()->getModelName() ?>
+                <?php echo $advertising->getItem()->getModel()->getModelName() ?>
             </td>
             <td class="cell cell-ctrls">
                 <a href="<?php echo $this->url('zfcadmin/zfcuseradmin/edit', array('advertisingId' => $advertising->getIdadvertising())); ?>">

@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <buildpath>
+	<buildpathentry kind="src" path="vendor/adamlundrigan/ldc-user-profile/src"/>
+	<buildpathentry kind="src" path="vendor/doctrine/instantiator/src"/>
+	<buildpathentry kind="src" path="vendor/zendframework/zendframework/library"/>
+	<buildpathentry excluding="src/" kind="src" path="vendor/zf-commons/zfc-user"/>
 	<buildpathentry kind="con" path="org.eclipse.dltk.USER_LIBRARY/org.eclipse.php.core.PHPNature#Zend Framework 2"/>
-	<buildpathentry excluding="vendor/**/test*/**|vendor/**/Test*/**" kind="src" path=""/>
+	<buildpathentry kind="src" path="vendor/hrevert/ht-profile-image/src"/>
+	<buildpathentry excluding="src/" kind="src" path="vendor/adamlundrigan/ldc-user-profile"/>
+	<buildpathentry kind="src" path="vendor/doctrine/inflector/lib"/>
+	<buildpathentry kind="src" path="vendor/doctrine/doctrine-module/src"/>
+	<buildpathentry kind="src" path="vendor/doctrine/orm/lib"/>
+	<buildpathentry kind="src" path="vendor/doctrine/common/lib"/>
 	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+	<buildpathentry excluding="src/" kind="src" path="vendor/zf-commons/zfc-user-doctrine-orm"/>
+	<buildpathentry kind="src" path="vendor/zf-commons/zfc-base/src"/>
+	<buildpathentry kind="src" path="vendor/zf-commons/zfc-admin/src"/>
+	<buildpathentry excluding="src/" kind="src" path="vendor/danielss89/zfc-user-admin"/>
+	<buildpathentry excluding="src/" kind="src" path="vendor/zf-commons/zfc-admin"/>
+	<buildpathentry kind="src" path="vendor/danielss89/zfc-user-admin/src"/>
+	<buildpathentry kind="src" path="vendor/doctrine/dbal/lib"/>
+	<buildpathentry kind="src" path="vendor/zendframework/zend-developer-tools/src"/>
+	<buildpathentry kind="src" path="vendor/doctrine/collections/lib"/>
+	<buildpathentry kind="src" path="vendor/doctrine/annotations/lib"/>
+	<buildpathentry kind="src" path="vendor/imagine/imagine/lib"/>
+	<buildpathentry kind="src" path="vendor/doctrine/cache/lib"/>
+	<buildpathentry kind="src" path="vendor/zendframework/zendxml/library"/>
+	<buildpathentry kind="src" path="vendor/doctrine/doctrine-orm-module/src"/>
+	<buildpathentry kind="src" path="vendor/mwillbanks/zfc-twitter-bootstrap/src"/>
+	<buildpathentry excluding="src/" kind="src" path="vendor/mwillbanks/zfc-twitter-bootstrap"/>
+	<buildpathentry kind="src" path="vendor/composer"/>
+	<buildpathentry kind="src" path="vendor/doctrine/lexer/lib"/>
+	<buildpathentry kind="src" path="vendor/zf-commons/zfc-user-doctrine-orm/src"/>
+	<buildpathentry excluding="src/" kind="src" path="vendor/hrevert/ht-img-module"/>
+	<buildpathentry kind="src" path="vendor/zendframework/zendservice-recaptcha/library"/>
+	<buildpathentry excluding="src/" kind="src" path="vendor/hrevert/ht-profile-image"/>
+	<buildpathentry kind="src" path="vendor/zf-commons/zfc-user/src"/>
+	<buildpathentry kind="src" path="vendor/hrevert/ht-img-module/src"/>
+	<buildpathentry excluding="src/" kind="src" path="vendor/zendframework/zend-developer-tools"/>
+	<buildpathentry excluding="src/" kind="src" path="vendor/zf-commons/zfc-base"/>
 </buildpath>

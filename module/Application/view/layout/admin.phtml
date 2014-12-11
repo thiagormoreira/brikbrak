@@ -75,7 +75,7 @@ if($this->zfcUserIdentity() !== null){
 				</button>
 
 				<div class="navbar-header pull-left">
-					<a href="/admin/index" class="navbar-brand">
+					<a href="<?php echo $this->url('zfcadmin'); ?>" class="navbar-brand">
 						<small>
 							Brik e Brak Admin
 						</small>
@@ -131,7 +131,7 @@ if($this->zfcUserIdentity() !== null){
 
 				<ul class="nav nav-list">
 					<li class="">
-						<a href="admin/index">
+						<a href="<?php echo $this->url('zfcadmin'); ?>">
 							<i class="menu-icon fa fa-tachometer"></i>
 							<span class="menu-text"> Dashboard </span>
 						</a>
@@ -139,7 +139,7 @@ if($this->zfcUserIdentity() !== null){
 						<b class="arrow"></b>
 					</li>
 					<li class="">
-						<a href="<?php echo $this->url('zfcadmin/zfcuseradmin/list'); ?>">
+						<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'user')); ?>">
 							<i class="menu-icon fa fa-users"></i>
 							<span class="menu-text"> Usuários </span>
 						</a>
@@ -177,7 +177,7 @@ if($this->zfcUserIdentity() !== null){
 								
 								<ul class="submenu">
         							<li class="">
-        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'car')); ?>">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'item', 'idtype' => '1')); ?>">
         									<i class="menu-icon fa fa-caret-right"></i>
         									Lista
         								</a>
@@ -189,7 +189,7 @@ if($this->zfcUserIdentity() !== null){
         								</a>
         							</li>
         							<li class="">
-        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'model')); ?>">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'model', 'idtype' => '1')); ?>">
         									<i class="menu-icon fa fa-caret-right"></i>
         									Modelos
         								</a>
@@ -201,9 +201,15 @@ if($this->zfcUserIdentity() !== null){
         								</a>
         							</li>
         							<li class="">
-        								<a href="javascript: void(0);" class="dropdown-toggle">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'typeItem')); ?>">
         									<i class="menu-icon fa fa-caret-right"></i>
         									Tipos
+        								</a
+        							</li>
+        							<li class="">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'options', 'idtype' => '1')); ?>">
+        									<i class="menu-icon fa fa-caret-right"></i>
+        									Opcionais
         								</a>
         							</li>
     							</ul>
@@ -218,7 +224,7 @@ if($this->zfcUserIdentity() !== null){
 								
 								<ul class="submenu">
         							<li class="">
-        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'cart')); ?>">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'item', 'idtype' => '2')); ?>">
         									<i class="menu-icon fa fa-caret-right"></i>
         									Lista
         								</a>
@@ -230,9 +236,15 @@ if($this->zfcUserIdentity() !== null){
         								</a>
         							</li>
         							<li class="">
-        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'model')); ?>">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'model', 'idtype' => '2')); ?>">
         									<i class="menu-icon fa fa-caret-right"></i>
         									Modelos
+        								</a>
+        							</li>
+        							<li class="">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'options', 'idtype' => '2')); ?>">
+        									<i class="menu-icon fa fa-caret-right"></i>
+        									Opcionais
         								</a>
         							</li>
     							</ul>
@@ -247,7 +259,7 @@ if($this->zfcUserIdentity() !== null){
 								
 								<ul class="submenu">
         							<li class="">
-        								<a href="javascript: void(0);" class="dropdown-toggle">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'item', 'idtype' => '3')); ?>">
         									<i class="menu-icon fa fa-caret-right"></i>
         									Lista
         								</a>
@@ -259,7 +271,7 @@ if($this->zfcUserIdentity() !== null){
         								</a>
         							</li>
         							<li class="">
-        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'model')); ?>">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'model', 'idtype' => '3')); ?>">
         									<i class="menu-icon fa fa-caret-right"></i>
         									Modelos
         								</a>
@@ -271,9 +283,15 @@ if($this->zfcUserIdentity() !== null){
         								</a>
         							</li>
         							<li class="">
-        								<a href="javascript: void(0);">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'typeItem')); ?>">
         									<i class="menu-icon fa fa-caret-right"></i>
         									Tipos
+        								</a>
+        							</li>
+        							<li class="">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'options', 'idtype' => '4')); ?>">
+        									<i class="menu-icon fa fa-caret-right"></i>
+        									Opcionais
         								</a>
         							</li>
         						</ul>
@@ -288,7 +306,7 @@ if($this->zfcUserIdentity() !== null){
 								
 								<ul class="submenu">
         							<li class="">
-        								<a href="javascript: void(0);">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'item', 'idtype' => '4')); ?>">
         									<i class="menu-icon fa fa-caret-right"></i>
         									Lista
         								</a>
@@ -300,9 +318,15 @@ if($this->zfcUserIdentity() !== null){
         								</a>
         							</li>
         							<li class="">
-        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'model')); ?>">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'model', 'idtype' => '4')); ?>">
         									<i class="menu-icon fa fa-caret-right"></i>
         									Modelos
+        								</a>
+        							</li>
+        							<li class="">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'options', 'idtype' => '4')); ?>">
+        									<i class="menu-icon fa fa-caret-right"></i>
+        									Opcionais
         								</a>
         							</li>
         						</ul>
@@ -317,7 +341,7 @@ if($this->zfcUserIdentity() !== null){
 								
 								<ul class="submenu">
         							<li class="">
-        								<a href="javascript: void(0);">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'item', 'idtype' => '5')); ?>">
         									<i class="menu-icon fa fa-caret-right"></i>
         									Lista
         								</a>
@@ -329,7 +353,7 @@ if($this->zfcUserIdentity() !== null){
         								</a>
         							</li>
         							<li class="">
-        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'model')); ?>">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'model', 'idtype' => '5')); ?>">
         									<i class="menu-icon fa fa-caret-right"></i>
         									Modelos
         								</a>
@@ -346,6 +370,12 @@ if($this->zfcUserIdentity() !== null){
         									Eixos
         								</a>
         							</li>
+        							<li class="">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'options', 'idtype' => '5')); ?>">
+        									<i class="menu-icon fa fa-caret-right"></i>
+        									Opcionais
+        								</a>
+        							</li>
         						</ul>
 							</li>
 							<li class="">
@@ -353,12 +383,69 @@ if($this->zfcUserIdentity() !== null){
 									<i class="menu-icon fa fa-caret-right"></i>
 									Acessórios
 								</a>
+
+								<b class="arrow fa fa-angle-down"></b>
+								
+								<ul class="submenu">
+        							<li class="">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'item', 'idtype' => '6')); ?>">
+        									<i class="menu-icon fa fa-caret-right"></i>
+        									Lista
+        								</a>
+        							</li>
+        							<li class="">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'brand')); ?>">
+        									<i class="menu-icon fa fa-caret-right"></i>
+        									Marcas
+        								</a>
+        							</li>
+        							<li class="">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'model', 'idtype' => '6')); ?>">
+        									<i class="menu-icon fa fa-caret-right"></i>
+        									Modelos
+        								</a>
+        							</li>
+        							<li class="">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'options', 'idtype' => '6')); ?>">
+        									<i class="menu-icon fa fa-caret-right"></i>
+        									Opcionais
+        								</a>
+        							</li>
+        						</ul>
 							</li>
 							<li class="">
 								<a href="javascript: void(0);" class="dropdown-toggle">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Insumos e Peças
 								</a>
+
+								<b class="arrow fa fa-angle-down"></b>
+								
+								<ul class="submenu">
+        							<li class="">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'item', 'idtype' => '7')); ?>">
+        									<i class="menu-icon fa fa-caret-right"></i>
+        									Lista
+        								</a>
+        							</li>
+        							<li class="">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'brand')); ?>">
+        									<i class="menu-icon fa fa-caret-right"></i>
+        									Marcas
+        								</a>
+        							</li>
+        							<li class="">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'model', 'idtype' => '7')); ?>">
+        									<i class="menu-icon fa fa-caret-right"></i>
+        									Modelos
+        								</a>
+        							</li>
+        							<li class="">
+        								<a href="<?php echo $this->url('zfcadmin-list', array( 'entity' => 'options', 'idtype' => '7')); ?>">
+        									<i class="menu-icon fa fa-caret-right"></i>
+        									Opcionais
+        								</a>
+        							</li>
 							</li>
 						</ul>
 					</li>

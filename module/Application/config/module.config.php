@@ -33,7 +33,7 @@ return array(
             'zfcadmin-list' => array(
                 'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => array(
-                    'route' => '/admin/[:entity]',
+                    'route' => '/admin/:entity[/:idtype][/page/:page]',
                     'defaults' => array(
                         'controller' => 'Application\Controller\Admin',
                         'action' => 'list',
@@ -44,22 +44,53 @@ return array(
             'zfcadmin-edit' => array(
                 'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => array(
-                    'route' => '/admin/[:entity/edit/:id]',
+                    'route' => '/admin/:entity/edit/:id',
                     'defaults' => array(
                         'controller' => 'Application\Controller\Admin',
-                        'action' => 'edit',
-                        'entity' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                        'action'     => 'edit'
                     )
                 )
             ),
             'zfcadmin-create' => array(
                 'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => array(
-                    'route' => '/admin/[:entity/create]',
+                    'route' => '/admin/:entity/create[/:idtype]',
                     'defaults' => array(
                         'controller' => 'Application\Controller\Admin',
                         'action' => 'create',
-                        'entity' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                    )
+                )
+            ),
+            'novo-anuncio' => array(
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => array(
+                    'route' => '/user/novo-anuncio',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\User',
+                        'action' => 'novoAnuncio',
+                    )
+                )
+            ),
+            /*
+            'zfcuser-admin-edit' => array(
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => array(
+                    'route' => '/admin/user/edit/:userId',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'ZfcUserAdmin\Controller',
+                        'controller'    => 'UserAdminController',
+                        'action' => 'edit',
+                        'userId'     => 0
+                    )
+                )
+            ),*/
+            'zfcadmin-delete' => array(
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => array(
+                    'route' => '/admin/:entity/delete/:id',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Admin',
+                        'action' => 'delete',
                     )
                 )
             ),
@@ -77,7 +108,7 @@ return array(
             'dev' => array(
                 'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => array(
-                    'route' => '/admin/car/list',
+                    'route' => '/admin/item/list',
                     'defaults' => array(
                         'controller' => 'Application\Controller\Admin',
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
@@ -297,7 +328,8 @@ return array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
             'Application\Controller\Result' => 'Application\Controller\ResultController',
             'Application\Controller\Portal' => 'Application\Controller\PortalController',
-            'Application\Controller\Admin' => 'Application\Controller\AdminController'
+            'Application\Controller\Admin' => 'Application\Controller\AdminController',
+            'Application\Controller\User' => 'Application\Controller\UserController'
         )
     ),
     'view_manager' => array(

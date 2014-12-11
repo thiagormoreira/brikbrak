@@ -38,6 +38,13 @@ class Address
     /**
      * @var string
      *
+     * @ORM\Column(name="district_name", type="string", length=45, nullable=true)
+     */
+    private $districtName;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="number", type="string", length=10, nullable=true)
      */
     private $number;
@@ -66,7 +73,7 @@ class Address
     /**
      * @var \Application\Entity\TypeAddress
      *
-     * @ORM\ManyToOne(targetEntity="Application\Entity\TypeAddress")
+     * @ORM\ManyToOne(targetEntity="Application\Entity\TypeAddress", inversedBy="useruser")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="type_address_idtype_address", referencedColumnName="idtype_address")
      * })
@@ -96,6 +103,10 @@ class Address
      * @return the integer
      */
     public function getIdaddress()
+    {
+        return $this->idaddress;
+    }
+    public function getId()
     {
         return $this->idaddress;
     }
@@ -270,7 +281,25 @@ class Address
         $this->city = $city;
         return $this;
     }
+
+    /**
+     *
+     * @return the string
+     */
+    public function getDistrictName()
+    {
+        return $this->districtName;
+    }
+
+    /**
+     *
+     * @param string $districtName            
+     */
+    public function setDistrictName($districtName)
+    {
+        $this->districtName = $districtName;
+        return $this;
+    }
  
-    
-    
+ 
 }

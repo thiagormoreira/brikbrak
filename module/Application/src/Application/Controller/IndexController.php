@@ -20,7 +20,7 @@ class IndexController extends AbstractActionController
         //$ad = new \Application\Entity\Advertising();
         //$ad->setAddress(1);
         //$ad->setUser(2);
-        //$ad->setCar(1);
+        //$ad->setItem(1);
         //$ad->setText("Teste");
         //var_dump($ad);
         //$this->_em->persist($ad);
