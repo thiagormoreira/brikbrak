@@ -2,6 +2,7 @@
 
 namespace Application\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="options")
  * @ORM\Entity
  */
-class Options
+class Option
 {
     /**
      * @var integer
@@ -37,7 +38,16 @@ class Options
      * })
      */
     private $typeItem;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Application\Entity\Item", mappedBy="options")
+     */
+    public $items;
 
+    public function __construct() {
+        $this->items = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      *
      * @return the integer
@@ -51,7 +61,7 @@ class Options
         return $this->idoptions;
     }
 
-    /**
+    /**use Doctrine\Common\Collections\ArrayCollection;
      *
      * @param
      *            $idoptions
@@ -101,4 +111,14 @@ class Options
         return $this;
     }
     
+    public function getItems()
+    {
+        return $this->items;
+    }
+    
+    public function addItem(Item $item = null)
+    {
+        //$items->addItem($this);
+        $this->items[] = $item;
+    }
 }

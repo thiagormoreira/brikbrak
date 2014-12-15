@@ -59,6 +59,20 @@ class Advertising
      * })
      */
     public $user;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="view_count", type="integer", nullable=true)
+     */
+    private $viewCount;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="create_date", type="datetime", nullable=true)
+     */
+    private $createDate;
 
     /**
      *
@@ -95,6 +109,10 @@ class Advertising
 
     /**
      *
+
+        if (!is_callable($this->zfcUserAuthentication())) {
+            return $this->redirect()->toRoute('authenticate');
+        }
      * @param
      *            $text
      */
@@ -163,7 +181,7 @@ class Advertising
         $this->user = $user;
         return $this;
     }
- 
+    
     /**
      * Constructor
      */
@@ -171,5 +189,34 @@ class Advertising
     {
         //$this->user = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
+    /**
+     *
+     * @return the string
+     */
+    public function getViewCount()
+    {
+        return $this->viewCount;
+    }
+
+    /**
+     *
+     * @param string $viewCount            
+     */
+    public function addViewCount()
+    {
+        $this->viewCount = $this->viewCount + 1;
+        return $this;
+    }
+
+    /**
+     *
+     * @return the string
+     */
+    public function getCreateDate()
+    {
+        return $this->createDate;
+    }
+ 
     
 }

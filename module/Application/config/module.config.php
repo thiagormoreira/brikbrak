@@ -30,6 +30,14 @@ return array(
                     )
                 )
             ),
+            'zfcuser' => array(
+                'options' => array(
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\User',
+                        'action' => 'index'
+                    )
+                )
+            ),
             'zfcadmin-list' => array(
                 'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => array(
@@ -70,6 +78,16 @@ return array(
                         'action' => 'novoAnuncio',
                     )
                 )
+            ),
+            'authenticate' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/authenticate',
+                    'defaults' => array(
+                        'controller' => 'zfcuser',
+                        'action'     => 'authenticate',
+                    ),
+                ),
             ),
             /*
             'zfcuser-admin-edit' => array(

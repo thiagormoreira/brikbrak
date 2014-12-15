@@ -30,6 +30,9 @@ class UserController extends AbstractActionController
      * @var unknown
      */
     protected $em;
+    
+    public function __construct(){
+    }
 
     /**
      * @return Ambigous <object, multitype:>
@@ -43,8 +46,15 @@ class UserController extends AbstractActionController
     }
     
     public function indexAction(){
-        echo 'porra';
+        
+        $entityManager = $this->getEntityManager();
+        $userAdvertisings = $entityManager->getRepository('Application\Entity\Advertising')->findBy(array('user' => $this->zfcUserAuthentication()->getIdentity()->getId()));
+        
+        return array(
+            'userAdvertisings' => $userAdvertisings,
+        );
     }
+    
     public function novoAnuncioAction(){
         
         $entityManager = $this->getEntityManager();

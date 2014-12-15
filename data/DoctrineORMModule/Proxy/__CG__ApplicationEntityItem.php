@@ -108,10 +108,10 @@ class Item extends \Application\Entity\Item implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'iditem', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'year', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'value', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'fuel', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'km', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'color', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'new', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'model', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'typeItem', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'option', 'user');
+            return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'iditem', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'year', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'value', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'fuel', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'km', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'color', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'gear', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'new', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'model', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'typeItem', 'user', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'options');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'iditem', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'year', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'value', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'fuel', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'km', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'color', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'new', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'model', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'typeItem', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'option');
+        return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'iditem', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'year', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'value', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'fuel', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'km', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'color', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'gear', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'new', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'model', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'typeItem', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'options');
     }
 
     /**
@@ -434,23 +434,23 @@ class Item extends \Application\Entity\Item implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function getOption()
+    public function getOptions()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getOption', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getOptions', array());
 
-        return parent::getOption();
+        return parent::getOptions();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setOption($option)
+    public function setOptions($options)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setOption', array($option));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setOptions', array($options));
 
-        return parent::setOption($option);
+        return parent::setOptions($options);
     }
 
     /**
@@ -473,6 +473,50 @@ class Item extends \Application\Entity\Item implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUser', array($user));
 
         return parent::setUser($user);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addOptions($options)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addOptions', array($options));
+
+        return parent::addOptions($options);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeOptions($options)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeOptions', array($options));
+
+        return parent::removeOptions($options);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getGear()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getGear', array());
+
+        return parent::getGear();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setGear($gear)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setGear', array($gear));
+
+        return parent::setGear($gear);
     }
 
 }

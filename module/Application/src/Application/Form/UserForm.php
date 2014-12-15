@@ -134,6 +134,7 @@ class UserForm extends Form
          * ));
          * //$this->add($role);
          */
+        /*
         $this->add(array(
             'type' => 'DoctrineModule\Form\Element\ObjectSelect',
             'name' => 'role',
@@ -148,6 +149,25 @@ class UserForm extends Form
                 'is_method' => true
             )
         ));
+        */
+        $role = new ObjectSelect('role');
+        $role->setEmptyOption('Selecionar nivel');
+        $role->setOptions(array(
+            'object_manager' => $this->em,
+            'target_class' => 'Application\Entity\Role',
+            'property' => 'roleId',
+            'is_method' => true,
+            'label' => 'Nível de acesso',
+            'find_method' => array(
+                //'name' => 'findBy',
+                //'params' => array(
+                //    'criteria' => array(
+                    //        'user' => 2
+                    //    )
+                    //)
+                )
+        ));
+        $this->add($role);
     }
 
     public function createInputFilter()

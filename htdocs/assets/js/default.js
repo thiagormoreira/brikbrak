@@ -22,43 +22,14 @@ $(document).ready(function(){
 
 });
 
-if($(".carousel").length > 0){
-  enquire.register("screen and (min-width:320px)", function() {
-  	$(".carousel").jCarouselLite({
-        btnNext: ".btnNav",
-        circular: true,
-        visible: 3.4
-    });
-  })
-  .register("screen and (min-width:480px)", function() {
-  	$(".carousel").jCarouselLite({
-        btnNext: ".btnNav",
-        circular: true,
-        visible: 5.7
-    });
-  })
-  .register("screen and (min-width:768px)", function() {
-  	$(".carousel").jCarouselLite({
-        btnNext: ".btnNav",
-        circular: true,
-        visible: 4.6
-    });
-  })
-  .register("screen and (min-width:992px)", function() {
-  	$(".carousel").jCarouselLite({
-        btnNext: ".btnNav",
-        circular: true,
-        visible: 6.2
-    });
-  })
-  .register("screen and (min-width:1024px)", function() {
-  	$(".carousel").jCarouselLite({
-        btnNext: ".btnNav",
-        circular: true,
+$(function() {
+    $(".carousel").jCarouselLite({
+        btnNext: ".next",
+        btnPrev: ".prev",
+        circular: false,
         visible: 5
     });
-  });
-}
+});
 
 
 

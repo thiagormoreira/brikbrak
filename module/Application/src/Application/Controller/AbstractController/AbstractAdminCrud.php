@@ -120,6 +120,8 @@ abstract class AbstractAdminCrud extends AbstractActionController
             $form = new AdvertisingForm($objectManager);
         } elseif ($entity == "item") {
             $form = new ItemForm($objectManager);
+            //$item->setOptions($this->params()->fromPost('options'));
+            
         } elseif ($entity == "brand") {
             $form = new BrandForm($objectManager);
         } elseif ($entity == "model") {
@@ -143,6 +145,7 @@ abstract class AbstractAdminCrud extends AbstractActionController
                 $item = $this->getEntityManager()->find('\Application\Entity\\' . ucwords($entity), $id);
                 $form->bind($item);
                 
+                $this->flashMessenger()->addSuccessMessage('Alterações salvas com sucesso.');
                 $this->redirect()->toRoute('zfcadmin-list', array('entity' => $entity));
             }
         }
@@ -210,6 +213,7 @@ abstract class AbstractAdminCrud extends AbstractActionController
                 $entityManager->flush();
                 // $form->bind($item);
                 
+                $this->flashMessenger()->addSuccessMessage('Adicionado com sucesso.');
                 $this->redirect()->toRoute('zfcadmin-list', array('entity' => $entity));
             }
         }
@@ -242,6 +246,7 @@ abstract class AbstractAdminCrud extends AbstractActionController
             $objectManager->remove($item);
             $objectManager->flush();
             
+            $this->flashMessenger()->addSuccessMessage('Item apagado com sucesso.');
             $this->redirect()->toRoute('zfcadmin-list', array('entity' => $entity));
         }
     }

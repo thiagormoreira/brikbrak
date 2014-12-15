@@ -145,12 +145,7 @@ $form->setAttribute('method', 'post');
 											<div>
 
 												<h4>SELECIONE OS ACESSÓRIOS</h4>
-												<span class="inputRadio" data-input-id="acessorios"
-													data-input-value="1"> <input type="hidden"
-													name="acessorios" id="acessorios" />
-												</span> <label for="ar-condicionado">AR CONDICIONADO</label>
-												<span class="inputRadio" data-input-id="acessorios"
-													data-input-value="2"></span> <label for="interclima">INTERCLIMA</label>
+												<?php echo $this->formMultiCheckbox($form->get('options')) . $this->formElementErrors($form->get('options')) ?>
 
 											</div>
 											<a href="#profile" data-toggle="tab"

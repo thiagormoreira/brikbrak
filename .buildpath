@@ -2,6 +2,7 @@
 <buildpath>
 	<buildpathentry kind="src" path="vendor/adamlundrigan/ldc-user-profile/src"/>
 	<buildpathentry kind="src" path="vendor/doctrine/instantiator/src"/>
+	<buildpathentry kind="src" path="vendor/symfony/console"/>
 	<buildpathentry kind="src" path="vendor/zendframework/zendframework/library"/>
 	<buildpathentry excluding="src/" kind="src" path="vendor/zf-commons/zfc-user"/>
 	<buildpathentry kind="con" path="org.eclipse.dltk.USER_LIBRARY/org.eclipse.php.core.PHPNature#Zend Framework 2"/>

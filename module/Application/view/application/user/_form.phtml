@@ -1,5 +1,5 @@
 <?php echo $this->form()->openTag($form) ?>
-    <dl class="zend_form">
+    <div class="form-horizontal">
         <?php foreach ($form as $element): ?>
             <?php $isButton = $element instanceof Zend\Form\Element\Button; ?>
             <?php $isCheckbox = $element instanceof Zend\Form\Element\Checkbox || $element->getAttribute('type') == 'checkbox'; ?>
@@ -20,7 +20,7 @@
                 <dd><?php echo $this->formInput($element) . $this->formElementErrors($element) ?></dd>
             <?php endif ?>
         <?php endforeach ?>
-    </dl>
+    </div>
 <?php if ($this->redirect): ?>
     <input type="hidden" name="redirect" value="<?php echo $this->redirect ?>">
 <?php endif ?>

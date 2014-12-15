@@ -62,7 +62,8 @@ class AdvertisingForm extends Form
                 'label' => 'Texto'
             ),
             'attributes' => array(
-                'type' => 'textarea'
+                'type' => 'textarea',
+                //'class' => 'autosize-transition form-control'
             )
         ));
         /*

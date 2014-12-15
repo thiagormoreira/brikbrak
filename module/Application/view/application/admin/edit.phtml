@@ -1,12 +1,20 @@
 <?php
 $form = $this->editForm;
 $form->prepare();
+$form->setAttribute('class', 'form-horizontal');
 //$form->setAttribute('action', $this->url('zfcadmin/zfcuseradmin/edit', array('userId' => $this->userId)));
 $form->setAttribute('method', 'post');
+
+$flash = $this->flashMessenger();
+$flash->setMessageOpenFormat('<div%s>
+     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+         <i class="ace-icon fa fa-times"></i>
+     </button>')
+     ->setMessageCloseString('</li></ul></div>');
 ?>
 
-<h1>Edit</h1>
-
+<h1>Editar</h1>
+<?php echo $flash->render('success', array('alert', 'alert-dismissable', 'alert-success')); ?>
 <?php include '_form.phtml'; ?>
 
     <a href="<?php //echo $this->url('zfcadmin/zfcuseradmin/remove', array('userId' => $this->userId)); ?>"

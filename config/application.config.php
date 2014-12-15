@@ -13,8 +13,8 @@ return array(
         'ZfcTwitterBootstrap',
         'ZfcUserAdmin',
         'LdcUserProfile',
-        //'HtProfileImage',
         //'HtImgModule',
+        //'HtProfileImage',
         'Application',
     ),
 

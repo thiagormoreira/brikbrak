@@ -147,6 +147,24 @@ class UserAdvertisingForm extends Form
                 'placeholder' => 'Digite o Valor'
             )
         ));
+            
+            $this->add(array(
+                'name' => 'options',
+                'type' => 'DoctrineModule\Form\Element\ObjectMultiCheckbox',
+                //'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+                'options' => array(
+                    'label' => 'Opcionais',
+                    'object_manager' => $this->em,
+                    'target_class' => 'Application\Entity\Option',
+                    'property' => 'optionsName'
+                    ),
+                'attributes' => array(
+                    'multiple' => true,
+                    'class' => 'multiselect',
+                    //'expanded' => true, // Render as checkboxes
+                    )
+                ));
+            
         /////// FIM ITEM
         
         /////// ENDEREÇO

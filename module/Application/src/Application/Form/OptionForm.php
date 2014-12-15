@@ -20,7 +20,7 @@ use DoctrineModule\Form\Element\ObjectSelect;
 use Zend\Filter\StringTrim;
 use Zend\Filter\StripTags;
 
-class OptionsForm extends Form
+class OptionForm extends Form
 {
     protected $entityManager;
     

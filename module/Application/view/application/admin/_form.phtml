@@ -1,28 +1,39 @@
+
+<!-- page specific plugin styles -->
+		<link rel="stylesheet" href="/dashboard/css/bootstrap-duallistbox.min.css" />
+		<link rel="stylesheet" href="/dashboard/css/bootstrap-multiselect.min.css" />
+		<link rel="stylesheet" href="/dashboard/css/select2.min.css" />
+
 <?php echo $this->form()->openTag($form) ?>
-    <dl class="zend_form">
+    <div class="control-group">
         <?php foreach ($form as $element): ?>
             <?php $isButton = $element instanceof Zend\Form\Element\Button; ?>
             <?php $isCheckbox = $element instanceof Zend\Form\Element\Checkbox || $element->getAttribute('type') == 'checkbox'; ?>
             <?php if ($element->getLabel() != null && !$isButton): ?>
-                <dt><?php echo $this->formLabel($element) ?></dt>
+                <div><?php echo $this->formLabel($element) ?></div>
             <?php endif ?>
             <?php if ($isButton): ?>
-                <dd><?php echo $this->formButton($element) ?></dd>
+                <div><?php echo $this->formButton($element) ?></div>
+            <?php elseif ($element instanceof DoctrineModule\Form\Element\ObjectMultiCheckbox): ?>
+                <div class="ckeckbox"><?php echo $this->formMultiCheckbox($element) . $this->formElementErrors($element) ?></div>
             <?php elseif ($element instanceof DoctrineModule\Form\Element\ObjectSelect): ?>
-                <dd><?php echo $this->formSelect($element) . $this->formElementErrors($element) ?></dd>
+                <div class="select"><?php echo $this->formSelect($element) . $this->formElementErrors($element) ?></div>
             <?php elseif ($element instanceof Zend\Form\Element\Textarea): ?>
-                <dd><?php echo $this->formTextarea($element) . $this->formElementErrors($element) ?></dd>
-            <?php elseif ($element instanceof Zend\Form\Element\MultiCheckbox): ?>
-                <dd><?php echo $this->formMultiCheckbox($element) . $this->formElementErrors($element) ?></dd>
+                <div class="textarea"><?php echo $this->formTextarea($element) . $this->formElementErrors($element) ?></div>
+            <?php elseif ($element instanceof Zend\Form\Element\Radio): ?>
+                <div class="radio"><?php echo $this->formRadio($element) . $this->formElementErrors($element) ?></div>
             <?php elseif ($isCheckbox): ?>
-                <dd><?php echo $this->formCheckbox($element) ?></dd>
+                <div><?php echo $this->formCheckbox($element) ?></div>
             <?php else: ?>
-                <dd><?php echo $this->formInput($element) . $this->formElementErrors($element) ?></dd>
+                <div><?php echo $this->formInput($element) . $this->formElementErrors($element) ?></div>
             <?php endif ?>
         <?php endforeach ?>
-    </dl>
+    </div>
 <?php if ($this->redirect): ?>
-    <input type="hidden" name="redirect" value="<?php echo $this->redirect ?>">
+    <input type="hidiven" name="redirect" value="<?php echo $this->redirect ?>">
 <?php endif ?>
-    <input type="submit" name="submit" value="Salvar" class="btn btn-primary">
+    <div class="control-group">
+        <br>
+        <input type="submit" name="submit" value="Salvar" class="btn btn-primary">
+    </div>
 <?php echo $this->form()->closeTag() ?>

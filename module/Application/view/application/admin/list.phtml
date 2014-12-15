@@ -27,6 +27,13 @@ foreach ($elements as $element) {
     });
     $getters[$element] = 'get' . implode('', $parts);
 }
+
+$flash = $this->flashMessenger();
+$flash->setMessageOpenFormat('<div%s>
+     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+         <i class="ace-icon fa fa-times"></i>
+     </button>')
+     ->setMessageCloseString('</li></ul></div>');
 ?>
 <div class="page-header">
 	<h1>
@@ -35,7 +42,7 @@ foreach ($elements as $element) {
 		</small>
 	</h1>
 </div>
-
+<?php echo $flash->render('success', array('alert', 'alert-dismissable', 'alert-success')); ?>
 <table class="table">
 	<thead>
 		<tr>
@@ -107,13 +114,12 @@ foreach ($elements as $element) {
             <?php endforeach; ?>
             <td class="cell cell-ctrls">
 				<div class="pull-right">
-					<a
-						href="<?php echo $this->url('zfcadmin-edit', array('id' => $curr->getId(), 'entity' => $this->entity)); ?>">
+					<a href="<?php echo $this->url('zfcadmin-edit', array('id' => $curr->getId(), 'entity' => $this->entity)); ?>">
 						<button class="btn btn-xs btn-info">
 							<i class="ace-icon fa fa-pencil bigger-120"></i>
 						</button>
-					</a> <a
-						href="<?php echo $this->url('zfcadmin-delete', array('id' => $curr->getId(), 'entity' => $this->entity)); ?>"
+					</a>
+					<a href="<?php echo $this->url('zfcadmin-delete', array('id' => $curr->getId(), 'entity' => $this->entity)); ?>"
 						onclick="return confirm('<?php echo $this->translate('Tem certeza que deseja deletar esse item?') ?>')">
 						<button class="btn btn-xs btn-danger">
 							<i class="ace-icon fa fa-trash-o bigger-120"></i>

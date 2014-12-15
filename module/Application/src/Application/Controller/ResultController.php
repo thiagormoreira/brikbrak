@@ -16,7 +16,7 @@ use Application\Controller\Helper\Paginator;
 use DoctrineModule\Paginator\Adapter\Selectable as SelectableAdapter;
 use Doctrine\Common\Collecttions\Criteria as DoctrineCriteria; // for criteria
 use ZfcUser\Controller\Plugin\ZfcUserAuthentication;
-//use Zend\Paginator\Paginator;
+use Application\Entity\Advertising;
 
 class ResultController extends AbstractActionController
 {
@@ -43,10 +43,7 @@ class ResultController extends AbstractActionController
     public function indexAction()
     {
         $entityManager = $this->getEntityManager();
-        $adapter = new SelectableAdapter($entityManager->getRepository('Application\Entity\Advertising')); //($objectRepository); // An object repository implements Selectable
-        // 2) ToDo make it work. Use the paginator that comes with DoctrineORMModule
-        // $adapter = new DoctrinePaginator($entityManager->getRepository('CsnUser\Entity\User'));
-        // Create the paginator itself
+        $adapter = new SelectableAdapter($entityManager->getRepository('Application\Entity\Advertising'));
         $paginator = new Paginator($adapter);
         $page = 1;
         if ($this->params()->fromRoute('page')) $page = $this->params()->fromRoute('page');
@@ -64,10 +61,15 @@ class ResultController extends AbstractActionController
      */
     public function detailAction()
     {
-        return new ViewModel(array(
-            'advertising' => $this->getEntityManager()
+        $objectManager = $this->getEntityManager();
+        $advertising = $this->getEntityManager()
                 ->getRepository('Application\Entity\Advertising')
-                ->find($this->params('id'))
+                ->find($this->params('id'));
+        $advertising->addViewCount();
+        $objectManager->flush();
+        
+        return new ViewModel(array(
+            'advertising' => $advertising
         ));
     }
 }

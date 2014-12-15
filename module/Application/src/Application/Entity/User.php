@@ -99,10 +99,10 @@ class User
      *   }
      * )
      */
-    private $historyAccess;
+    //private $historyAccess;
 
     /**
-     * @var \Application\Entity\Rola
+     * @var \Application\Entity\Role
      *
      * @ORM\ManyToOne(targetEntity="Application\Entity\Role")
      * @ORM\JoinColumns({
@@ -118,8 +118,6 @@ class User
     {
         $this->address = new \Doctrine\Common\Collections\ArrayCollection();
         $this->contact = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->historyAccess = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->role = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

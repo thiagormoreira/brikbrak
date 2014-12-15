@@ -1,0 +1,291 @@
+<?php 
+function getFileList($dir)
+{
+    // array to hold return value
+    $retval = array();
+
+    // add trailing slash if missing
+    if(substr($dir, -1) != "/") $dir .= "/";
+
+    // open directory for reading
+    $d = new DirectoryIterator($dir) or die("getFileList: Failed opening directory $dir for reading");
+    foreach($d as $fileinfo) {
+        // skip hidden files
+        if($fileinfo->isDot()) continue;
+        $retval[] = array(
+            'name' => "{$dir}{$fileinfo}",
+            'type' => ($fileinfo->getType() == "dir") ? "dir" : mime_content_type($fileinfo->getRealPath()),
+            'size' => $fileinfo->getSize(),
+            'lastmod' => $fileinfo->getMTime()
+        );
+    }
+
+    return $retval;
+}
+?>
+<!--<h1><?php echo $this->translate('Your Profile'); ?></h1>  -->
+<?php 
+/*
+       * <?php echo $this->form()->openTag($form) ?>
+       * <dl class="zend_form">
+       * <?php foreach ($form->getFieldsets() as $fieldset): ?>
+       * <?php echo $this->render('ldc-user-profile/profile/extension/' . $fieldset->getName(), array('fieldset' => $fieldset)); ?>
+       * <?php endforeach ?>
+       *
+       * <?php foreach ($form->getElements() as $element): ?>
+       * <?php if (!$element instanceof Zend\Form\Element\Button && !$element instanceof Zend\Form\Element\Hidden): ?>
+       * <dt><?php echo $this->formLabel($element) ?></dt>
+       * <?php endif ?>
+       * <?php if ($element instanceof Zend\Form\Element\Button): ?>
+       * <dd><?php echo $this->formButton($element) ?></dd>
+       * <?php elseif ($element instanceof Zend\Form\Element\Captcha): ?>
+       * <dd><?php echo $this->formCaptcha($element) . $this->formElementErrors($element) ?></dd>
+       * <?php else: ?>
+       * <dd><?php echo $this->formInput($element) . $this->formElementErrors($element) ?></dd>
+       * <?php endif ?>
+       * <?php endforeach;?>
+       */
+?>
+</dl>
+<div class="container whiteBackground" style="min-height: 500px">
+<?php 
+/*
+       * ?>
+       * <div class="row">
+       * <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+       *
+       *
+       * <div class="panel panel-info">
+       * <div class="panel-heading">
+       * <h3 class="panel-title">
+       * <?php echo $this->zfcUserDisplayName() ?>
+       * </h3>
+       * </div>
+       * <div class="panel-body">
+       * <div class="row">
+       * <div class="col-md-3 col-lg-3 " align="center">
+       * <?php echo $this->gravatar($this->zfcUserIdentity()->getEmail()) ?>
+       * </div>
+       * <div class=" col-md-9 col-lg-9 ">
+       * <?php foreach ($form->getFieldsets() as $fieldset): ?>
+       * <?php echo $this->render('ldc-user-profile/profile/extension/' . $fieldset->getName(), array('fieldset' => $fieldset)); ?>
+       * <?php endforeach ?>
+       *
+       * <?php foreach ($form->getElements() as $element): ?>
+       * <?php if (!$element instanceof Zend\Form\Element\Button && !$element instanceof Zend\Form\Element\Hidden): ?>
+       * <dt><?php echo $this->formLabel($element) ?></dt>
+       * <?php endif ?>
+       * <?php if ($element instanceof Zend\Form\Element\Button): ?>
+       * <dd><?php echo $this->formButton($element) ?></dd>
+       * <?php elseif ($element instanceof Zend\Form\Element\Captcha): ?>
+       * <dd><?php echo $this->formCaptcha($element) . $this->formElementErrors($element) ?></dd>
+       * <?php else: ?>
+       * <dd><?php echo $this->formInput($element) . $this->formElementErrors($element) ?></dd>
+       * <?php endif ?>
+       * <?php endforeach;?>
+       * </div>
+       * </div>
+       * </div>
+       * </div>
+       * </div>
+       * </div>
+       * <?php
+       */
+?>
+<?php echo $this->form()->closeTag()?>
+
+<div class="row user-menu-container square">
+		<div class="col-md-7 user-details">
+			<div class="row coralbg white">
+				<div class="col-md-6 no-pad">
+					<div class="user-pad">
+						<h3>Seja bem vindo, <?php echo $this->zfcUserDisplayName() ?></h3>
+						<h4 class="white">
+							<i class="fa fa-check-circle-o"></i> Araruama, Rio de Janeiro
+						</h4>
+						<a  href="<?php echo $this->url('ldc-user-profile') ?>"
+    						<button type="button" class="btn btn-labeled btn-info">
+    							<span class="btn-label"><i class="fa fa-pencil"></i></span>Editar
+    							Perfil
+    						</button>
+						</a>
+						<?php /*
+						<br />
+						<br />
+						<a  href="<?php echo $this->url('ldc-user-profile') ?>"
+    						<button type="button" class="btn btn-labeled btn-info">
+    							<span class="btn-label"><i class="fa fa-pencil"></i></span>Editar
+    							Endereço
+    						</button>
+						</a>
+						*/ ?>
+					</div>
+				</div>
+				<div class="col-md-6 no-pad">
+					<div class="user-image">
+                        <?php $attr = array('class' => 'img-responsive thumbnail');
+                        $settings = array(
+                            'img_size'    => 512,
+                            'default_img' => \Zend\View\Helper\Gravatar::DEFAULT_MM,
+                            'rating'      => \Zend\View\Helper\Gravatar::RATING_G,
+                            'secure'      => null,
+                        );
+                         echo $this->gravatar($this->zfcUserIdentity()->getEmail(), $settings,$attr)?>
+                    </div>
+				</div>
+			</div>
+			<div class="row overview">
+				<div class="col-md-4 user-pad text-center">
+					<h3>ANÚNCIOS</h3>
+					<h4><?php echo count($this->userAdvertisings) ?></h4>
+				</div>
+				<div class="col-md-4 user-pad text-center">
+					<h3>MENSAGENS</h3>
+					<h4>%</h4>
+				</div>
+				<div class="col-md-4 user-pad text-center">
+					<h3>PLANO</h3>
+					<h4>%</h4>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1 user-menu-btns">
+			<div class="btn-group-vertical square" id="responsive">
+				<a href="#" class="btn btn-block btn-default active"> <i
+					class="fa fa-bell-o fa-3x"></i>
+				</a> <a href="#" class="btn btn-default"> <i
+					class="menu-icon fa fa-envelope-o fa-3x"></i>
+				</a> <a href="#" class="btn btn-default"> <i
+					class="fa fa-truck fa-3x"></i>
+				</a> <a href="#" class="btn btn-default"> <i
+					class="fa fa-briefcase fa-3x"></i>
+				</a>
+			</div>
+		</div>
+		<div class="col-md-4 user-menu user-pad">
+			<div class="user-menu-content active">
+				<h3>Dicas da Brik e Brak</h3>
+				<ul class="user-menu-list">
+					<li>
+						<h4>
+							<i class="fa fa-thumbs-o-up"></i> Preencha o seu perfil com os
+							seus dados.
+						</h4>
+					</li>
+					<li>
+						<h4>
+							<i class="fa fa-thumbs-o-up"></i> Confira os nossos planos.
+						</h4>
+					</li>
+					<li>
+						<h4>
+							<i class="fa fa-thumbs-o-up"></i> Pubique o seu anúncio ou
+							currículo com facilidade.
+						</h4>
+					</li>
+					<li>
+						<button type="button" class="btn btn-labeled btn-success" href="#">
+							<span class="btn-label"><i class="fa fa-bell-o"></i></span>Ver
+							todas as Dicas
+						</button>
+					</li>
+				</ul>
+			</div>
+			<div class="user-menu-content">
+				<h3>Minhas Mensagens</h3>
+				<ul class="user-menu-list">
+					<li>
+						<h4>
+							Olá quero comprar o veículo, entre em contato. <small
+								class="coral"><strong> NOVO </strong> <i class="fa fa-clock-o"></i>
+								7:42 A.M.</small>
+						</h4>
+					</li>
+					<li>
+						<h4>
+							Boa noite, me interessei pelo seu anúncio. <small class="coral"><i
+								class="fa fa-clock-o"></i> 10:42 A.M.</small>
+						</h4>
+					</li>
+					<li>
+						<h4>
+							Por favor entre em contato comigo, estou interessado no seu
+							produto. <small class="coral"><i class="fa fa-clock-o"></i> 10:42
+								A.M.</small>
+						</h4>
+					</li>
+					<li>
+						<button type="button" class="btn btn-labeled btn-danger" href="#">
+							<span class="btn-label"><i class="fa fa-envelope-o"></i></span>Ver
+							todas as Mensagens
+						</button>
+					</li>
+				</ul>
+			</div>
+			<div class="user-menu-content">
+				<h3>Meus Anúncios</h3>
+				<div class="row">
+				<?php foreach($this->userAdvertisings as $userAdvertising): ?>
+				    <div class="col-md-6">
+						<div class="view">
+							<div class="caption">
+								<p>Anúncio <?php echo $userAdvertising->getIdadvertising() ?></p>
+								<a href="<?php echo '/anuncio/' . $userAdvertising->getIdadvertising() ?>" rel="tooltip" title="Ver Anúncio"><span
+									class="fa fa-search fa-2x"></span></a>
+							</div>
+							<?php 
+        					$folder = __DIR__ . '/../../../../../htdocs/assets/images/product/' .  $userAdvertising->getIdadvertising() .'/';
+            				if(is_dir($folder)){
+            				    $files = getFileList($folder);
+            				    if($files != null){
+            				    $files = getFileList($folder);
+                    				foreach(getFileList($folder) as $key => $image){
+                    				    if($key == 0){
+                    					    $image['name'] = str_replace(__DIR__ . '/../../../../../htdocs', '', $image['name']);
+                    					    echo '<img src="'.$image['name'].'" alt="" class="img-responsive">';
+                    				    }
+                    				}
+            				    } else {
+                				    echo '<img src="/assets/images/product/sem_foto.gif" alt="" class="img-responsive">';
+            				    }
+            				} else {
+            				    echo '<img src="/assets/images/product/sem_foto.gif" alt="" class="img-responsive">';
+        				    } ?>
+						</div>
+						<div class="info">
+							<p class="small" style="text-overflow: ellipsis">Anúncio <?php echo $userAdvertising->getIdadvertising() ?></p>
+							<p class="small coral text-right">
+								<i class="fa fa-clock-o"></i> Postado em 
+								<?php echo $this->dateFormat(
+                                    $userAdvertising->getCreateDate(),
+                                    IntlDateFormatter::MEDIUM, // date
+                                    IntlDateFormatter::MEDIUM, // time
+                                    "pt_BR"
+                                ); ?>
+                                </small>
+						
+						</div>
+						<div class="stats turqbg">
+							<span class="fa fa-eye pull-right"> <strong><?php echo $userAdvertising->getViewCount() ?></strong></span> <br>
+						</div>
+					</div>
+				<?php endforeach; ?>
+				</div>
+				<a href="#" class="btnPublicarAnuncio">Publicar Currículo</a>
+			</div>
+			<div class="user-menu-content">
+				<h2 class="text-center">NÃO PERCA TEMPO!</h2>
+				<center>
+					<i class="fa fa-cloud-upload fa-4x"></i>
+				</center>
+
+				<section class="col-xs-12 col-sm-6 col-md-6 col-lg-12 mTop15">
+					<p class="txtPublicarCurriculo hidden-md hidden-sm hidden-xs">Publique
+						seu currículo e aumente suas chances de recolocação.</p>
+					<a href="#" class="btnPublicarCurriculo">Publicar Currículo</a>
+				</section>
+
+			</div>
+		</div>
+	</div>
+</div>

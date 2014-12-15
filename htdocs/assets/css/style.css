@@ -1015,6 +1015,7 @@ body{
 	float:left;
 	padding:10px;
 	width:100%;
+	min-height: 280px;
 }
 
 .boxFotos .gallery{
@@ -1036,18 +1037,32 @@ body{
 	display:inline;
 	float: left;
 	height:60px;
-	margin: 0 10px 0 0;
+	margin: 0 5px 0 0;
 	width:60px;
 }
 
-.boxFotos .gallery .btnNav{
-	background:url(../images/icons/nav-fotos.png) no-repeat center #0065b1;
-	height:60px;
+.boxFotos .gallery .next{
+	background:url(../images/icons/next.png) no-repeat center #0065b1;
+	height:70px;
 	position:absolute;
-	right:10px;
-	top:10px;
+	top: -10px;
+	right:0px;
 	width:23px;
 	z-index:100;
+}
+
+.boxFotos .gallery .prev{
+	background:url(../images/icons/prev.png) no-repeat center #0065b1;
+	height:70px;
+	position:absolute;
+	top:-10px;
+	width:23px;
+	z-index:100;
+}
+
+.boxFotos .gallery .carousel{
+	margin-left: 25px;
+	margin-right: -10px;
 }
 
 /* BOX PUBLICIDADE */

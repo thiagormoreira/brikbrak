@@ -104,6 +104,20 @@ class ItemForm extends Form
                 )
             ));
             $this->add(array(
+                'name' => 'gear',
+                'type' => 'Zend\Form\Element\Radio',
+                'options' => array(
+                    'label' => 'Gear',
+                    'value_options' => array(
+                        '1' => 'Manual',
+                        '2' => 'Automático',
+                    ),
+                ),
+                'attributes' => array(
+                    //'class' => 'ace'
+                )
+            ));
+            $this->add(array(
                 'name' => 'new',
                 'type' => 'Zend\Form\Element\Checkbox',
                 'options' => array(
@@ -143,6 +157,41 @@ class ItemForm extends Form
                  'label' => 'Modelo'
             ));
             $this->add($adGroup);
+            
+            $this->add(array(
+                'name' => 'options',
+                'type' => 'DoctrineModule\Form\Element\ObjectMultiCheckbox',
+                //'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+                'options' => array(
+                    'label' => 'Opcionais',
+                    'object_manager' => $this->em,
+                    'target_class' => 'Application\Entity\Option',
+                    'property' => 'optionsName'
+                    ),
+                'attributes' => array(
+                    'multiple' => true,
+                    //'class' => 'multiselect',
+                    //'expanded' => true, // Render as checkboxes
+                    )
+                ));
+            
+            /*
+            $adGroup = new ObjectSelect('opstions');
+            $adGroup->setEmptyOption('Selecionar');
+            $adGroup->setOptions(array(
+                'object_manager' => $this->em,
+                'target_class' => 'Application\Entity\Options',
+                'property' => 'optionsName',
+                'is_method' => true,
+                 'label' => 'Opcionais'
+            ));
+             $adGroup->setAtributes(array(
+                 'type' => 'select',
+                 'multiple' => true, // Multiple selection allowed
+                 'expanded' => true, // Render as checkboxes
+            ));
+            $this->add($adGroup);
+            */
     }
     
     public function createInputFilter()

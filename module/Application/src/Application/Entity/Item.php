@@ -2,8 +2,9 @@
 
 namespace Application\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Application\Entity\Option;
 
 /**
  * Item
@@ -58,6 +59,13 @@ class Item
     private $color;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="gear", type="integer", nullable=true)
+     */
+    private $gear;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="new", type="boolean", nullable=true)
@@ -93,6 +101,28 @@ class Item
      * })
      */
     public $user;
+    
+    /**
+     * @var Application\Entity\Option
+     *
+     * @ORM\ManyToMany(targetEntity="Application\Entity\Option", inversedBy="user")
+     * @ORM\JoinTable(name="item_has_options",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="item_iditem", referencedColumnName="iditem")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="options_idoptions", referencedColumnName="idoptions")
+     *   }
+     * )
+     */
+    private $options;
+    
+    public function __construct() {
+        //parent::__construct();
+        $this->options = new \Doctrine\Common\Collections\ArrayCollection();
+        //$this->options = new Application\Entity\Options();
+    }
+    
     /**
      *
      * @return the integer
@@ -197,6 +227,8 @@ class Item
         return $this;
     }
 
+    
+    
     /**
      *
      * @return the string
@@ -279,22 +311,23 @@ class Item
 
     /**
      *
-     * @return the Option
+     * @return the Options
      */
-    public function getOption()
+    public function getOptions()
     {
-        return $this->option;
+        return $this->options;
     }
 
     /**
      *
      * @param
-     *            $option
+     *            $options
      */
-    public function setOption($option)
+    public function setOptions($options)
     {
-        $this->option = $option;
+        $this->options[] = $options;
         return $this;
+        
     }
 
     /**
@@ -317,7 +350,36 @@ class Item
         return $this;
     }
  
- 
-
+    public function addOptions($options)
+    {
+        //$op = new Option();
+        //$op->addItem($this);
+        //$this->options[] = $option;
+    }
     
+    public function removeOptions($options)
+    {
+        $this->options->removeElement($options) ;
+        //$this->options[] = $options;
+    }
+
+    /**
+     *
+     * @return the string
+     */
+    public function getGear()
+    {
+        return $this->gear;
+    }
+
+    /**
+     *
+     * @param string $gear            
+     */
+    public function setGear($gear)
+    {
+        $this->gear = $gear;
+        return $this;
+    }
+ 
 }
