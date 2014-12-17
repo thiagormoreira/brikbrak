@@ -19,7 +19,6 @@ class Module
     {
         $moduleManager->loadModule('ZfcUser');
         $moduleManager->loadModule('LdcUserProfile');
-        //$moduleManager->loadModule('AhBootstrapZfcUser');
     }
     
     public function onBootstrap(MvcEvent $e)

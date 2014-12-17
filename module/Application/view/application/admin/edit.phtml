@@ -17,7 +17,7 @@ $flash->setMessageOpenFormat('<div%s>
 <?php echo $flash->render('success', array('alert', 'alert-dismissable', 'alert-success')); ?>
 <?php include '_form.phtml'; ?>
 
-    <a href="<?php //echo $this->url('zfcadmin/zfcuseradmin/remove', array('userId' => $this->userId)); ?>"
+    <a href="<?php echo $this->url('zfcadmin-delete', array('id' => $this->id, 'entity' => $this->entity)); ?>"
    onclick="return confirm('<?php echo $this->translate('Tem certeza que deseja apagar?') ?>')">
     Apagar
     </a>

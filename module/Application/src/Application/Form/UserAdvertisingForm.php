@@ -39,8 +39,6 @@ class UserAdvertisingForm extends Form
         parent::__construct('category', $options);
         $this->addElements();
         $this->setInputFilter($this->createInputFilter());
-        //$hydrator = new DoctrineHydrator($this->em, '\Application\Entity\Item');
-        //$this->setHydrator($hydrator);
     }
     
     public function addElements()
@@ -50,7 +48,10 @@ class UserAdvertisingForm extends Form
         $this->add(array(
             'type' => 'DoctrineModule\Form\Element\ObjectSelect',
             'name' => 'typeItem',
-            'attributes' => array(),
+            'attributes' => array(
+                'class' => 'form-control input-lg',
+                'id' => 'typeItem',
+            ),
             'options' => array(
                 'object_manager' => $this->em,
                 'target_class' => 'Application\Entity\TypeItem',
@@ -58,13 +59,18 @@ class UserAdvertisingForm extends Form
                 // 'column-size' => 'sm-9',
                 // 'label_attributes' => array('class' => 'col-sm-3 control-label'),
                 'property' => 'typeName',
-            'is_method' => true
+                'empty_option' => 'Selecione o tipo...',
+                'is_method' => true
         )
         ));
         $this->add(array(
             'type' => 'DoctrineModule\Form\Element\ObjectSelect',
             'name' => 'brand',
-            'attributes' => array(),
+            'attributes' => array(
+                'class' => 'form-control input-lg',
+                'style' => 'display:none',
+            'id' => 'brand',
+            ),
             'options' => array(
                 'object_manager' => $this->em,
                 'target_class' => 'Application\Entity\Brand',
@@ -72,13 +78,18 @@ class UserAdvertisingForm extends Form
                 // 'column-size' => 'sm-9',
                 // 'label_attributes' => array('class' => 'col-sm-3 control-label'),
                 'property' => 'brandName',
+                'empty_option' => 'Selecione a marca...',
             'is_method' => true
         )
         ));
         $this->add(array(
             'type' => 'DoctrineModule\Form\Element\ObjectSelect',
             'name' => 'model',
-            'attributes' => array(),
+            'attributes' => array(
+                'class' => 'form-control input-lg',
+                'style' => 'display:none',
+            'id' => 'model',
+            ),
             'options' => array(
                 'object_manager' => $this->em,
                 'target_class' => 'Application\Entity\Model',
@@ -86,13 +97,18 @@ class UserAdvertisingForm extends Form
                 // 'column-size' => 'sm-9',
                 // 'label_attributes' => array('class' => 'col-sm-3 control-label'),
                 'property' => 'modelName',
+                'empty_option' => 'Selecione o modelo...',
             'is_method' => true
         )
         ));
         $this->add(array(
             'type' => 'DoctrineModule\Form\Element\ObjectSelect',
             'name' => 'subType',
-            'attributes' => array(),
+            'attributes' => array(
+                'class' => 'form-control input-lg',
+                'style' => 'display:none',
+            'id' => 'subType',
+            ),
             'options' => array(
                 'object_manager' => $this->em,
                 'target_class' => 'Application\Entity\Subtype',
@@ -100,13 +116,18 @@ class UserAdvertisingForm extends Form
                 // 'column-size' => 'sm-9',
                 // 'label_attributes' => array('class' => 'col-sm-3 control-label'),
                 'property' => 'subtypeName',
+                'empty_option' => 'Selecione o tipo...',
             'is_method' => true
         )
         ));
         $this->add(array(
             'type' => 'DoctrineModule\Form\Element\ObjectSelect',
             'name' => 'bodywork',
-            'attributes' => array(),
+            'attributes' => array(
+                'class' => 'form-control input-lg',
+                'style' => 'display:none',
+                'id' => 'bodywork',
+            ),
             'options' => array(
                 'object_manager' => $this->em,
                 'target_class' => 'Application\Entity\Bodywork',
@@ -114,6 +135,7 @@ class UserAdvertisingForm extends Form
                 // 'column-size' => 'sm-9',
                 // 'label_attributes' => array('class' => 'col-sm-3 control-label'),
                 'property' => 'bodyworkName',
+                'empty_option' => 'Selecione a carroceria...',
             'is_method' => true
         )
         ));
@@ -124,7 +146,10 @@ class UserAdvertisingForm extends Form
             ),
             'attributes' => array(
                 'type' => 'text',
-                'placeholder' => 'Digite a Kilometragem'
+                'placeholder' => 'Digite a Kilometragem',
+                'class' => 'form-control input-lg',
+                'style' => 'display:none',
+            'id' => 'km',
             )
         ));
         $this->add(array(
@@ -134,7 +159,10 @@ class UserAdvertisingForm extends Form
             ),
             'attributes' => array(
                 'type' => 'text',
-                'placeholder' => 'Digite a Cor'
+                'placeholder' => 'Digite a Cor',
+                'class' => 'form-control input-lg',
+                'style' => 'display:none',
+            'id' => 'color',
             )
         ));
         $this->add(array(
@@ -144,10 +172,13 @@ class UserAdvertisingForm extends Form
             ),
             'attributes' => array(
                 'type' => 'text',
-                'placeholder' => 'Digite o Valor'
+                'placeholder' => 'Digite o Valor',
+                'class' => 'form-control input-lg',
+                'style' => 'display:none',
+            'id' => 'value',
             )
         ));
-            
+            /*
             $this->add(array(
                 'name' => 'options',
                 'type' => 'DoctrineModule\Form\Element\ObjectMultiCheckbox',
@@ -164,7 +195,7 @@ class UserAdvertisingForm extends Form
                     //'expanded' => true, // Render as checkboxes
                     )
                 ));
-            
+            */
         /////// FIM ITEM
         
         /////// ENDEREÇO
@@ -226,18 +257,32 @@ class UserAdvertisingForm extends Form
 
         $this->add(array(
             'type' => 'DoctrineModule\Form\Element\ObjectSelect',
-            'name' => 'city',
+            'name' => 'state',
             'attributes' => array(
-                'class' => 'form-control select-lg'
+                'class' => 'form-control select-lg',
+                'id' => 'state',
             ),
             'options' => array(
                 'object_manager' => $this->em,
-                'target_class' => 'Application\Entity\City',
-                'label' => 'Cidade',
+                'target_class' => 'Application\Entity\State',
+                'label' => 'Estado',
                 // 'column-size' => 'sm-9',
                 // 'label_attributes' => array('class' => 'col-sm-3 control-label'),
-                'property' => 'cityName',
+                'property' => 'stateName',
+                'empty_option' => 'Selecione o estado...',
             'is_method' => true
+            )
+        ));
+        $this->add(array(
+            'name' => 'contact-number',
+            'options' => array(
+                'label' => 'Telefone'
+            ),
+            'attributes' => array(
+                'type' => 'text',
+                'placeholder' => 'Telefone',
+                'class' => 'form-control input-lg contact-number',
+                'pattern' => '\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}'
             )
         ));
         ////// FIM ENDEREÇO

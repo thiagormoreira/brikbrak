@@ -22,6 +22,7 @@ use Application\Entity\Item;
 use Application\Entity\Model;
 use Application\Entity\Address;
 use Application\Entity\City;
+use Application\Entity\Contact;
 
 class UserController extends AbstractActionController
 {
@@ -46,12 +47,18 @@ class UserController extends AbstractActionController
     }
     
     public function indexAction(){
-        
+        if($this->zfcUserAuthentication()->hasIdentity() === false){
+            header('Location: /user/login');
+            exit;
+        }
+
         $entityManager = $this->getEntityManager();
         $userAdvertisings = $entityManager->getRepository('Application\Entity\Advertising')->findBy(array('user' => $this->zfcUserAuthentication()->getIdentity()->getId()));
+        $userMessages = $entityManager->getRepository('Application\Entity\Message')->findBy(array('user' => $this->zfcUserAuthentication()->getIdentity()->getId()));
         
         return array(
             'userAdvertisings' => $userAdvertisings,
+            'userMessages' => $userMessages,
         );
     }
     
@@ -86,19 +93,53 @@ class UserController extends AbstractActionController
             $address->setTypeAddress($this->getEntityManager()->find('\Application\Entity\TypeAddress', '1'));
             $entityManager->persist($address);
             $entityManager->flush();
+
+            $contact = new Contact();
+            $contact->setValue($this->params()->fromPost('contact-number'));
+            $contact->setStatus('1');
+            $contact->setTypeContact($this->getEntityManager()->find('\Application\Entity\TypeContact', '1'));
+            $entityManager->persist($contact);
+            $entityManager->flush();
             
             $advertising = new Advertising();
             $advertising->setAddress($this->getEntityManager()->find('\Application\Entity\Address', $address->getId()));
             $advertising->setText($this->params()->fromPost('text'));
             $advertising->setUser($this->getEntityManager()->find('\Application\Entity\User', $this->zfcUserAuthentication()->getIdentity()->getId()));
+            $advertising->setContact($this->getEntityManager()->find('\Application\Entity\Contact', $contact->getId()));
             $advertising->setItem($this->getEntityManager()->find('\Application\Entity\Item', $item->getId()));
             $entityManager->persist($advertising);
             $entityManager->flush();
+            
+            $this->flashMessenger()->addSuccessMessage('Anuncio cadastrado com sucesso');
+            $this->redirect()->toRoute('zfcuser');
         }
         
         return array(
             'form' => $form,
         );
+    }
+    
+    public function deleteAdAction(){
+        $objectManager = $this->getEntityManager();
+        $id = $this->getEvent()
+        ->getRouteMatch()
+        ->getParam('idanuncio');
+        $item = $this->getEntityManager()->find('\Application\Entity\Advertising', $id);
+        
+        if (null === $id) {
+            return $this->redirect()->toRoute('zfcuser');
+        } else {
+            if($item->getUser()->getId() == $this->zfcUserAuthentication()->getIdentity()->getId()){
+                $objectManager->remove($item);
+                $objectManager->flush();
+            
+                $this->flashMessenger()->addSuccessMessage('Anuncio deletado com sucesso.');
+                $this->redirect()->toRoute('zfcuser');
+            } else {
+                $this->flashMessenger()->addErrorMessage('Esse anuncio nao pertence a sua conta.');
+                $this->redirect()->toRoute('zfcuser');
+            }
+        }
     }
     
 }

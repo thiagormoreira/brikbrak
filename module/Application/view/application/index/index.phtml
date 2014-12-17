@@ -15,10 +15,9 @@
 								<section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 									<div class="boxPublicacoes">
 										<h1>Publicações e Ofertas</h1>
-										<p>000 | Veículos</p>
-										<p>000 | Carretas e Implementos</p>
-										<p>000 | Acessórios e Implementos</p>
-										<p>000 | Currículos Profissionais</p>
+										<p><?php echo $this->carCnt; ?> | Veículos</p>
+										<p><?php echo $this->cartCnt; ?> | Carretas e Implementos</p>
+										<p><?php echo $this->acCnt; ?> | Acessórios e Implementos</p>
 									</div>
 								</section>
 							</div>
@@ -116,7 +115,7 @@
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
 							<div class="row">
 								<section class="col-xs-12 col-sm-6 col-md-6 col-lg-12 mTop15">
-									<a href="/user" class="btnPublicarAnuncio">Publicar Anúncio</a>
+									<a href="/novo-anuncio" class="btnPublicarAnuncio">Publicar Anúncio</a>
 								</section>
 								<section class="col-xs-12 col-sm-6 col-md-6 col-lg-12 mTop15">
 									<p class="txtPublicarCurriculo hidden-md hidden-sm hidden-xs">Publique seu currículo e aumente suas chances de recolocação.</p>

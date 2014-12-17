@@ -22,6 +22,13 @@ function getFileList($dir)
 
     return $retval;
 }
+
+$flash = $this->flashMessenger();
+$flash->setMessageOpenFormat('<div%s>
+     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+         <i class="ace-icon fa fa-times"></i>
+     </button>')
+     ->setMessageCloseString('</li></ul></div>');
 ?>
 <!--<h1><?php echo $this->translate('Your Profile'); ?></h1>  -->
 <?php 
@@ -92,7 +99,9 @@ function getFileList($dir)
        * <?php
        */
 ?>
-<?php echo $this->form()->closeTag()?>
+<br>
+<?php echo $flash->render('success', array('alert', 'alert-dismissable', 'alert-success')); ?>
+<?php echo $flash->render('error', array('alert', 'alert-dismissable', 'alert-danger')); ?>
 
 <div class="row user-menu-container square">
 		<div class="col-md-7 user-details">
@@ -100,9 +109,7 @@ function getFileList($dir)
 				<div class="col-md-6 no-pad">
 					<div class="user-pad">
 						<h3>Seja bem vindo, <?php echo $this->zfcUserDisplayName() ?></h3>
-						<h4 class="white">
-							<i class="fa fa-check-circle-o"></i> Araruama, Rio de Janeiro
-						</h4>
+						<br>
 						<a  href="<?php echo $this->url('ldc-user-profile') ?>"
     						<button type="button" class="btn btn-labeled btn-info">
     							<span class="btn-label"><i class="fa fa-pencil"></i></span>Editar
@@ -194,32 +201,35 @@ function getFileList($dir)
 			<div class="user-menu-content">
 				<h3>Minhas Mensagens</h3>
 				<ul class="user-menu-list">
-					<li>
+				<?php if($this->userMessages != null){ ?>
+				    <?php foreach($this->userMessages as $userMessage): ?>
+				    <li>
 						<h4>
-							Olá quero comprar o veículo, entre em contato. <small
-								class="coral"><strong> NOVO </strong> <i class="fa fa-clock-o"></i>
-								7:42 A.M.</small>
+							<?php echo $userMessage->getMessage() ?> <small
+								class="coral"><i class="fa fa-clock-o"></i>
+								<?php echo $this->dateFormat(
+                                    $userMessage->getCreateDate(),
+                                    IntlDateFormatter::MEDIUM, // date
+                                    IntlDateFormatter::MEDIUM, // time
+                                    "pt_BR"
+                                ); ?></small>
 						</h4>
 					</li>
+				    <?php endforeach; ?>
 					<li>
-						<h4>
-							Boa noite, me interessei pelo seu anúncio. <small class="coral"><i
-								class="fa fa-clock-o"></i> 10:42 A.M.</small>
-						</h4>
-					</li>
-					<li>
-						<h4>
-							Por favor entre em contato comigo, estou interessado no seu
-							produto. <small class="coral"><i class="fa fa-clock-o"></i> 10:42
-								A.M.</small>
-						</h4>
-					</li>
-					<li>
-						<button type="button" class="btn btn-labeled btn-danger" href="#">
+						<button type="button" class="btn btn-labeled btn-info" href="#">
 							<span class="btn-label"><i class="fa fa-envelope-o"></i></span>Ver
 							todas as Mensagens
 						</button>
 					</li>
+				    <?php } else { ?>
+				    
+    					<li>
+    						<button type="button" class="btn btn-labeled btn-danger">
+    							<span class="btn-label"><i class="fa fa-envelope-o"></i></span>Você não possui mensagens
+    						</button>
+    					</li>
+				    <?php } ?>
 				</ul>
 			</div>
 			<div class="user-menu-content">

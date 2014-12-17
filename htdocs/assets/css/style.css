@@ -985,7 +985,7 @@ body{
 	text-transform: uppercase;
 }
 
-.btnEnviarProposta input[type=button]{
+.btnEnviarProposta input[type=submit]{
 	background-color: #029119;
 	border: none;
 	border-radius: 5px;
@@ -1193,6 +1193,11 @@ footer ul li a {
 	color:#ffffff;
 	font-size: 14px;
 	font-weight: 500;
+	text-decoration: none;
+}
+
+footer ul li a:hover{
+	color: #000;
 	text-decoration: none;
 }
 

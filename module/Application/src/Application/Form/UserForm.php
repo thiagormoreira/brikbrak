@@ -47,9 +47,7 @@ class UserForm extends Form
     {
         $this->add(array(
             'name' => 'iduser',
-            'options' => array()
-            // 'label' => 'Id'
-            ,
+            'options' => array(),
             'attributes' => array(
                 'type' => 'hidden',
                 'readonly' => 'readonly'
@@ -83,73 +81,6 @@ class UserForm extends Form
                 'type' => 'checkbox'
             )
         ));
-        /*
-         * $this->add(array(
-         * 'name' => 'role',
-         * 'type' => 'DoctrineModule\Form\Element\ObjectSelect',
-         * 'options' => array(
-         * 'label' => 'Endereço',
-         * 'object_manager' => $this->em,
-         * 'target_class' => 'Application\Entity\Address',
-         * 'property' => 'addressAllias',
-         * ),
-         * 'attributes' => array(
-         * 'type' => 'select',
-         * 'multiple' => true, // Multiple selection allowed
-         * 'expanded' => true, // Render as checkboxes
-         * )
-         * ));
-         * /*
-         * $this->add(array(
-         * 'name' => 'role',
-         * 'type' => 'DoctrineModule\Form\Element\ObjectSelect',
-         * 'options' => array(
-         * 'label' => 'Role',
-         * 'object_manager' => $this->em,
-         * 'target_class' => 'Application\Entity\Role',
-         * 'property' => 'roleId'
-         * ),
-         * 'attributes' => array(
-         * 'type' => 'select',
-         * //'multiple' => true,
-         * )
-         * ));
-         * /*
-         * $role = new ObjectSelect('role');
-         * $role->setEmptyOption('Selecionar nível');
-         * $role->setOptions(array(
-         * 'object_manager' => $this->em,
-         * 'target_class' => 'Application\Entity\Role',
-         * 'property' => 'roleId',
-         * 'is_method' => true,
-         * 'label' => 'Nível de acesso',
-         * 'find_method' => array(
-         * //'name' => 'findBy',
-         * //'params' => array(
-         * // 'criteria' => array(
-         * // 'user' => 2
-         * // )
-         * //)
-         * )
-         * ));
-         * //$this->add($role);
-         */
-        /*
-        $this->add(array(
-            'type' => 'DoctrineModule\Form\Element\ObjectSelect',
-            'name' => 'role',
-            'attributes' => array(),
-            'options' => array(
-                'object_manager' => $this->em,
-                'target_class' => 'Application\Entity\Role',
-                'label' => 'Nível de acesso',
-                // 'column-size' => 'sm-9',
-                // 'label_attributes' => array('class' => 'col-sm-3 control-label'),
-                'property' => 'roleId',
-                'is_method' => true
-            )
-        ));
-        */
         $role = new ObjectSelect('role');
         $role->setEmptyOption('Selecionar nivel');
         $role->setOptions(array(
@@ -159,12 +90,6 @@ class UserForm extends Form
             'is_method' => true,
             'label' => 'Nível de acesso',
             'find_method' => array(
-                //'name' => 'findBy',
-                //'params' => array(
-                //    'criteria' => array(
-                    //        'user' => 2
-                    //    )
-                    //)
                 )
         ));
         $this->add($role);

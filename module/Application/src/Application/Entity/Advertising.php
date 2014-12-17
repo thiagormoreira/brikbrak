@@ -5,6 +5,7 @@ namespace Application\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Application\Entity\User;
 use Application\Entity\Item;
+use Application\Entity\Contact;
 
 /**
  * Advertising
@@ -49,6 +50,16 @@ class Advertising
      * })
      */
     private $item;
+
+    /**
+     * @var \Application\Entity\Contact
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Entity\Contact")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="contact_idcontact", referencedColumnName="idcontact")
+     * })
+     */
+    private $contact;
 
     /**
      * @var \Application\Entity\User
@@ -162,6 +173,8 @@ class Advertising
         return $this;
     }
 
+    
+    
     /**
      *
      * @return User
@@ -217,6 +230,27 @@ class Advertising
     {
         return $this->createDate;
     }
+
+    /**
+     *
+     * @return the Contact
+     */
+    public function getContact()
+    {
+        return $this->contact;
+    }
+
+    /**
+     *
+     * @param
+     *            $contact
+     */
+    public function setContact($contact)
+    {
+        $this->contact = $contact;
+        return $this;
+    }
+ 
  
     
 }

@@ -39,7 +39,7 @@ class OptionForm extends Form
         parent::__construct('category', $options);
         $this->addElements();
         $this->setInputFilter($this->createInputFilter());
-        $hydrator = new DoctrineHydrator($this->em, '\Application\Entity\Options');
+        $hydrator = new DoctrineHydrator($this->em, '\Application\Entity\Option');
         $this->setHydrator($hydrator);
     }
     
@@ -48,7 +48,6 @@ class OptionForm extends Form
         $this->add(array(
             'name' => 'idoptions',
             'options' => array(
-                //'label' => 'Id'
             ),
             'attributes' => array(
                 'type' => 'hidden',

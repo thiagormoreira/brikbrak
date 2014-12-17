@@ -86,31 +86,41 @@ function getFileList($dir)
 						<p class="modelo">
 							<span>Modelo: </span> <?php echo $advertising->getItem()->getModel()->getBrand()->getBrandName() ?> - <?php echo $advertising->getItem()->getModel()->getModelName() ?></p>
 						<p class="preco">
-							<span>Preço: </span> R$ <?php echo $advertising->getItem()->getValue() ?></p>
+							<span>Preço: </span> R$ <?php if($advertising->getItem()->getValue() == null) { echo 'Não Informado'; } else { echo $advertising->getItem()->getValue(); } ?></p>
 						<p>
 							<span>Tipo: </span> <?php echo $advertising->getItem()->getTypeItem()->getTypeName() ?></p>
 						<p>
 							<span>Marca: </span> <?php echo $advertising->getItem()->getModel()->getBrand()->getBrandName() ?></p>
 						<p>
-							<span>Ano: </span> <?php echo $advertising->getItem()->getYear() ?></p>
+							<span>Ano: </span> <?php if($advertising->getItem()->getYear() == '0' || $advertising->getItem()->getYear() == null) { echo 'Não Informado'; } else { echo $advertising->getItem()->getYear(); } ?></p>
 						<p>
-							<span>cor: </span> <?php echo $advertising->getItem()->getColor() ?></p>
+							<span>cor: </span> <?php if($advertising->getItem()->getColor() == '0' || $advertising->getItem()->getColor() == null) { echo 'Não Informado'; } else { echo $advertising->getItem()->getColor(); } ?></p>
 						<p>
 							<span>Combustível: </span> <?php
-            $fuels = array(
-                '1' => 'Gasolina',
-                '2' => 'Álcool',
-                '3' => 'Diesel',
-                '4' => 'Biodiesel',
-                '5' => 'Outros'
-            );
-            echo $fuels[$advertising->getItem()->getFuel()];
-            ?></p>
+                            $fuels = array(
+                                '' => 'Não Informado',
+                                '0' => 'Não Informado',
+                                '1' => 'Gasolina',
+                                '2' => 'Álcool',
+                                '3' => 'Diesel',
+                                '4' => 'Biodiesel',
+                                '5' => 'Outros'
+                            );
+                            echo $fuels[$advertising->getItem()->getFuel()];
+                            ?></p>
 						<p>
-							<span>Transmissão: </span> Manual
+							<span>Transmissão: </span> <?php
+                            $gears = array(
+                                '' => 'Não Informado',
+                                '0' => 'Não Informado',
+                                '1' => 'Manual',
+                                '2' => 'Automático'
+                            );
+                            echo $gears[$advertising->getItem()->getGear()];
+                            ?></p>
 						</p>
 						<p>
-							<span>Quilometragem: </span> <?php echo $advertising->getItem()->getKm() ?></p>
+							<span>Quilometragem: </span> <?php if($advertising->getItem()->getKm() == null) { echo 'Não Informado'; } else { echo $advertising->getItem()->getKm() . 'km'; } ?></p>
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">

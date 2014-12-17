@@ -43,33 +43,6 @@ class ItemForm extends Form
         
         public function addElements()
         {
-            /*
-            $this->add(array(
-                'type' => 'DoctrineModule\Form\Element\ObjectSelect',
-                'name' => 'typeItem',
-                'attributes' => array(
-                    'disabled' => 'disabled',
-                ),
-                'options' => array(
-                    'object_manager' => $this->em,
-                    'target_class' => 'Application\Entity\TypeItem',
-                    'label' => 'Tipo',
-                    'property' => 'typeName',
-                    'readonly' => 'readonly',
-                'is_method' => true
-            )
-            ));
-            $this->add(array(
-                'name' => 'iditem',
-                'options' => array(
-                    //'label' => 'Id'
-                ),
-                'attributes' => array(
-                'type' => 'hidden',
-                'readonly' => 'readonly'
-                )
-            ));
-            */
             $this->add(array(
                 'name' => 'year',
                 'options' => array(
@@ -114,7 +87,6 @@ class ItemForm extends Form
                     ),
                 ),
                 'attributes' => array(
-                    //'class' => 'ace'
                 )
             ));
             $this->add(array(
@@ -137,12 +109,6 @@ class ItemForm extends Form
                 'is_method' => true,
                 'label' => 'Usuário',
                 'find_method' => array(
-                    //'name' => 'findBy',
-                    //'params' => array(
-                    //    'criteria' => array(
-                    //        'user' => 2
-                    //    )
-                    //)
                 )
             ));
             $this->add($user);
@@ -161,7 +127,6 @@ class ItemForm extends Form
             $this->add(array(
                 'name' => 'options',
                 'type' => 'DoctrineModule\Form\Element\ObjectMultiCheckbox',
-                //'type' => 'DoctrineModule\Form\Element\ObjectSelect',
                 'options' => array(
                     'label' => 'Opcionais',
                     'object_manager' => $this->em,
@@ -170,28 +135,8 @@ class ItemForm extends Form
                     ),
                 'attributes' => array(
                     'multiple' => true,
-                    //'class' => 'multiselect',
-                    //'expanded' => true, // Render as checkboxes
                     )
                 ));
-            
-            /*
-            $adGroup = new ObjectSelect('opstions');
-            $adGroup->setEmptyOption('Selecionar');
-            $adGroup->setOptions(array(
-                'object_manager' => $this->em,
-                'target_class' => 'Application\Entity\Options',
-                'property' => 'optionsName',
-                'is_method' => true,
-                 'label' => 'Opcionais'
-            ));
-             $adGroup->setAtributes(array(
-                 'type' => 'select',
-                 'multiple' => true, // Multiple selection allowed
-                 'expanded' => true, // Render as checkboxes
-            ));
-            $this->add($adGroup);
-            */
     }
     
     public function createInputFilter()

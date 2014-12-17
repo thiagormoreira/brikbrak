@@ -48,7 +48,6 @@ class BrandForm extends Form
         $this->add(array(
             'name' => 'idbrand',
             'options' => array(
-                //'label' => 'Id'
             ),
             'attributes' => array(
                 'type' => 'hidden',

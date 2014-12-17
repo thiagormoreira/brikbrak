@@ -22,16 +22,37 @@ function getFileList($dir)
 
     return $retval;
 }
+
+$flash = $this->flashMessenger();
+$flash->setMessageOpenFormat('<div%s>
+     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+         <i class="ace-icon fa fa-times"></i>
+     </button>')
+     ->setMessageCloseString('</li></ul></div>');
 ?>
+
 <script src="/assets/js/jquery.jcarousellite.min.js"></script>
 <div class="container whiteBackground">
+<?php echo '<br>' . $flash->render('success', array('alert', 'alert-dismissable', 'alert-success')); ?>
 					<!-- Navegação Produto -->
 					<div class="row">
 						<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 navegacaoProduto">
 							<a href="#" class="pull-left">< Voltar para lista anterior</a>
 						</div>
 						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 navegacaoProduto">
-							<!--a href="#" class="pull-right">Nova Busca ></a-->
+						<?php if($this->advertising->getUser()->getId() == $this->zfcUserIdentity()->getId()) : ?>
+						<br>
+							<ul class="pull-right">
+							    <li style="list-style: none; display: inline;">
+    							    <a href="#">Editar</a>
+    							</li>
+    							<li style="list-style: none; display: inline;"> | </li>
+    							<li style="list-style: none; display: inline;">
+    							    <a href="<?php echo $this->url('user-delete-ad', array( 'idanuncio' => $this->advertising->getId())); ?>" 
+    							    onclick="return confirm('<?php echo $this->translate('Tem certeza que deseja deletar esse item?') ?>')">Deletar</a>
+    							</li>
+							</ul>
+							<?php endif; ?>
 						</div>
 					</div>
 
@@ -42,7 +63,6 @@ function getFileList($dir)
 							</div>
 						</div>
 					</div>
-                    <?php //foreach($this->advertising as $advertising){ //var_dump($advertising);?>
 					<!-- DETALHES DO PRODUTO -->
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-8">
@@ -74,7 +94,12 @@ function getFileList($dir)
                 						foreach(getFileList($folder) as $key => $image){
                 						    if($key == 0){
                     						    $image['name'] = str_replace(__DIR__ . '/../../../../../htdocs', '', $image['name']);
-                    						    echo '<img src="'.$image['name'].'" alt="" class="img-responsive" id="zoomImage">';
+                    						  $flash = $this->flashMessenger();
+$flash->setMessageOpenFormat('<div%s>
+     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+         <i class="ace-icon fa fa-times"></i>
+     </button>')
+     ->setMessageCloseString('</li></ul></div>');  echo '<img src="'.$image['name'].'" alt="" class="img-responsive" id="zoomImage">';
                 						    }
                 						} */
                 						?>
@@ -105,10 +130,12 @@ function getFileList($dir)
 									<p>
 										Tipo: <?php echo $this->advertising->getItem()->getTypeItem()->getTypeName() ?><br/>
 										marca: <?php echo $this->advertising->getItem()->getModel()->getBrand()->getBrandName() ?><br/>
-										Ano: <?php echo $this->advertising->getItem()->getYear() ?><br/>
-										Cor: <?php echo $this->advertising->getItem()->getColor() ?><br/>
+										Ano: <?php if($this->advertising->getItem()->getYear() == null) { echo 'Não Informado'; } else { echo $advertising->getItem()->getYear(); } ?><br/>
+										Cor: <?php if($this->advertising->getItem()->getColor() == null) { echo 'Não Informado'; } else { echo $advertising->getItem()->getColor(); } ?><br/>
 										Combustível: <?php 
     										$fuels = array(
+    										    '' => 'Não Informado',
+    										    '0' => 'Não Informado',
     										    '1' => 'Gasolina',
     										    '2' => 'Álcool',
     										    '3' => 'Diesel',
@@ -118,13 +145,15 @@ function getFileList($dir)
     										echo $fuels[$this->advertising->getItem()->getFuel()];
 										?><br/>
 										Transmissão: <?php 
-    										$fuels = array(
+    										$gears = array(
+    										    '' => 'Não Informado',
+    										    '0' => 'Não Informado',
     										    '1' => 'Manual',
     										    '2' => 'Automática',
     										);
-    										echo $fuels[$this->advertising->getItem()->getGear()];
+    										echo $gears[$this->advertising->getItem()->getGear()];
 										?><br/>
-										Quilometragem: <?php echo number_format($this->advertising->getItem()->getKm(), 0, ',', '.') ?>
+										Quilometragem: <?php if($this->advertising->getItem()->getKm() == null) { echo 'Não Informado'; } else { echo number_format($this->advertising->getItem()->getKm(), 0, ',', '.') . ' km'; } ?>
 									</p>
 									<h3>Acessórios</h3>
 									<ul>
@@ -147,8 +176,11 @@ function getFileList($dir)
 												    <?php foreach($advertising->getUser()->getAddress() as $address){ ?>
 												        <?php echo $address->getAddress() . ' ' . $address->getNumber() . ' ' . $address->getCity()->getCityName() . ' - ' . $address->getCity()->getState()->getUf(); ?>
 												    <?php } ?></p>
+										            <p><?php if($advertising->getContact()->getValue() == null) { echo 'Não Informado'; } else { echo '<span id="contact-number">'. $advertising->getContact()->getValue() .'</span>'; } ?></p>
+												    
 									<p class="indicacao">Ao ligar informe ter visto o anúncio no BRIKEBRAK</p>
 								</div>
+								<form action="/anuncio/<?php echo $advertising->getId()?>" method="POST">
 								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 boxProposta">
 									<h1>Envie sua proposta</h1>
 										<div class="formProposta mTop15">
@@ -181,9 +213,24 @@ function getFileList($dir)
 										</div>
 								</div>
 								<div class="btnEnviarProposta">
-									<input type="button" value="enviar">
+									<input type="submit" value="enviar">
 								</div>
+								</form>
 						</div>
 					</div>
 				</div>
-				<?php //} ?>
+				
+<script type="text/javascript">
+<!--
+
+$(function() {
+    $(".carousel").jCarouselLite({
+        btnNext: ".next",
+        btnPrev: ".prev",
+        circular: false,
+        visible: 5
+    });
+});
+//-->
+</script>
+				

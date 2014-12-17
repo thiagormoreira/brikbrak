@@ -26,10 +26,8 @@ class Create extends Form
         if($elements != null){
             $this->elements = $elements;
         }
-        // Creating Fields
-        //var_dump($elements);
         $elements = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($elements));
-        //var_dump($elements);
+        
         $i = 0;
         foreach ($elements as $key => $element)
         {

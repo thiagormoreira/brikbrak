@@ -48,7 +48,6 @@ class ModelForm extends Form
         $this->add(array(
             'name' => 'idmodel',
             'options' => array(
-                //'label' => 'Id'
             ),
             'attributes' => array(
                 'type' => 'hidden',

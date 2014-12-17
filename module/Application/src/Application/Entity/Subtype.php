@@ -29,6 +29,16 @@ class Subtype
     private $subtypeName;
 
     /**
+     * @var \Application\Entity\TypeItem
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Entity\TypeItem")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="type_item_idtype_item", referencedColumnName="idtype_item")
+     * })
+     */
+    private $typeItem;
+    
+    /**
      *
      * @return the integer
      */
@@ -71,7 +81,28 @@ class Subtype
         $this->subtypeName = $subtypeName;
         return $this;
     }
- 
 
+    /**
+     *
+     * @return the TypeItem
+     */
+    public function getTypeItem()
+    {
+        return $this->typeItem;
+    }
+
+    /**
+     *
+     * @param
+     *            $typeItem
+     */
+    public function setTypeItem($typeItem)
+    {
+        $this->typeItem = $typeItem;
+        return $this;
+    }
+ 
+ 
+    
     
 }

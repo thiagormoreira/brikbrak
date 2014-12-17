@@ -76,7 +76,7 @@ class ModuleOptions
         'Nome' => 'subtype_name'
     );
 
-    protected $options = array(
+    protected $option = array(
         'Id' => 'idoptions',
         'Nome' => 'options_name'
     );

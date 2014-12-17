@@ -10,6 +10,7 @@ use Application\Form\BrandForm;
 use Application\Form\ModelForm;
 use Application\Form\BodyworkForm;
 use Application\Form\TypeItemForm;
+use Application\Form\SubtypeForm;
 use Application\Form\UserForm;
 
 abstract class AbstractAdminCrud extends AbstractActionController
@@ -33,32 +34,6 @@ abstract class AbstractAdminCrud extends AbstractActionController
         return new ViewModel();
     }
 
-    public function _list($entity)
-    {
-        $entityManager = $this->getEntityManager();
-        $userMapper = $entityManager->getRepository('Application\Entity' . $entity);
-        // $adapter = new SelectableAdapter($entityManager->getRepository('Application\Entity\Advertising'));
-        $users = $userMapper->findAll();
-        
-        if (is_array($users)) {
-            $collection = new \Doctrine\Common\Collections\ArrayCollection($users);
-            $paginator = new \Zend\Paginator\Paginator(new \DoctrineModule\Paginator\Adapter\Collection($collection));
-            // $paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\ArrayAdapter($users));
-            
-            $paginator->setItemCountPerPage(20);
-            $paginator->setCurrentPageNumber($this->getEvent()
-                ->getRouteMatch()
-                ->getParam('p'));
-        } else {
-            $paginator = $users;
-        }
-        $this->layout('layout/admin.phtml');
-        return array(
-            'users' => $paginator,
-            'userlistElements' => $this->getOptions()->getListElements($entity)
-        );
-    }
-
     public function listAction()
     {
         $entityManager = $this->getEntityManager();
@@ -69,7 +44,6 @@ abstract class AbstractAdminCrud extends AbstractActionController
             ->getRouteMatch()
             ->getParam('idtype');
         $entityMapper = $entityManager->getRepository('Application\Entity\\' . ucwords($entity));
-        // $adapter = new SelectableAdapter($entityManager->getRepository('Application\Entity\Advertising'));
         
         
         if($this->getEvent()->getRouteMatch()->getParam('idtype') != null){
@@ -83,7 +57,6 @@ abstract class AbstractAdminCrud extends AbstractActionController
         if (is_array($list)) {
             $collection = new \Doctrine\Common\Collections\ArrayCollection($list);
             $paginator = new \Zend\Paginator\Paginator(new \DoctrineModule\Paginator\Adapter\Collection($collection));
-            // $paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\ArrayAdapter($users));
             
             $paginator->setItemCountPerPage(20);
             $paginator->setCurrentPageNumber($this->getEvent()
@@ -112,15 +85,12 @@ abstract class AbstractAdminCrud extends AbstractActionController
             ->getRouteMatch()
             ->getParam('id');
         $item = $this->getEntityManager()->find('\Application\Entity\\' . ucwords($entity), $id);
-        //$formName = ucwords($entity) . 'Form';
-        //$form = new $formName();
         
         
         if ($entity == "advertising") {
             $form = new AdvertisingForm($objectManager);
         } elseif ($entity == "item") {
             $form = new ItemForm($objectManager);
-            //$item->setOptions($this->params()->fromPost('options'));
             
         } elseif ($entity == "brand") {
             $form = new BrandForm($objectManager);
@@ -132,6 +102,8 @@ abstract class AbstractAdminCrud extends AbstractActionController
             $form = new TypeItemForm($objectManager);
         } elseif ($entity == "user") {
             $form = new UserForm($objectManager);
+        } elseif ($entity == "subtype") {
+            $form = new SubtypeForm($objectManager);
         }
         
         $form->bind($item);
@@ -140,7 +112,6 @@ abstract class AbstractAdminCrud extends AbstractActionController
         if ($request->isPost()) {
             $form->setData($request->getPost());
             if ($form->isValid()) {
-                // $item->persist($post);
                 $objectManager->flush();
                 $item = $this->getEntityManager()->find('\Application\Entity\\' . ucwords($entity), $id);
                 $form->bind($item);
@@ -152,9 +123,9 @@ abstract class AbstractAdminCrud extends AbstractActionController
         
         return array(
             'editForm' => $form,
-            'id' => $id
+            'id' => $id,
+            'entity' => $entity,
         )
-        // 'listElements' => $this->getOptions()->getListElements($entity)
         ;
     }
 
@@ -179,39 +150,12 @@ abstract class AbstractAdminCrud extends AbstractActionController
         
         $form->bind($item);
         
-        // $formName = ucwords($entity);
-        /*
-        if ($entity == "advertising") {
-            $form = new AdvertisingForm($objectManager);
-            //$item = new Advertising();
-        } elseif ($entity == "item") {
-            $form = new ItemForm($objectManager);
-            //$item = new Item();
-        } elseif ($entity == "brand") {
-            $form = new BrandForm($objectManager);
-            //$item = new Brand();
-        } elseif ($entity == "model") {
-            $form = new ModelForm($objectManager);
-            //$item = new Model();
-        } elseif ($entity == "bodywork") {
-            $form = new BodyworkForm($objectManager);
-            //$item = new Bodywork();
-        } elseif ($entity == "typeItem") {
-            $form = new TypeItemForm($objectManager);
-            //$item = new TypeItem();
-        }
-        
-        $form->bind($item);
-        */
-        
         $request = $this->getRequest();
         if ($request->isPost()) {
             $form->setData($request->getPost());
             if ($form->isValid()) {
-                // $item->persist($post);
                 $entityManager->persist($item);
                 $entityManager->flush();
-                // $form->bind($item);
                 
                 $this->flashMessenger()->addSuccessMessage('Adicionado com sucesso.');
                 $this->redirect()->toRoute('zfcadmin-list', array('entity' => $entity));
@@ -221,10 +165,7 @@ abstract class AbstractAdminCrud extends AbstractActionController
         return array(
             'createForm' => $form,
             
-        )
-        // 'id' => $id,
-        // 'listElements' => $this->getOptions()->getListElements($entity)
-        ;
+        );
     }
     
     public function deleteAction()
@@ -238,7 +179,6 @@ abstract class AbstractAdminCrud extends AbstractActionController
         ->getRouteMatch()
         ->getParam('id');
         $item = $this->getEntityManager()->find('\Application\Entity\\' . ucwords($entity), $id);
-        // $formName = ucwords($entity);
         
         if (null === $id) {
             return $this->redirect()->toRoute('zfcadmin');

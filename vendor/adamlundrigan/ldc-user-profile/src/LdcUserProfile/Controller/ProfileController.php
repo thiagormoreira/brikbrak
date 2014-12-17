@@ -62,7 +62,7 @@ class ProfileController extends AbstractActionController
             return $vm;
         }
 
-        $fm->addSuccessMessage('Profile updated successfully!');
+        $fm->addSuccessMessage('Perfil atualizado com sucesso');
 
         return $this->redirect()->toRoute('ldc-user-profile');
     }

@@ -9,12 +9,9 @@ return array(
         'ZfcUser',
         'ZfcAdmin',
     	'ZfcUserDoctrineORM',
-        //'AhBootstrapZfcUser',
         'ZfcTwitterBootstrap',
         'ZfcUserAdmin',
         'LdcUserProfile',
-        //'HtImgModule',
-        //'HtProfileImage',
         'Application',
     ),
 

@@ -17,6 +17,7 @@ use DoctrineModule\Paginator\Adapter\Selectable as SelectableAdapter;
 use Doctrine\Common\Collecttions\Criteria as DoctrineCriteria; // for criteria
 use ZfcUser\Controller\Plugin\ZfcUserAuthentication;
 use Application\Entity\Advertising;
+use Application\Entity\Message;
 
 class ResultController extends AbstractActionController
 {
@@ -61,15 +62,39 @@ class ResultController extends AbstractActionController
      */
     public function detailAction()
     {
+        $entityManager = $this->getEntityManager();
+        
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+        
+            $message = new Message();
+            $message->setContactName($this->params()->fromPost('nome'));
+            $message->setContactEmail($this->params()->fromPost('email'));
+            $message->setContactTel($this->params()->fromPost('ddd') . $this->params()->fromPost('telefone'));
+            $message->setMessage($this->params()->fromPost('proposta'));
+            $message->setAdvertising($this->getEntityManager()->find('\Application\Entity\Advertising', $this->params('id')));
+            $message->setUser($this->getEntityManager()->find('\Application\Entity\User', $this->zfcUserAuthentication()->getIdentity()->getId()));
+            $entityManager->persist($message);
+            $entityManager->flush();
+            
+            $this->flashMessenger()->addSuccessMessage('Mensagem enviada com sucesso.');
+        }
         $objectManager = $this->getEntityManager();
         $advertising = $this->getEntityManager()
                 ->getRepository('Application\Entity\Advertising')
                 ->find($this->params('id'));
-        $advertising->addViewCount();
-        $objectManager->flush();
         
-        return new ViewModel(array(
-            'advertising' => $advertising
-        ));
+        if($advertising != null){
+            $advertising->addViewCount();
+            $objectManager->flush();
+            
+            return new ViewModel(array(
+                'advertising' => $advertising
+            ));
+       } else {
+           
+           $this->flashMessenger()->addErrorMessage('Anúncio não encontrado.');
+           $this->redirect()->toRoute('zfcuser');
+       }
     }
 }

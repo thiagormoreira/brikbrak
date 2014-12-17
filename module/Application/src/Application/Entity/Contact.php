@@ -43,13 +43,6 @@ class Contact
     private $status;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Application\Entity\User", mappedBy="contactcontact")
-     */
-    private $user;
-
-    /**
      * @var \Application\Entity\TypeContact
      *
      * @ORM\ManyToOne(targetEntity="Application\Entity\TypeContact")
@@ -148,26 +141,6 @@ class Contact
     public function setStatus($status)
     {
         $this->status = $status;
-        return $this;
-    }
-
-    /**
-     *
-     * @return the Collection
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     *
-     * @param
-     *            $user
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
         return $this;
     }
 

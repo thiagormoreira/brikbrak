@@ -15,16 +15,43 @@ use Application\Entity;
 
 class IndexController extends AbstractActionController
 {
-    public function indexAction()
+    /**
+     * @var unknown
+     */
+    protected $em;
+    
+    /**
+     * @return Ambigous <object, multitype:>
+     */
+    public function getEntityManager()
     {
-        //$ad = new \Application\Entity\Advertising();
-        //$ad->setAddress(1);
-        //$ad->setUser(2);
-        //$ad->setItem(1);
-        //$ad->setText("Teste");
-        //var_dump($ad);
-        //$this->_em->persist($ad);
-        //$this->_em->flush();
-        return new ViewModel();
+        if (null === $this->em) {
+            $this->em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+        }
+        return $this->em;
+    }
+    
+    public function modelAction()
+    {
+        $dql = 'SELECT COUNT(p) FROM Application\Entity\Item p WHERE p.typeItem = 1 OR p.typeItem = 3 OR p.typeItem = 4';
+        $q = $this->getEntityManager()->createQuery($dql);
+        
+        $carCnt = $q->getSingleScalarResult();
+        
+        $dql = 'SELECT COUNT(p) FROM Application\Entity\Item p WHERE p.typeItem = 5';
+        $q = $this->getEntityManager()->createQuery($dql);
+        
+        $cartCnt = $q->getSingleScalarResult();
+        
+        $dql = 'SELECT COUNT(p) FROM Application\Entity\Item p WHERE p.typeItem = 6 OR p.typeItem = 7';
+        $q = $this->getEntityManager()->createQuery($dql);
+        
+        $acCnt = $q->getSingleScalarResult();
+        
+        return new ViewModel(array(
+            'carCnt' => $carCnt,
+            'cartCnt' => $cartCnt,
+            'acCnt' => $acCnt
+        ));
     }
 }

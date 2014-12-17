@@ -48,7 +48,6 @@ class BodyworkForm extends Form
         $this->add(array(
             'name' => 'idbodywork',
             'options' => array(
-                //'label' => 'Id'
             ),
             'attributes' => array(
                 'type' => 'hidden',
@@ -64,13 +63,13 @@ class BodyworkForm extends Form
                 'type' => 'text'
             )
         ));
-        $adGroup = new ObjectSelect('typeItem');
+
+        $adGroup = new ObjectSelect('subtypeItem');
         $adGroup->setEmptyOption('Selecionar');
         $adGroup->setOptions(array(
             'object_manager' => $this->em,
-            'target_class' => 'Application\Entity\TypeItem',
-            'property' => 'typeName',
-            'is_method' => true,
+            'target_class' => 'Application\Entity\Subtype',
+            'property' => 'subtypeName',
             'label' => 'Tipo'
         ));
         $this->add($adGroup);

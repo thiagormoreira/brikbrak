@@ -22,7 +22,6 @@ use Zend\Filter\File\UpperCase;
 use Application\Form\Edit;
 use Application\Form\Create;
 use Application\Controller\AbstractController\AbstractAdminCrud;
-//use Zend\Paginator\Paginator;
 
 class AdminController extends AbstractAdminCrud
 {
@@ -33,9 +32,7 @@ class AdminController extends AbstractAdminCrud
     
     public function __construct()
     {
-        //new ViewModel(array(
-            
-            //));
+        
     }
     /**
      * @return Ambigous <object, multitype:>

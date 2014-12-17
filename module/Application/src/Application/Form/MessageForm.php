@@ -20,9 +20,8 @@ use DoctrineModule\Form\Element\ObjectSelect;
 use Zend\Filter\StringTrim;
 use Zend\Filter\StripTags;
 
-class TypeItemForm extends Form
+class MessageForm extends Form
 {
-
     protected $entityManager;
 
     protected $moduleService;
@@ -40,14 +39,14 @@ class TypeItemForm extends Form
         parent::__construct('category', $options);
         $this->addElements();
         $this->setInputFilter($this->createInputFilter());
-        $hydrator = new DoctrineHydrator($this->em, '\Application\Entity\TypeItem');
+        $hydrator = new DoctrineHydrator($this->em, '\Application\Entity\Bodywork');
         $this->setHydrator($hydrator);
     }
 
     public function addElements()
     {
         $this->add(array(
-            'name' => 'idtypeItem',
+            'name' => 'idmessage',
             'options' => array(
             ),
             'attributes' => array(
@@ -56,7 +55,7 @@ class TypeItemForm extends Form
             )
         ));
         $this->add(array(
-            'name' => 'typeName',
+            'name' => 'contactName',
             'options' => array(
                 'label' => 'Nome'
             ),
@@ -64,18 +63,45 @@ class TypeItemForm extends Form
                 'type' => 'text'
             )
         ));
+        $this->add(array(
+            'name' => 'contactEmail',
+            'options' => array(
+                'label' => 'Email'
+            ),
+            'attributes' => array(
+                'type' => 'text'
+            )
+        ));
+        $this->add(array(
+            'name' => 'contactTel',
+            'options' => array(
+                'label' => 'Telefone'
+            ),
+            'attributes' => array(
+                'type' => 'text'
+            )
+        ));
+        $this->add(array(
+            'name' => 'message',
+            'options' => array(
+                'label' => 'Mensagem'
+            ),
+            'attributes' => array(
+                'type' => 'text'
+            )
+        ));
     }
-
+    
     public function createInputFilter()
     {
         $inputFilter = new InputFilter();
-        
-        $bodyworkNameFilter = new Input('typeName');
-        $bodyworkNameFilter->setRequired(true);
-        $bodyworkNameFilter->getFilterChain()->attach(new StringTrim());
-        $bodyworkNameFilter->getFilterChain()->attach(new StripTags());
-        $inputFilter->add($bodyworkNameFilter);
-        
+    
+        $contactNameFilter = new Input('contactName');
+        $contactNameFilter->setRequired(true);
+        $contactNameFilter->getFilterChain()->attach(new StringTrim());
+        $contactNameFilter->getFilterChain()->attach(new StripTags());
+        $inputFilter->add($contactNameFilter);
+    
         return $inputFilter;
     }
 }

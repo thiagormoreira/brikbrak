@@ -1,7 +1,9 @@
+
+        
 <?php
 $form = $this->form;
 $form->prepare();
-//$form->setAttribute('action', $this->url('zfcadmin/zfcuseradmin/create'));
+// $form->setAttribute('action', $this->url('zfcadmin/zfcuseradmin/create'));
 $form->setAttribute('method', 'post');
 ?>
 <div class="container whiteBackground">
@@ -22,208 +24,185 @@ $form->setAttribute('method', 'post');
 			</div>
 		</div>
 	</div>
-	<?php echo $this->form()->openTag($form) ?>
+	<?php echo $this->form()->openTag($form)?>
 		<div class="row">
-			<div class="col-md-12">
-				<section style="background: #efefe9;">
-					<div class="board">
-						<!--BEM VINDO AO REGISTRO DE ANUNCIOS!-->
-						<div class="board-inner">
-							<ul class="nav nav-tabs" id="myTab">
-								<div class="liner"></div>
-								<li class="active"><a href="#home" data-toggle="tab"
-									title="Passo 1 - Preencha o seu Anúncio"> <span
-										class="round-tabs one"> <i class="glyphicon glyphicon-home"></i>
-									</span>
-								</a></li>
+		<div class="col-md-12">
+			<section style="background: #efefe9;">
+				<div class="board">
+					<!--BEM VINDO AO REGISTRO DE ANUNCIOS!-->
+					<div class="board-inner">
+						<ul class="nav nav-tabs" id="myTab">
+							<div class="liner"></div>
+							<li class="active"><a href="#home" data-toggle="tab"
+								title="Passo 1 - Preencha o seu Anúncio"> <span
+									class="round-tabs one"> <i class="glyphicon glyphicon-home"></i>
+								</span>
+							</a></li>
 
-								<li><a href="#profile" data-toggle="tab"
-									title="Passo 2 - Informe as suas Informações"> <span
-										class="round-tabs two"> <i class="glyphicon glyphicon-globe"></i>
-									</span>
-								</a></li>
-								<li><a href="#imagens" data-toggle="tab"
-									title="Passo 3 - Adicione as Imagens e Publique!"> <span
-										class="round-tabs three"> <i
-											class="glyphicon glyphicon-picture"></i>
-									</span>
-								</a></li>
+							<li><a href="#profile" data-toggle="tab"
+								title="Passo 2 - Informe as suas Informações"> <span
+									class="round-tabs two"> <i class="glyphicon glyphicon-globe"></i>
+								</span>
+							</a></li>
+							<li><a href="#imagens" data-toggle="tab"
+								title="Passo 3 - Adicione as Imagens e Publique!"> <span
+									class="round-tabs three"> <i
+										class="glyphicon glyphicon-picture"></i>
+								</span>
+							</a></li>
 
 
-							</ul>
+						</ul>
+					</div>
+
+					<div class="tab-content">
+						<div class="tab-pane fade in active" id="home">
+
+							<div class="row">
+								<div
+									class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+									<fieldset>
+										<hr class="colorgraph">
+
+										<div class="form-group">
+												<?php echo $this->formSelect($form->get('typeItem')) . $this->formElementErrors($form->get('typeItem'))?>
+										</div>
+										<div class="form-group">
+												<?php echo $this->formInput($form->get('km')) . $this->formElementErrors($form->get('km'))?>
+											</div>
+										<div class="form-group">
+												<?php echo $this->formSelect($form->get('brand')) . $this->formElementErrors($form->get('brand'))?>
+										</div>
+										<div class="form-group">
+													<?php echo $this->formSelect($form->get('model')) . $this->formElementErrors($form->get('model'))?>
+										</div>
+										<div class="form-group">
+												    <?php echo $this->formSelect($form->get('subType')) . $this->formElementErrors($form->get('subType'))?>
+										</div>
+										<div class="form-group">
+													<?php echo $this->formSelect($form->get('bodywork')) . $this->formElementErrors($form->get('bodywork'))?>
+												</span>
+										</div>
+										<div class="form-group">
+											<select name="year" id="year" class="form-control input-lg" style="display:none">
+												<option>Ano</option>
+                                    			<?php for($i=2015;$i >= 1950;$i--) {?>
+                                    				<option value="<?php echo $i ?>"><?php echo $i ?></option>
+                                    				<?php } ?>
+                                    			</select>
+										</div>
+										<div class="form-group">
+												<?php echo $this->formInput($form->get('color')) . $this->formElementErrors($form->get('color'))?>
+											</div>
+										<div class="form-group">
+											<select name="fuel" id="fuel" class="form-control input-lg" style="display:none">
+												<option>Combustível</option>
+            											    <?php
+                        $fuels = array(
+                            '1' => 'Gasolina',
+                            '2' => 'Álcool',
+                            '3' => 'Diesel',
+                            '4' => 'Biodiesel',
+                            '5' => 'Outros'
+                        );
+                        foreach ($fuels as $key => $fuel) {
+                            echo '<option value="' . $key . '">' . $fuel . '</option>';
+                        }
+                        ?>
+                                                        </select> </span>
+										</div>
+										<div class="form-group">
+												<?php echo $this->formInput($form->get('value')) . $this->formElementErrors($form->get('value'))?>
+											</div>
+
+										<div class="form-group">
+
+											<h4>SELECIONE OS ACESSÓRIOS</h4>
+												<?php //echo $this->formMultiCheckbox($form->get('options')) . $this->formElementErrors($form->get('options'))?>
+
+											</div>
+										<a href="#profile" data-toggle="tab"
+											title="Passo 2 - Informe as suas Informações"> <input
+											type="submit" value="AVANÇAR" />
+										</a> <br>
+										<hr class="colorgraph">
+									</fieldset>
+								</div>
+							</div>
 						</div>
+						<div class="tab-pane fade" id="profile">
 
-						<div class="tab-content">
-							<div class="tab-pane fade in active" id="home">
-							
-								<div class="row">
-							<section class="col-md-6">
-									<div class="boxFormulario col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+							<div class="row">
+								<div
+									class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+									<fieldset>
+										<hr class="colorgraph">
 
-										<h1>Preencha os dados do item</h1>
-										<div class="clearfix"></div>
-										<div id="loadRegisterForm">
-										    <div>
-												<span class="selectOption"><span id="brand">Tipo</span>
-												<?php echo $this->formSelect($form->get('typeItem')) . $this->formElementErrors($form->get('typeItem')) ?>
-												</span>
+										<div class="form-group">
+												<?php echo $this->formInput($form->get('address')) . $this->formElementErrors($form->get('address'))?>
 											</div>
-											<div>
-												<?php echo $this->formInput($form->get('km')) . $this->formElementErrors($form->get('km')) ?>
+										<div class="form-group">
+												<?php echo $this->formInput($form->get('number')) . $this->formElementErrors($form->get('number'))?>
 											</div>
-
-											<div>
-												<span class="inputRadio" data-input-id="situacao"
-													data-input-value="1"> <input type="hidden" name="situacao"
-													id="situacao" />
-												</span>
+										<div class="form-group">
+												<?php echo $this->formInput($form->get('complement')) . $this->formElementErrors($form->get('complement'))?>
 											</div>
-											<div>
-												<span class="selectOption"><span id="brand">Marca</span>
-												<?php echo $this->formSelect($form->get('brand')) . $this->formElementErrors($form->get('brand')) ?>
-												</span>
+										<div class="form-group">
+												<?php echo $this->formInput($form->get('district_name')) . $this->formElementErrors($form->get('district_name'))?>
 											</div>
-											<div>
-												<span class="selectOption"> <span id="modelo">Modelo</span>
-													<?php echo $this->formSelect($form->get('model')) . $this->formElementErrors($form->get('model')) ?>
-												</span>
-											</div>
-											<div>
-												<span class="selectOption"> <span id="tipo">Tipo</span>
-												    <?php echo $this->formSelect($form->get('subType')) . $this->formElementErrors($form->get('subType')) ?>
-												</span>
-											</div>
-											<div>
-												<span class="inputRadio" data-input-id="cambio"
-													data-input-value="1"> <input type="hidden" name="cambio"
-													id="cambio" />
-												</span> <label for="cambio_automatico">Automático</label> <span
-													class="inputRadio" data-input-id="cambio"
-													data-input-value="2"></span> <label for="cambio_manual">Manual</label>
-											</div>
-											<div>
-												<span class="selectOption"> <span id="year">Selecionar Ano</span>
-													<select name="year" data-text-id="year">
-                                        			<?php for($i=2015;$i >= 1950;$i--) {?>
-                                        				<option
-															value="<?php echo $i ?>"><?php echo $i ?></option>
-                                        				<?php } ?>
-                                        			</select>
-												</span>
-											</div>
-											<div>
-												<?php echo $this->formInput($form->get('color')) . $this->formElementErrors($form->get('color')) ?>
-											</div>
-											<div>
-												<span class="selectOption"> <span id="fuel">Selecionar
-														Combustivel</span> <select name="fuel" data-text-id="fuel">
-        											    <?php
-                    
-                    $fuels = array(
-                        '1' => 'Gasolina',
-                        '2' => 'Álcool',
-                        '3' => 'Diesel',
-                        '4' => 'Biodiesel',
-                        '5' => 'Outros'
-                    );
-                    foreach ($fuels as $key => $fuel) {
-                        echo '<option value="' . $key . '">' . $fuel . '</option>';
-                    }
-                    ?>
-                                                    </select>
-												</span>
-											</div>
-											<div>
-												<span class="selectOption"> <span id="carroceria">Carroceria</span>
-													<?php echo $this->formSelect($form->get('bodywork')) . $this->formElementErrors($form->get('bodywork')) ?>
-												</span>
-											</div>
-											<div>
-												<input placeholder="Digite o Valor" name="value" type="text">
+										<div class="form-group">
+												<?php echo $this->formSelect($form->get('state')) . $this->formElementErrors($form->get('state'))?>
+										</div>
+										<div class="form-group">
+											<select name="city" id="city" class="form-control input-lg" style="display:none">
+											</select>
+										</div>
+										<div class="form-group">
+												<?php echo $this->formInput($form->get('contact-number')) . $this->formElementErrors($form->get('contact-number'))?>
 											</div>
 
-											<div>
+										<hr class="colorgraph">
 
-												<h4>SELECIONE OS ACESSÓRIOS</h4>
-												<?php echo $this->formMultiCheckbox($form->get('options')) . $this->formElementErrors($form->get('options')) ?>
+									</fieldset>
 
-											</div>
-											<a href="#profile" data-toggle="tab"
-												title="Passo 2 - Informe as suas Informações"> <input
-												type="submit" value="AVANÇAR" />
-											</a>
-											<!-- Form Actions -->
-											<script src="/assets/js/form.actions.js"></script>
+									<p class="text-center">
+										<a href="#imagens" data-toggle="tab"
+											title="Passo 3 - Adicione as Imagens e Publique!"
+											class="btn btn-success btn-outline-rounded green"> AVANÇAR </span>
+										</a>
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="imagens">
+							<div class="row">
+								<div
+									class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+									<h3 class="head text-center">Escreva o seu anúncio</h3>
+									<fieldset>
+										<div class="form-group">
+												<?php echo $this->formTextarea($form->get('text')) . $this->formElementErrors($form->get('text'))?>
+												<input type="submit"
+												class="btn btn-success btn-outline-rounded green"
+												value="Publicar Anúncio">
 										</div>
 
-									</div>
-									<br>
-
-								</section>
+									</fieldset>
 								</div>
 							</div>
-							<div class="tab-pane fade" id="profile">
-
-								<div class="row">
-									<div
-										class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-										<fieldset>
-											<hr class="colorgraph">
-
-											<div class="form-group">
-												<?php echo $this->formInput($form->get('address')) . $this->formElementErrors($form->get('address')) ?>
-											</div>
-											<div class="form-group">
-												<?php echo $this->formInput($form->get('number')) . $this->formElementErrors($form->get('number')) ?>
-											</div>
-											<div class="form-group">
-												<?php echo $this->formInput($form->get('complement')) . $this->formElementErrors($form->get('complement')) ?>
-											</div>
-											<div class="form-group">
-												<?php echo $this->formInput($form->get('district_name')) . $this->formElementErrors($form->get('district_name')) ?>
-											</div>
-											<div class="form-group">
-												<?php echo $this->formSelect($form->get('city')) . $this->formElementErrors($form->get('city')) ?>
-											</div>
-
-											<hr class="colorgraph">
-
-										</fieldset>
-
-										<p class="text-center">
-											<a href="#imagens" data-toggle="tab"
-												title="Passo 3 - Adicione as Imagens e Publique!"
-												class="btn btn-success btn-outline-rounded green"> AVANÇAR </span>
-											</a>
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="tab-pane fade" id="imagens">
-								<div class="row">
-									<div
-										class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-										<h3 class="head text-center">Escreva o seu anúncio</h3>
-										<fieldset>
-											<div class="form-group">
-												<?php echo $this->formTextarea($form->get('text')) . $this->formElementErrors($form->get('text')) ?>
-												<input type="submit"
-													class="btn btn-success btn-outline-rounded green"
-													value="Publicar Anúncio">
-											</div>
-
-										</fieldset>
-									</div>
-								</div>
-							</div>
-							<div class="clearfix"></div>
 						</div>
-
+						<div class="clearfix"></div>
 					</div>
-			
-			</div>
+
+				</div>
+		
 		</div>
-	<?php echo $this->form()->closeTag() ?>
+	</div>
+	<?php echo $this->form()->closeTag()?>
 </div>
 <!-- Form Actions -->
 <script src="/assets/js/form.actions.js"></script>
+
+<script>
+
+</script>

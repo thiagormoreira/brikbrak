@@ -72,7 +72,7 @@ return array(
             'novo-anuncio' => array(
                 'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => array(
-                    'route' => '/user/novo-anuncio',
+                    'route' => '/novo-anuncio',
                     'defaults' => array(
                         'controller' => 'Application\Controller\User',
                         'action' => 'novoAnuncio',
@@ -82,10 +82,8 @@ return array(
             'authenticate' => array(
                 'type' => 'Literal',
                 'options' => array(
-                    'route' => '/authenticate',
+                    'route' => '/user/login',
                     'defaults' => array(
-                        'controller' => 'zfcuser',
-                        'action'     => 'authenticate',
                     ),
                 ),
             ),
@@ -112,42 +110,6 @@ return array(
                     )
                 )
             ),
-            /*
-            'teste' => array(
-                'type' => 'Zend\Mvc\Router\Http\Segment',
-                'options' => array(
-                    'route' => '/admin[/:action][/][page/:page]',
-                    'defaults' => array(
-                        'controller' => 'Application\Controller\Admin',
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
-                    )
-                )
-            ),
-            'dev' => array(
-                'type' => 'Zend\Mvc\Router\Http\Segment',
-                'options' => array(
-                    'route' => '/admin/item/list',
-                    'defaults' => array(
-                        'controller' => 'Application\Controller\Admin',
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
-                    )
-                )
-            ),
-            'paginator' => array(
-                'type'    => 'Segment',
-                'options' => array(
-                    'route'    => '/admin/[:action]/[page/:page]',
-                    'constraints' => array(
-                        'page' => '[0-9]*',
-                    ),
-                    'defaults' => array(
-                        //'__NAMESPACE__' => 'Application\Controller',
-                        'controller'    => 'Application\Controller\Admin',
-                        //'action'        => '[a-zA-Z][a-zA-Z0-9_-]*',
-                    ),
-                ),
-            ),
-            */
             'advertising' => array(
                 'type' => 'Segment',
                 'options' => array(
@@ -289,16 +251,61 @@ return array(
                     )
                 )
             ),
+            'models' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/ajax/models/:idbrand/typeitem/:idtypeItem',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Ajax',
+                        'action' => 'models'
+                    )
+                )
+            ),
+            'subTypes' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/ajax/sub-types/:idtypeItem',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Ajax',
+                        'action' => 'subTypes'
+                    )
+                )
+            ),
+            'bodyworks' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/ajax/bodyworks/:idsubtypeItem',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Ajax',
+                        'action' => 'bodyworks'
+                    )
+                )
+            ),
+            'cities' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/ajax/cities/:idstate',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Ajax',
+                        'action' => 'cities'
+                    )
+                )
+            ),
+            'user-delete-ad' => array(
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => array(
+                    'route' => '/user/delete/anuncio/:idanuncio',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\User',
+                        'action' => 'deleteAd',
+                    )
+                )
+            ),
             // Fim Fix Route
-            
-            // The following is a route to simplify getting started creating
-            // new controllers and actions without needing to create a new
-            // module. Simply drop new controllers in, and you can access them
-            // using the path /application/:controller/:action
             'application' => array(
                 'type' => 'Literal',
                 'options' => array(
-                    'route' => '/application',
+                    'route' => '/',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Application\Controller',
                         'controller' => 'Index',
@@ -347,7 +354,8 @@ return array(
             'Application\Controller\Result' => 'Application\Controller\ResultController',
             'Application\Controller\Portal' => 'Application\Controller\PortalController',
             'Application\Controller\Admin' => 'Application\Controller\AdminController',
-            'Application\Controller\User' => 'Application\Controller\UserController'
+            'Application\Controller\User' => 'Application\Controller\UserController',
+            'Application\Controller\Ajax' => 'Application\Controller\AjaxController'
         )
     ),
     'view_manager' => array(
@@ -365,7 +373,10 @@ return array(
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view'
-        )
+        ),
+        'strategies' => array(
+            'ViewJsonStrategy',
+        ),
     ),
     // Placeholder for console routes
     'console' => array(

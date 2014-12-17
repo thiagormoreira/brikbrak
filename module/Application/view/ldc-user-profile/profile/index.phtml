@@ -7,6 +7,13 @@ $form = $this->profileForm;
 $form->prepare();
 $form->setAttribute('action', $this->url('ldc-user-profile'));
 $form->setAttribute('method', 'post');
+
+$flash = $this->flashMessenger();
+$flash->setMessageOpenFormat('<div%s>
+     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+         <i class="ace-icon fa fa-times"></i>
+     </button>')
+     ->setMessageCloseString('</li></ul></div>');
 ?>
 
     </dl>
@@ -55,19 +62,7 @@ $form->setAttribute('method', 'post');
       
       <!-- edit form column -->
       <div class="col-md-8 personal-info">
-        <div class="alert alert-info alert-dismissable">
-          <a class="panel-close close" data-dismiss="alert">×</a> 
-          <i class="fa fa-coffee"></i>
-          <?php //var_dump($this->flashMessenger()) ?>
-          <?php $flashMessenger = $this->flashMessenger();
-            if ($flashMessenger->hasMessages('success')) {
-                //$return['messages'] = $flashMessenger->getMessages();
-                //echo $return; 
-                echo $this->flashMessenger()->render('success');
-            } ?>
-          <?php  ?>
-          Preencha o seu <strong> perfil </strong> com os seus dados e clique em salvar.
-        </div>
+      <?php echo $flash->render('success', array('alert', 'alert-dismissable', 'alert-success')); ?>
         <h3>Informações do Perfil</h3>
         
         <?php echo $this->form()->openTag($form) ?>

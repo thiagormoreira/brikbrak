@@ -48,7 +48,6 @@ class AdvertisingForm extends Form
         $this->add(array(
             'name' => 'idadvertising',
             'options' => array(
-                //'label' => 'Id'
             ),
             'attributes' => array(
                 'type' => 'hidden',
@@ -63,31 +62,8 @@ class AdvertisingForm extends Form
             ),
             'attributes' => array(
                 'type' => 'textarea',
-                //'class' => 'autosize-transition form-control'
             )
         ));
-        /*
-         * $this->add(array(
-         * 'name' => 'item',
-         * 'type' => 'Zend\Form\Element\Select',
-         * 'options' => array(
-         * 'label' => 'Item',
-         * ),
-         * 'attributes' => array(
-         * )
-         * ));
-         */
-        /*
-         * $this->add(array(
-         * 'name' => 'item',
-         * 'type' => 'Zend\Form\Element\Select',
-         * 'options' => array(
-         * 'label' => 'Item',
-         * ),
-         * 'attributes' => array(
-         * )
-         * ));
-         */
         
         $item = new ObjectSelect('item');
         $item->setEmptyOption('Selecionar item');
@@ -98,12 +74,6 @@ class AdvertisingForm extends Form
             'is_method' => true,
              'label' => 'Item',
             'find_method' => array(
-                //'name' => 'findBy',
-                //'params' => array(
-                //    'criteria' => array(
-                //        'user' => 2
-                //    )
-                //)
             )
         ));
         $this->add($item);
@@ -117,12 +87,6 @@ class AdvertisingForm extends Form
             'is_method' => true,
             'label' => 'Usuário',
             'find_method' => array(
-                //'name' => 'findBy',
-                //'params' => array(
-                //    'criteria' => array(
-                //        'user' => 2
-                //    )
-                //)
             )
         ));
         $this->add($user);

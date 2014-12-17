@@ -20,7 +20,7 @@ use DoctrineModule\Form\Element\ObjectSelect;
 use Zend\Filter\StringTrim;
 use Zend\Filter\StripTags;
 
-class TypeItemForm extends Form
+class SubtypeForm extends Form
 {
 
     protected $entityManager;
@@ -47,7 +47,7 @@ class TypeItemForm extends Form
     public function addElements()
     {
         $this->add(array(
-            'name' => 'idtypeItem',
+            'name' => 'idsubtype',
             'options' => array(
             ),
             'attributes' => array(
@@ -56,7 +56,7 @@ class TypeItemForm extends Form
             )
         ));
         $this->add(array(
-            'name' => 'typeName',
+            'name' => 'subtypeName',
             'options' => array(
                 'label' => 'Nome'
             ),
@@ -70,7 +70,7 @@ class TypeItemForm extends Form
     {
         $inputFilter = new InputFilter();
         
-        $bodyworkNameFilter = new Input('typeName');
+        $bodyworkNameFilter = new Input('subtypeName');
         $bodyworkNameFilter->setRequired(true);
         $bodyworkNameFilter->getFilterChain()->attach(new StringTrim());
         $bodyworkNameFilter->getFilterChain()->attach(new StripTags());
