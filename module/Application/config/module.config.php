@@ -231,6 +231,26 @@ return array(
                     )
                 )
             ),
+            'publicidade' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/publicidade',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Portal',
+                        'action' => 'publicidade'
+                    )
+                )
+            ),
+            'imprensa' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/imprensa',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Portal',
+                        'action' => 'imprensa'
+                    )
+                )
+            ),
             'planos' => array(
                 'type' => 'Segment',
                 'options' => array(
