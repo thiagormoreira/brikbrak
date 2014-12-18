@@ -283,7 +283,7 @@ class Advertising
      *
      * @param string $status            
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
         return $this;
