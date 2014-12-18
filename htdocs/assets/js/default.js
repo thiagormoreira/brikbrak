@@ -45,6 +45,7 @@ $(document).ready(function(){
 	    	($("#value").css('display', 'none'));
 	    	($("#model").css('display', 'none'));
 	    	($("#subType").css('display', 'none'));
+	    	($("#bodywork").css('display', 'none'));
 	    	$("#year").empty();
 	    	$("#color").empty();
 	    	$("#fuel").empty();
@@ -52,10 +53,10 @@ $(document).ready(function(){
 	    	//$("#model").empty();
 	    	//$("#subType").empty();
 	    } else {
-	    	
+	    	($("#brand").css('display', 'block'));
 	    }
 	    //if ($("#typeItem").val() == '1' || $("#typeItem").val() == '2' || $("#typeItem").val() == '3' || $("#typeItem").val() == '4'|| $("#typeItem").val() == '5') {
-	    	($("#brand").css('display', 'block'));
+	    	//($("#brand").css('display', 'block'));
 	    	//($("#year").css('display', 'block'));
 	    	//($("#color").css('display', 'block'));
 	    	//($("#fuel").css('display', 'block'));

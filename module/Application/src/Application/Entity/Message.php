@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="message")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class Message
 {
@@ -75,7 +76,40 @@ class Message
      * })
      */
     private $user;
+ 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="new", type="integer", nullable=true)
+     */
+    private $new;
 
+    public function __construct(){
+        //$this->createDate = time();
+    }
+    
+    /**
+     * @ORM\PrePersist
+     */
+    public function timestamp()
+    {
+        if(is_null($this->getCreateDate())) {
+            $this->setCreateDate(new \DateTime());
+        }
+        return $this;
+    }
+    
+    /**
+     * @ORM\PrePersist
+     */
+    public function novo()
+    {
+        if(is_null($this->getNew())) {
+            $this->setNew(1);
+        }
+        return $this;
+    }
+    
     /**
      *
      * @return the integer
@@ -228,11 +262,41 @@ class Message
      *
      * @param string $createDate            
      */
-    public function setCreateDate(string $createDate)
+    public function setCreateDate($createDate)
     {
         $this->createDate = $createDate;
         return $this;
     }
+
+    /**
+     *
+     * @return the string
+     */
+    public function getNew()
+    {
+        return $this->new;
+    }
+
+    /**
+     *
+     * @param string $new            
+     */
+    public function setNew($new)
+    {
+        $this->new = $new;
+        return $this;
+    }
+
+    /**
+     *
+     * @param string $new            
+     */
+    public function setRead()
+    {
+        $this->new = 0;
+        return $this;
+    }
+ 
  
  
  

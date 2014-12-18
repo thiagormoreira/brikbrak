@@ -44,6 +44,16 @@ class Option
      */
     public $items;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Application\Entity\Item", inversedBy="option")
+     * @ORM\JoinTable(name="item_has_options",
+     *                      joinColumns={@ORM\JoinColumn(name="ioptions_idoptions", referencedColumnName="idoptions")},
+     *               inverseJoinColumns={@ORM\JoinColumn(name="item_iditem", referencedColumnName="iditem")}
+     *          )
+     */
+    
+    protected $hcp;
+
     public function __construct() {
         $this->items = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -111,14 +121,13 @@ class Option
         return $this;
     }
     
-    public function getItems()
+    public function addOption(Option $option)
     {
-        return $this->items;
-    }
-    
-    public function addItem(Item $item = null)
-    {
-        //$items->addItem($this);
-        $this->items[] = $item;
+        if ($this->option->contains($option)) {
+            return;
+        }
+
+        $this->option->add($option);
+        $option->addoption($this);
     }
 }

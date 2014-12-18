@@ -72,7 +72,7 @@ return array(
             'novo-anuncio' => array(
                 'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => array(
-                    'route' => '/novo-anuncio',
+                    'route' => '/user/novo-anuncio',
                     'defaults' => array(
                         'controller' => 'Application\Controller\User',
                         'action' => 'novoAnuncio',
@@ -318,6 +318,16 @@ return array(
                     'defaults' => array(
                         'controller' => 'Application\Controller\User',
                         'action' => 'deleteAd',
+                    )
+                )
+            ),
+            'message' => array(
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => array(
+                    'route' => '/user/message/:id',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\User',
+                        'action' => 'message',
                     )
                 )
             ),

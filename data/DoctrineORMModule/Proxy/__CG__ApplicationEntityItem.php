@@ -478,28 +478,6 @@ class Item extends \Application\Entity\Item implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function addOptions($options)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addOptions', array($options));
-
-        return parent::addOptions($options);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function removeOptions($options)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeOptions', array($options));
-
-        return parent::removeOptions($options);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getGear()
     {
 
@@ -517,6 +495,50 @@ class Item extends \Application\Entity\Item implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setGear', array($gear));
 
         return parent::setGear($gear);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addOptions($options)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addOptions', array($options));
+
+        return parent::addOptions($options);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeOptions($option)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeOptions', array($option));
+
+        return parent::removeOptions($option);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setOption($option = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setOption', array($option));
+
+        return parent::setOption($option);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getOption()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getOption', array());
+
+        return parent::getOption();
     }
 
 }

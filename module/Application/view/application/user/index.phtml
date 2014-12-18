@@ -108,7 +108,7 @@ $flash->setMessageOpenFormat('<div%s>
 			<div class="row coralbg white">
 				<div class="col-md-6 no-pad">
 					<div class="user-pad">
-						<h3>Seja bem vindo, <?php echo $this->zfcUserDisplayName() ?></h3>
+						<h3>Seja bem vindo, <?php echo $this->zfcUserIdentity()->getDisplayName() ?></h3>
 						<br>
 						<a  href="<?php echo $this->url('ldc-user-profile') ?>"
     						<button type="button" class="btn btn-labeled btn-info">
@@ -148,7 +148,7 @@ $flash->setMessageOpenFormat('<div%s>
 				</div>
 				<div class="col-md-4 user-pad text-center">
 					<h3>MENSAGENS</h3>
-					<h4>%</h4>
+					<h4><?php echo count($this->userMessages) ?></h4>
 				</div>
 				<div class="col-md-4 user-pad text-center">
 					<h3>PLANO</h3>
@@ -205,8 +205,12 @@ $flash->setMessageOpenFormat('<div%s>
 				    <?php foreach($this->userMessages as $userMessage): ?>
 				    <li>
 						<h4>
-							<?php echo $userMessage->getMessage() ?> <small
+						    <a href="#modalMessage<?php echo $userMessage->getId() ?>" data-toggle="modal">
+							<?php echo $userMessage->getMessage() ?></a> <small
 								class="coral"><i class="fa fa-clock-o"></i>
+								<?php if($userMessage->getNew() == 1){ 
+								    echo 'NOVO';
+								} ?>
 								<?php echo $this->dateFormat(
                                     $userMessage->getCreateDate(),
                                     IntlDateFormatter::MEDIUM, // date
@@ -216,12 +220,12 @@ $flash->setMessageOpenFormat('<div%s>
 						</h4>
 					</li>
 				    <?php endforeach; ?>
-					<li>
+					<!-- li>
 						<button type="button" class="btn btn-labeled btn-info" href="#">
 							<span class="btn-label"><i class="fa fa-envelope-o"></i></span>Ver
 							todas as Mensagens
 						</button>
-					</li>
+					</li -->
 				    <?php } else { ?>
 				    
     					<li>
@@ -234,6 +238,7 @@ $flash->setMessageOpenFormat('<div%s>
 			</div>
 			<div class="user-menu-content">
 				<h3>Meus Anúncios</h3>
+				<a href="<?php echo $this->url('novo-anuncio')?>" class="btnPublicarAnuncio">Publicar Anuncio</a>
 				<div class="row">
 				<?php foreach($this->userAdvertisings as $userAdvertising): ?>
 				    <div class="col-md-6">
@@ -281,7 +286,7 @@ $flash->setMessageOpenFormat('<div%s>
 					</div>
 				<?php endforeach; ?>
 				</div>
-				<a href="#" class="btnPublicarAnuncio">Publicar Currículo</a>
+				<a href="<?php echo $this->url('novo-anuncio')?>" class="btnPublicarAnuncio">Publicar Anuncio</a>
 			</div>
 			<div class="user-menu-content">
 				<h2 class="text-center">NÃO PERCA TEMPO!</h2>
@@ -299,3 +304,39 @@ $flash->setMessageOpenFormat('<div%s>
 		</div>
 	</div>
 </div>
+
+<?php foreach($this->userMessages as $userMessage): ?>
+<!-- Modal -->
+                    <div class="modal fade" id="modalMessage<?php echo $userMessage->getId() ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    	<div class="modal-dialog modal-lg">
+                    		<div class="modal-content">
+                    			<div class="modal-header">
+                    				<button type="button" class="close" data-dismiss="modal"
+                    					aria-hidden="true">×</button>
+                    				<h4 class="modal-title" id="myModalLabel">Mensagem</h4>
+                    			</div>
+                    			<div class="modal-body">
+                    			    <p>
+                    			    De: <?php echo $userMessage->getContactName() ?> <<a href='mailto:<?php echo $userMessage->getContactEmail() ?>'><?php echo $userMessage->getContactEmail() ?></a>>
+                    			    </p>
+                    			    <p>
+                    			    Telefone: <?php echo $userMessage->getContactTel() ?>
+                    			    </p>
+                    			    <p>
+                    			    Anuncio: <a href="<?php echo $this->url('advertising', array( 'id' => $userMessage->getAdvertising()->getId())) ?>"><?php echo $userMessage->getAdvertising()->getItem()->getModel()->getBrand()->getBrandName() ?> - <?php echo $userMessage->getAdvertising()->getItem()->getModel()->getModelName() ?></a>
+                    			    </p>
+                    			    <p>
+                    			    Mensagem: <?php echo $userMessage->getMessage() ?>
+                    			    </p>
+                    			</div>
+                    			<div class="modal-footer">
+                    				<button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                    				<a href='/user/message/<?php echo $userMessage->getId() ?>'><button type="button" class="btn btn-primary">Responder</button></a>
+                    			</div>
+                    		</div>
+                    		<!-- /.modal-content -->
+                    	</div>
+                    	<!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal -->
+                    <?php endforeach; ?>

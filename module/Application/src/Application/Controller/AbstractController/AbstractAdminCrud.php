@@ -91,7 +91,6 @@ abstract class AbstractAdminCrud extends AbstractActionController
             $form = new AdvertisingForm($objectManager);
         } elseif ($entity == "item") {
             $form = new ItemForm($objectManager);
-            
         } elseif ($entity == "brand") {
             $form = new BrandForm($objectManager);
         } elseif ($entity == "model") {
@@ -112,6 +111,7 @@ abstract class AbstractAdminCrud extends AbstractActionController
         if ($request->isPost()) {
             $form->setData($request->getPost());
             if ($form->isValid()) {
+                $objectManager->persist($item);
                 $objectManager->flush();
                 $item = $this->getEntityManager()->find('\Application\Entity\\' . ucwords($entity), $id);
                 $form->bind($item);

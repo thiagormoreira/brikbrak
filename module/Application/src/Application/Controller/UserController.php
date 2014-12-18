@@ -142,4 +142,24 @@ class UserController extends AbstractActionController
         }
     }
     
+    public function messageAction(){
+        
+        $entityManager = $this->getEntityManager();
+        $id = $this->getEvent()
+        ->getRouteMatch()
+        ->getParam('id');
+        //$message = $entityManager->getRepository('Application\Entity\Message', $id);
+        $message = $entityManager->find('\Application\Entity\Message', $id);
+        
+        if($message != null){
+            $message->setRead();
+            $entityManager->flush();
+        }
+        
+        $view = new ViewModel(array(
+                'email' => $message->getContactEmail()
+            ));
+        $view->setTerminal(true);
+        return $view;
+    }
 }

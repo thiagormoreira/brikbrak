@@ -18,6 +18,7 @@ use Doctrine\Common\Collecttions\Criteria as DoctrineCriteria; // for criteria
 use ZfcUser\Controller\Plugin\ZfcUserAuthentication;
 use Application\Entity\Advertising;
 use Application\Entity\Message;
+use Zend\Mail;
 
 class ResultController extends AbstractActionController
 {

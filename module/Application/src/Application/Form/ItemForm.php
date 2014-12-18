@@ -18,6 +18,8 @@ use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use DoctrineModule\Form\Element\ObjectSelect;
 use Zend\Filter\StringTrim;
 use Zend\Filter\StripTags;
+use Application\Entity\Item;
+
 class ItemForm extends Form
 {
         protected $entityManager;
@@ -38,7 +40,8 @@ class ItemForm extends Form
             $this->addElements();
             $this->setInputFilter($this->createInputFilter());
             $hydrator = new DoctrineHydrator($this->em, '\Application\Entity\Item');
-            $this->setHydrator($hydrator);
+            $this->setHydrator($hydrator)
+            ->setObject(new Item());
         }
         
         public function addElements()

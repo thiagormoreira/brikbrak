@@ -105,7 +105,7 @@ class Item
     /**
      * @var Application\Entity\Option
      *
-     * @ORM\ManyToMany(targetEntity="Application\Entity\Option", inversedBy="user")
+     * @ORM\ManyToMany(targetEntity="Application\Entity\Option")
      * @ORM\JoinTable(name="item_has_options",
      *   joinColumns={
      *     @ORM\JoinColumn(name="item_iditem", referencedColumnName="iditem")
@@ -119,8 +119,9 @@ class Item
     
     public function __construct() {
         //parent::__construct();
-        $this->options = new \Doctrine\Common\Collections\ArrayCollection();
+        //$this->options = new \Doctrine\Common\Collections\ArrayCollection();
         //$this->options = new Application\Entity\Options();
+        $this->options = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -349,20 +350,7 @@ class Item
         $this->user = $user;
         return $this;
     }
- 
-    public function addOptions($options)
-    {
-        //$op = new Option();
-        //$op->addItem($this);
-        //$this->options[] = $option;
-    }
     
-    public function removeOptions($options)
-    {
-        $this->options->removeElement($options) ;
-        //$this->options[] = $options;
-    }
-
     /**
      *
      * @return the string
@@ -381,5 +369,32 @@ class Item
         $this->gear = $gear;
         return $this;
     }
- 
+    
+    public function addOptions($options)
+    {
+        
+        /* foreach($options as $option) {
+            if( ! $this->options->contains($option)) {
+                $this->options->add($option);
+                $option->addOption(new ArrayCollection(array($this)));
+            }
+        } */
+    }
+    
+    public function removeOptions($option)
+    {
+        $this->options->removeElement($option);
+        return $this;
+    }
+
+    public function setOption($option = null)
+    {
+        $this->options = $option;
+    }
+    
+    
+    public function getOption()
+    {
+        return $this->options;
+    }
 }

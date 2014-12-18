@@ -12,6 +12,7 @@ use Application\Entity\Contact;
  *
  * @ORM\Table(name="advertising")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class Advertising
 {
@@ -84,6 +85,17 @@ class Advertising
      * @ORM\Column(name="create_date", type="datetime", nullable=true)
      */
     private $createDate;
+    
+    /**
+     * @ORM\PrePersist
+     */
+    public function timestamp()
+    {
+        if(is_null($this->getCreateDate())) {
+            $this->createDate = new \DateTime();
+        }
+        return $this;
+    }
 
     /**
      *
