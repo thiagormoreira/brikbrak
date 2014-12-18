@@ -83,7 +83,7 @@ class ItemForm extends Form
                 'name' => 'gear',
                 'type' => 'Zend\Form\Element\Radio',
                 'options' => array(
-                    'label' => 'Gear',
+                    'label' => 'Transmissão',
                     'value_options' => array(
                         '1' => 'Manual',
                         '2' => 'Automático',

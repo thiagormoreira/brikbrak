@@ -90,6 +90,20 @@ class AdvertisingForm extends Form
             )
         ));
         $this->add($user);
+        
+        $this->add(array(
+            'name' => 'status',
+            'type' => 'Zend\Form\Element\Radio',
+            'options' => array(
+                'label' => 'Publicar',
+                'value_options' => array(
+                    '1' => 'Sim',
+                    '0' => 'Não',
+                ),
+            ),
+            'attributes' => array(
+            )
+        ));
     }
 
     public function createInputFilter()
