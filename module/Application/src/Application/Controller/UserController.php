@@ -107,6 +107,7 @@ class UserController extends AbstractActionController
             $advertising->setUser($this->getEntityManager()->find('\Application\Entity\User', $this->zfcUserAuthentication()->getIdentity()->getId()));
             $advertising->setContact($this->getEntityManager()->find('\Application\Entity\Contact', $contact->getId()));
             $advertising->setItem($this->getEntityManager()->find('\Application\Entity\Item', $item->getId()));
+            $advertising->setStatus(0);
             $entityManager->persist($advertising);
             $entityManager->flush();
             

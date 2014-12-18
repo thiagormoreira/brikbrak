@@ -273,6 +273,26 @@ class UserAdvertisingForm extends Form
             'is_method' => true
             )
         ));
+
+        $this->add(array(
+            'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+            'name' => 'city',
+            'attributes' => array(
+                'class' => 'form-control select-lg',
+                'id' => 'state',
+            ),
+            'options' => array(
+                'object_manager' => $this->em,
+                'target_class' => 'Application\Entity\City',
+                'label' => 'Estado',
+                // 'column-size' => 'sm-9',
+                // 'label_attributes' => array('class' => 'col-sm-3 control-label'),
+                'property' => 'stateName',
+                'empty_option' => 'Selecione a cidade...',
+            'is_method' => true
+            )
+        ));
+        
         $this->add(array(
             'name' => 'contact-number',
             'options' => array(

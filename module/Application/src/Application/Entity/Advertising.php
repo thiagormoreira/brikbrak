@@ -87,6 +87,13 @@ class Advertising
     private $createDate;
     
     /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="integer", nullable=true)
+     */
+    private $status;
+    
+    /**
      * @ORM\PrePersist
      */
     public function timestamp()
@@ -262,6 +269,26 @@ class Advertising
         $this->contact = $contact;
         return $this;
     }
+
+    /**
+     *
+     * @return the string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     *
+     * @param string $status            
+     */
+    public function setStatus(string $status)
+    {
+        $this->status = $status;
+        return $this;
+    }
+ 
  
  
     
