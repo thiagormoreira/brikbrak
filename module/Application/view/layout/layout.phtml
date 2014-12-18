@@ -46,10 +46,12 @@
                                     // @todo Verificar autenticação 
 							        echo '<li><a href="/user">Login</a></li>';
 							    } else {
+							        /*
 							        if($this->zfcUserIdentity()->getRole()->getId() == 3){
 							        echo '<li><a href="' . $this->url('zfcadmin') . '">Admin</a></li>';
 							        echo '<li>|</li>';
 							        }
+							        */
 							        echo '<li><a href="' . $this->url('zfcuser') . '">Perfil</a></li>';
 							        echo '<li>|</li>';
 							        echo '<li><a href="' . $this->url('zfcuser/logout') . '">Sair</a></li>';
