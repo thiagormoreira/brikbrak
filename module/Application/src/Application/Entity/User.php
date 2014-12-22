@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="user")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class User
 {
@@ -112,6 +113,13 @@ class User
     private $role;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="user_type", type="integer", length=45, nullable=true)
+     */
+    private $userType;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -119,7 +127,7 @@ class User
         $this->address = new \Doctrine\Common\Collections\ArrayCollection();
         $this->contact = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
     /**
      *
      * @return the integer
@@ -284,26 +292,6 @@ class User
      *
      * @return the Collection
      */
-    public function getHistoryAccess()
-    {
-        return $this->historyAccess;
-    }
-
-    /**
-     *
-     * @param
-     *            $historyAccess
-     */
-    public function setHistoryAccess($historyAccess)
-    {
-        $this->historyAccess = $historyAccess;
-        return $this;
-    }
-
-    /**
-     *
-     * @return the Collection
-     */
     public function getRole()
     {
         return $this->role;
@@ -339,5 +327,25 @@ class User
         $this->userId = $userId;
         return $this;
     }
+
+    /**
+     *
+     * @return the string
+     */
+    public function getUserType()
+    {
+        return $this->userType;
+    }
+
+    /**
+     *
+     * @param string $userType            
+     */
+    public function setUserType($userType)
+    {
+        $this->userType = $userType;
+        return $this;
+    }
+ 
  
 }

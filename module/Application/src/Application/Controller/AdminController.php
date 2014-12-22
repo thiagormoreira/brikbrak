@@ -16,7 +16,7 @@ use Application\Entity;
 use Application\Options\ModuleOptions;
 use Application\Controller\Helper\Paginator;
 use DoctrineModule\Paginator\Adapter\Selectable as SelectableAdapter;
-use Doctrine\Common\Collecttions\Criteria as DoctrineCriteria; // for criteria
+use Doctrine\Common\Collecttions\Criteria as DoctrineCriteria;
 use ZfcUser\Controller\Plugin\ZfcUserAuthentication;
 use Zend\Filter\File\UpperCase;
 use Application\Form\Edit;

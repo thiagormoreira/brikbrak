@@ -14,7 +14,7 @@ use Zend\View\Model\ViewModel;
 use Doctrine\ORM\EntityManager;
 use Application\Controller\Helper\Paginator;
 use DoctrineModule\Paginator\Adapter\Selectable as SelectableAdapter;
-use Doctrine\Common\Collecttions\Criteria as DoctrineCriteria; // for criteria
+use Doctrine\Common\Collecttions\Criteria as DoctrineCriteria;
 use ZfcUser\Controller\Plugin\ZfcUserAuthentication;
 use Application\Form\UserAdvertisingForm;
 use Application\Entity\Advertising;
@@ -23,6 +23,9 @@ use Application\Entity\Model;
 use Application\Entity\Address;
 use Application\Entity\City;
 use Application\Entity\Contact;
+use Zend\Validator\File\Size;
+use Zend\Validator\File\MimeType;
+use Zend\Stdlib\ErrorHandler;
 
 class UserController extends AbstractActionController
 {
@@ -111,6 +114,35 @@ class UserController extends AbstractActionController
             $entityManager->persist($advertising);
             $entityManager->flush();
             
+            $imagesFolder = __DIR__.'/../../../../../htdocs/assets/images/product/' . $advertising->getId();
+            mkdir($imagesFolder, 0755);
+            
+            if ($this->params()->fromFiles('image-file')['0']['size'] > 0) {
+                $nonFile = $request->getPost()->toArray();
+                $Files    = $this->params()->fromFiles('image-file');
+            
+                $size = new Size(array('max'=>2000000));
+                $mimeType = new MimeType('image/png,image/jpg,image/jpeg,image/x-png');
+                 
+                $adapter = new \Zend\File\Transfer\Adapter\Http();
+                foreach ($Files as $File){
+                    $adapter->setValidators(array($size, $mimeType), $File['name']);
+                    if (!$adapter->isValid()){
+                        $dataError = $adapter->getMessages();
+                        $error = array();
+                        foreach($dataError as $key=>$row)
+                        {
+                            $error[] = $row;
+                        }
+                        $form->setMessages(array('image-file'=>$error ));
+                    } else {
+                        ErrorHandler::start();
+                        move_uploaded_file($File['tmp_name'], $imagesFolder . '/' . $File['name']);
+                        ErrorHandler::stop(true);
+                    }
+                }
+            }
+            
             $this->flashMessenger()->addSuccessMessage('Anuncio cadastrado com sucesso');
             $this->redirect()->toRoute('zfcuser');
         }
@@ -126,6 +158,9 @@ class UserController extends AbstractActionController
         ->getRouteMatch()
         ->getParam('idanuncio');
         $item = $this->getEntityManager()->find('\Application\Entity\Advertising', $id);
+        
+        $imagesFolder = __DIR__.'/../../../../../htdocs/assets/images/product/' . $advertising->getId();
+        umask($imagesFolder);
         
         if (null === $id) {
             return $this->redirect()->toRoute('zfcuser');
@@ -149,7 +184,6 @@ class UserController extends AbstractActionController
         $id = $this->getEvent()
         ->getRouteMatch()
         ->getParam('id');
-        //$message = $entityManager->getRepository('Application\Entity\Message', $id);
         $message = $entityManager->find('\Application\Entity\Message', $id);
         
         if($message != null){

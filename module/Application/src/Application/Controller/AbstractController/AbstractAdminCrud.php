@@ -12,6 +12,9 @@ use Application\Form\BodyworkForm;
 use Application\Form\TypeItemForm;
 use Application\Form\SubtypeForm;
 use Application\Form\UserForm;
+use Zend\Validator\File\Size;
+use Zend\Validator\File\MimeType;
+use Zend\Stdlib\ErrorHandler;
 
 abstract class AbstractAdminCrud extends AbstractActionController
 {
@@ -114,6 +117,34 @@ abstract class AbstractAdminCrud extends AbstractActionController
                 $objectManager->persist($item);
                 $objectManager->flush();
                 $item = $this->getEntityManager()->find('\Application\Entity\\' . ucwords($entity), $id);
+                
+                if ($this->params()->fromFiles('image-file')['0']['size'] > 0) {
+                    $nonFile = $request->getPost()->toArray();
+                    $Files    = $this->params()->fromFiles('image-file');
+
+                    $size = new Size(array('max'=>2000000));
+                    $mimeType = new MimeType('image/png,image/jpg,image/jpeg,image/x-png');
+                     
+                    $adapter = new \Zend\File\Transfer\Adapter\Http();
+                    foreach ($Files as $File){
+                        $adapter->setValidators(array($size, $mimeType), $File['name']);
+                        if (!$adapter->isValid()){
+                            $dataError = $adapter->getMessages();
+                            $error = array();
+                            foreach($dataError as $key=>$row)
+                            {
+                                $error[] = $row;
+                            }
+                            $form->setMessages(array('image-file'=>$error ));
+                        } else {
+                            ErrorHandler::start();
+                            move_uploaded_file($File['tmp_name'], dirname(__DIR__).'/../../../../../htdocs/assets/images/product/' . $id . '/' . $File['name']);
+                            ErrorHandler::stop(true);
+                        }
+                    }
+                }
+                
+
                 $form->bind($item);
                 
                 $this->flashMessenger()->addSuccessMessage('Alterações salvas com sucesso.');

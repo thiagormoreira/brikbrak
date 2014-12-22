@@ -30,12 +30,17 @@ $(document).ready(function(){
 	$("#typeItem").change(function() {
 
     	//$("#brand").empty();
-    	//$("#model").empty();
-    	//$("#subType").empty();
-    	//$("#year").empty();
-    	//$("#color").empty();
-    	//$("#fuel").empty();
-    	//$("#value").empty();
+    	$("#model").empty();
+    	$("#subType").empty();
+    	$("#color").empty();
+    	$("#value").empty();
+    	$("#year").css('display', 'none');
+    	$("#color").css('display', 'none');
+    	$("#fuel").css('display', 'none');
+    	$("#value").css('display', 'none');
+    	$("#model").css('display', 'none');
+    	$("#subType").css('display', 'none');
+    	$("#bodywork").css('display', 'none');
     	
 		if ($("#typeItem").val() == '') {
 	    	($("#brand").css('display', 'none'));
@@ -46,9 +51,8 @@ $(document).ready(function(){
 	    	($("#model").css('display', 'none'));
 	    	($("#subType").css('display', 'none'));
 	    	($("#bodywork").css('display', 'none'));
-	    	$("#year").empty();
+	    	$("#brand").empty();
 	    	$("#color").empty();
-	    	$("#fuel").empty();
 	    	$("#value").empty();
 	    	//$("#model").empty();
 	    	//$("#subType").empty();
@@ -65,30 +69,35 @@ $(document).ready(function(){
 	});
 	
 	$("#brand").change(function() {
-		$.getJSON('/ajax/models/' + $(this).val() + '/typeitem/' + $("#typeItem").val(), function(j){	
-            var options = '<option value="">Selecione o modelo...</option>';
-            for (var i = 0; i < j.length; i++) {
-                //options += '<option value="' + j[i].idmodel + '">' + j[i].modelName + '</option>';
-            	$('#model').append('<option value=' + j[i].idmodel + '>' + j[i].modelName + '</option>');
-            }	
-            //$('#model').html(options).show();
-            //$('#model').append(options);
-        });
+		
+		if( $(this).val() ) {
+            $.getJSON('/ajax/models/' + $(this).val() + '/typeitem/' + $("#typeItem").val(), function(j){
+                var options = '<option value="">Selecione o modelo...</option>';
+                for (var i = 0; i < j['models'].length; i++) {
+                    options += '<option value="' + j['models'][i].idmodel + '">' + j['models'][i].modelName + '</option>';
+                }	
+                $('#model').html(options).show();
+            });
+        } else {
+            $('#model').html('<option value="0">-- Escolha uma marca --</option>');
+        }
 		
     	($("#model").css('display', 'block'));
     
 	});
 	
 	$("#model").change(function() {
-		$.getJSON('/ajax/sub-types/' + $(this).val(), function(j){	
-            var options = '<option value="">Selecione o tipo...</option>';
-            for (var i = 0; i < j.length; i++) {
-                //options += '<option value="' + j[i].idmodel + '">' + j[i].modelName + '</option>';
-            	$('#subType').append('<option value=' + j[i].idsubtype + '>' + j[i].subtypeName + '</option>');
-            }	
-            //$('#model').html(options).show();
-            //$('#model').append(options);
-        });
+		if( $(this).val() ) {
+            $.getJSON('/ajax/sub-types/' + $(this).val(), function(j){
+                var options = '<option value="">Selecione o tipo...</option>';
+                for (var i = 0; i < j['subtypes'].length; i++) {
+                    options += '<option value="' + j['subtypes'][i].idsubtype + '">' + j['subtypes'][i].subtypeName + '</option>';
+                }	
+                $('#subType').html(options).show();
+            });
+        } else {
+            $('#subType').html('<option value="0">-- Escolha um modelo --</option>');
+        }
 		
 		if ($("#typeItem").val() == '1' || $("#typeItem").val() == '2' || $("#typeItem").val() == '3' || $("#typeItem").val() == '4') {
 			($("#subType").css('display', 'block'));
@@ -97,15 +106,17 @@ $(document).ready(function(){
 	
 	$("#subType").change(function() {
 		
-		$.getJSON('/ajax/bodyworks/' + $(this).val(), function(j){	
-            var options = '<option value="">Selecione o tipo...</option>';
-            for (var i = 0; i < j.length; i++) {
-                //options += '<option value="' + j[i].idmodel + '">' + j[i].modelName + '</option>';
-            	$('#bodywork').append('<option value=' + j[i].idbodywork + '>' + j[i].bodyworkName + '</option>');
-            }	
-            $('#bodywork').html(options).show();
-            //$('#model').append(options);
-        });
+		if( $(this).val() ) {
+            $.getJSON('/ajax/bodyworks/' + $(this).val(), function(j){
+                var options = '<option value="">Selecione a carroceria...</option>';
+                for (var i = 0; i < j['bodyworks'].length; i++) {
+                    options += '<option value="' + j['bodyworks'][i].idbodywork + '">' + j['bodyworks'][i].bodyworkName + '</option>';
+                }	
+                $('#bodywork').html(options).show();
+            });
+        } else {
+            $('#bodywork').html('<option value="0">-- Escolha um tipo --</option>');
+        }
     	
     	if ($("#subType").val() == '') {
     		($("#year").css('display', 'none'));
@@ -125,25 +136,21 @@ $(document).ready(function(){
     	}
 	});
 	
-	$("#state").change(function() {
-
-		($("#city").css('display', 'block'));
-		$.getJSON( "/ajax/cities/" + $(this).val(), function( data ) {
-			$.each(data,function(value){
-				console.log(value['cityName']);
-				$("#city").append('<option value=' + '' + '>' + value['cityName'] + '</option>');
-			});
-		});
-		/*
-		$.getJSON('/ajax/cities/' + $(this).val(), function(j){	
-            var options = '<option value="">Selecione a cidade...</option>';
-        }).done(function( data ) {
-            $.each( data.items, function( i, item ) {
-            	$('#city').append('<option value=' + item.idcity + '>' + item.cityName + '</option>');
-              });
+	$('#state').change(function(){
+        if( $(this).val() ) {
+            $.getJSON('/ajax/cities/' + $(this).val(), function(j){
+                var options = '<option value="">Selecione</option>';
+                for (var i = 0; i < j['states'].length; i++) {
+                    options += '<option value="' + j['states'][i].idcity + '">' + j['states'][i].cityName + '</option>';
+                }	
+                $('#city').html(options).show();
             });
-	*/
-	});
+        } else {
+            $('#city').html('<option value="0">-- Escolha um estado --</option>');
+        }
+    });
+	
+	$("#published").bootstrapSwitch();
 	
 });
 

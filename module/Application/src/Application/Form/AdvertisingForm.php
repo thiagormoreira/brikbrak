@@ -12,6 +12,7 @@ use Zend\Form\Element;
 use Zend\Form\Element\Select;
 use Zend\InputFilter\Input;
 use Zend\InputFilter\InputFilter;
+use Zend\InputFilter\FileInput;
 use Zend\Validator;
 use Zend\Validator\StringLength;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
@@ -66,7 +67,7 @@ class AdvertisingForm extends Form
         ));
         
         $item = new ObjectSelect('item');
-        $item->setEmptyOption('Selecionar item');
+        $item->setEmptyOption('Selecionar');
         $item->setOptions(array(
             'object_manager' => $this->em,
             'target_class' => 'Application\Entity\Item',
@@ -79,13 +80,26 @@ class AdvertisingForm extends Form
         $this->add($item);
         
         $user = new ObjectSelect('user');
-        $user->setEmptyOption('Selecionar usuário');
+        $user->setEmptyOption('Selecionar');
         $user->setOptions(array(
             'object_manager' => $this->em,
             'target_class' => 'Application\Entity\User',
             'property' => 'displayName',
             'is_method' => true,
             'label' => 'Usuário',
+            'find_method' => array(
+            )
+        ));
+        $this->add($user);
+
+        $user = new ObjectSelect('typeAdvertising');
+        $user->setEmptyOption('Selecionar');
+        $user->setOptions(array(
+            'object_manager' => $this->em,
+            'target_class' => 'Application\Entity\TypeAdvertising',
+            'property' => 'typeName',
+            'is_method' => true,
+            'label' => 'Tipo de anúncio',
             'find_method' => array(
             )
         ));
@@ -104,6 +118,13 @@ class AdvertisingForm extends Form
             'attributes' => array(
             )
         ));
+        
+        $file = new Element\File('image-file');
+        $file->setLabel('Imagens do anuncio')
+        ->setAttribute('id', 'image-file')
+        ->setAttribute('multiple', true);
+        $this->add($file);
+        
     }
 
     public function createInputFilter()
@@ -127,6 +148,19 @@ class AdvertisingForm extends Form
         $userFilter->getFilterChain()->attach(new StringTrim());
         $userFilter->getFilterChain()->attach(new StripTags());
         $inputFilter->add($userFilter);
+        
+        // File Input
+        $fileInput = new FileInput('image-file');
+        
+        // You only need to define validators and filters
+        // as if only one file was being uploaded. All files
+        // will be run through the same validators and filters
+        // automatically.
+        $fileInput->getValidatorChain()
+        ->attachByName('filesize',      array('max' => 204800))
+        ->attachByName('filemimetype',  array('mimeType' => 'image/png,image/jpg,image/jpeg,image/x-png'))
+        ->attachByName('fileimagesize', array('maxWidth' => 100, 'maxHeight' => 100));
+        //$inputFilter->add($fileInput);
         
         return $inputFilter;
     }

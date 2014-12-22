@@ -112,8 +112,7 @@ $form->setAttribute('class', 'form');
 						    <?php if($form->has('display_name')): ?>
                             <?php $form->get('display_name')->setAttribute('class','form-control input-lg'); ?>
                             <?php $form->get('display_name')->setAttribute('placeholder','Nome'); ?>
-                        <div
-                        	class="form-group <?php if ($this->formElementErrors($form->get('display_name'))) echo 'has-error'; ?>">
+                        <div class="form-group <?php if ($this->formElementErrors($form->get('display_name'))) echo 'has-error'; ?>">
                                         <?php echo $this->formInput($form->get('display_name'))?>
                                     <?php
                                 
@@ -140,6 +139,11 @@ $form->setAttribute('class', 'form');
                 ->render($form->get('email'));
             ?>
     </div>
+        <div class="row">
+             <div class="form-group>
+                 
+             </div>
+        </div>
 						<div class="row">
 									<?php $form->get('password')->setAttribute('class','form-control input-lg'); ?>
 									<?php $form->get('password')->setAttribute('placeholder','Senha'); ?>

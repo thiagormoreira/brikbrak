@@ -108,10 +108,10 @@ class Advertising extends \Application\Entity\Advertising implements \Doctrine\O
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'idadvertising', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'text', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'address', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'item', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'contact', 'user', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'viewCount', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'createDate');
+            return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'idadvertising', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'text', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'address', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'item', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'contact', 'user', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'viewCount', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'createDate', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'status');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'idadvertising', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'text', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'address', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'item', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'contact', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'viewCount', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'createDate');
+        return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'idadvertising', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'text', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'address', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'item', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'contact', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'viewCount', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'createDate', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'status');
     }
 
     /**
@@ -407,6 +407,28 @@ class Advertising extends \Application\Entity\Advertising implements \Doctrine\O
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setContact', array($contact));
 
         return parent::setContact($contact);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStatus()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStatus', array());
+
+        return parent::getStatus();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setStatus($status)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setStatus', array($status));
+
+        return parent::setStatus($status);
     }
 
 }

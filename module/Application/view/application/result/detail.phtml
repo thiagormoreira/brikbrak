@@ -30,8 +30,6 @@ $flash->setMessageOpenFormat('<div%s>
      </button>')
      ->setMessageCloseString('</li></ul></div>');
 ?>
-
-<script src="/assets/js/jquery.jcarousellite.min.js"></script>
 <div class="container whiteBackground">
 <?php echo '<br>' . $flash->render('success', array('alert', 'alert-dismissable', 'alert-success')); ?>
 					<!-- Navegação Produto -->
@@ -42,14 +40,22 @@ $flash->setMessageOpenFormat('<div%s>
 						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 navegacaoProduto">
 						<?php if($this->advertising->getUser()->getId() == $this->zfcUserIdentity()->getId()) : ?>
 						<br>
+							<?php /*<div class="btn-group" data-toggle="buttons">
+                              <label class="btn btn-primary active">
+                                <input type="radio" name="options" id="option1" autocomplete="off" <?php ($this->advertising->getStatus() == '1')? "checked" : ""; ?>> Publicado
+                              </label>
+                              <label class="btn btn-primary">
+                                <input type="radio" name="options" id="option2" autocomplete="off" <?php ($this->advertising->getStatus() == '0')? "checked" : ""; ?>> Não publicado
+                              </label>
+                            </div> */ ?>
 							<ul class="pull-right">
 							    <li style="list-style: none; display: inline;">
     							    <a href="#">Editar</a>
     							</li>
-    							<li style="list-style: none; display: inline;"> | </li>
+    							<li style="list-style: none; display: inline;">|</li>
     							<li style="list-style: none; display: inline;">
     							    <a href="<?php echo $this->url('user-delete-ad', array( 'idanuncio' => $this->advertising->getId())); ?>" 
-    							    onclick="return confirm('<?php echo $this->translate('Tem certeza que deseja deletar esse item?') ?>')">Deletar</a>
+    							    onclick="return confirm('<?php echo $this->translate('Tem certeza que deseja deletar esse anúncio?') ?>')">Deletar</a>
     							</li>
 							</ul>
 							<?php endif; ?>

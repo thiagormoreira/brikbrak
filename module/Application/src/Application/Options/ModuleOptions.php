@@ -27,10 +27,8 @@ class ModuleOptions
         'Usuario' => array(
             'user' => 'display_name'
         ),
-        'Item' => array(
-            'item' => array(
-                'model' => 'model_name'
-            )
+        'Tipo' => array(
+            'typeAdvertising' => 'type_name'
         )
     );
 

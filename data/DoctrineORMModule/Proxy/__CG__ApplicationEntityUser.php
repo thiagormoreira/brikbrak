@@ -64,10 +64,10 @@ class User extends \Application\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'userId', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'email', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'displayName', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'state', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'password', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'username', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'address', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'contact', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'role');
+            return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'userId', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'email', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'displayName', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'state', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'password', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'username', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'address', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'contact', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'role', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'userType');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'userId', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'email', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'displayName', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'state', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'password', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'username', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'address', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'contact', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'role');
+        return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'userId', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'email', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'displayName', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'state', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'password', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'username', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'address', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'contact', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'role', '' . "\0" . 'Application\\Entity\\User' . "\0" . 'userType');
     }
 
     /**
@@ -356,28 +356,6 @@ class User extends \Application\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function getHistoryAccess()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getHistoryAccess', array());
-
-        return parent::getHistoryAccess();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setHistoryAccess($historyAccess)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setHistoryAccess', array($historyAccess));
-
-        return parent::setHistoryAccess($historyAccess);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getRole()
     {
 
@@ -417,6 +395,28 @@ class User extends \Application\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setId', array($userId));
 
         return parent::setId($userId);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUserType()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUserType', array());
+
+        return parent::getUserType();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setUserType($userType)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUserType', array($userType));
+
+        return parent::setUserType($userType);
     }
 
 }

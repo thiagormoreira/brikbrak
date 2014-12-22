@@ -148,15 +148,15 @@ $form->setAttribute('method', 'post');
 												<?php echo $this->formInput($form->get('complement')) . $this->formElementErrors($form->get('complement'))?>
 											</div>
 										<div class="form-group">
-												<?php echo $this->formInput($form->get('district_name')) . $this->formElementErrors($form->get('district_name'))?>
-											</div>
-										<div class="form-group">
 												<?php echo $this->formSelect($form->get('state')) . $this->formElementErrors($form->get('state'))?>
 										</div>
 										<div class="form-group">
 											<select name="city" id="city" class="form-control input-lg" style="display:none">
 											</select>
 										</div>
+										<div class="form-group">
+												<?php echo $this->formInput($form->get('district_name')) . $this->formElementErrors($form->get('district_name'))?>
+											</div>
 										<div class="form-group">
 												<?php echo $this->formInput($form->get('contact-number')) . $this->formElementErrors($form->get('contact-number'))?>
 											</div>
@@ -182,6 +182,11 @@ $form->setAttribute('method', 'post');
 									<fieldset>
 										<div class="form-group">
 												<?php echo $this->formTextarea($form->get('text')) . $this->formElementErrors($form->get('text'))?>
+										</div>
+										<div class="form-group">
+												<?php echo $this->formFile($form->get('image-file')) . $this->formElementErrors($form->get('image-file'))?>
+										</div>
+										<div class="form-group">
 												<input type="submit"
 												class="btn btn-success btn-outline-rounded green"
 												value="Publicar Anúncio">

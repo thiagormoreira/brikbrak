@@ -151,16 +151,6 @@ return array(
                     )
                 )
             ),
-            'monitoramento' => array(
-                'type' => 'Segment',
-                'options' => array(
-                    'route' => '/monitoramento',
-                    'defaults' => array(
-                        'controller' => 'Application\Controller\Portal',
-                        'action' => 'monitoramento'
-                    )
-                )
-            ),
             'politica-privacidade' => array(
                 'type' => 'Segment',
                 'options' => array(
@@ -191,13 +181,14 @@ return array(
                     )
                 )
             ),
-            'rastreadores' => array(
+            'servicos' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '/rastreadores',
+                    'route' => '/servicos',
                     'defaults' => array(
-                        'controller' => 'Application\Controller\Portal',
-                        'action' => 'rastreadores'
+                        'controller' => 'Application\Controller\Result',
+                        'action'     => 'resultPj',
+                        'typeAdvertising' => 2
                     )
                 )
             ),
@@ -206,18 +197,31 @@ return array(
                 'options' => array(
                     'route' => '/revenda',
                     'defaults' => array(
-                        'controller' => 'Application\Controller\Portal',
-                        'action' => 'revenda'
+                        'controller' => 'Application\Controller\Result',
+                        'action'     => 'resultPj',
+                        'typeAdvertising' => 3
                     )
                 )
             ),
-            'servicos' => array(
+            'monitoramento' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '/servicos',
+                    'route' => '/monitoramento',
                     'defaults' => array(
-                        'controller' => 'Application\Controller\Portal',
-                        'action' => 'servicos'
+                        'controller' => 'Application\Controller\Result',
+                        'action'     => 'resultPj',
+                        'typeAdvertising' => 4
+                    )
+                )
+            ),
+            'rastreadores' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/rastreadores',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Result',
+                        'action'     => 'resultPj',
+                        'typeAdvertising' => 5
                     )
                 )
             ),

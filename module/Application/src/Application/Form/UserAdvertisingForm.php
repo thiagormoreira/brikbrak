@@ -287,7 +287,7 @@ class UserAdvertisingForm extends Form
                 'label' => 'Estado',
                 // 'column-size' => 'sm-9',
                 // 'label_attributes' => array('class' => 'col-sm-3 control-label'),
-                'property' => 'stateName',
+                'property' => 'cityName',
                 'empty_option' => 'Selecione a cidade...',
             'is_method' => true
             )
@@ -319,6 +319,12 @@ class UserAdvertisingForm extends Form
                 'class' => 'form-control select-lg'
             )
         ));
+        
+        $file = new Element\File('image-file');
+        $file->setLabel('Imagens do anuncio')
+        ->setAttribute('id', 'image-file')
+        ->setAttribute('multiple', true);
+        $this->add($file);
         ////// FIM ANUNCIO
     }
 

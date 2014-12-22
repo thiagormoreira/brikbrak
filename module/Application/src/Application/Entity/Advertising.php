@@ -70,7 +70,17 @@ class Advertising
      *   @ORM\JoinColumn(name="user_user_id", referencedColumnName="user_id")
      * })
      */
-    public $user;
+    private $user;
+
+    /**
+     * @var \Application\Entity\TypeAdvertising
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Entity\TypeAdvertising")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="type_advertising_idtype_advertising", referencedColumnName="idtype_advertising")
+     * })
+     */
+    private $typeAdvertising;
     
     /**
      * @var string
@@ -288,6 +298,18 @@ class Advertising
         $this->status = $status;
         return $this;
     }
+
+    public function getTypeAdvertising()
+    {
+        return $this->typeAdvertising;
+    }
+
+    public function setTypeAdvertising($typeAdvertising)
+    {
+        $this->typeAdvertising = $typeAdvertising;
+        return $this;
+    }
+ 
  
  
  

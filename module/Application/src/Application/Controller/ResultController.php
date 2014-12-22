@@ -14,7 +14,7 @@ use Zend\View\Model\ViewModel;
 use Doctrine\ORM\EntityManager;
 use Application\Controller\Helper\Paginator;
 use DoctrineModule\Paginator\Adapter\Selectable as SelectableAdapter;
-use Doctrine\Common\Collecttions\Criteria as DoctrineCriteria; // for criteria
+use Doctrine\Common\Collections\Criteria as DoctrineCriteria;
 use ZfcUser\Controller\Plugin\ZfcUserAuthentication;
 use Application\Entity\Advertising;
 use Application\Entity\Message;
@@ -45,7 +45,34 @@ class ResultController extends AbstractActionController
     public function indexAction()
     {
         $entityManager = $this->getEntityManager();
-        $adapter = new SelectableAdapter($entityManager->getRepository('Application\Entity\Advertising'));
+        $expr = DoctrineCriteria::expr()->eq('status', '1');
+        $criteria = new DoctrineCriteria($expr);
+        $adapter = new SelectableAdapter($entityManager->getRepository('Application\Entity\Advertising'), $criteria);
+        $paginator = new Paginator($adapter);
+        $page = 1;
+        if ($this->params()->fromRoute('page')) $page = $this->params()->fromRoute('page');
+        $paginator->setCurrentPageNumber((int)$page)
+        ->setItemCountPerPage(10)
+        ->setAction('advertising');
+        return new ViewModel(array(
+            'advertising_list' => $paginator,
+            'action' => 'result'
+        ));
+    }
+
+    /* (non-PHPdoc)
+     * @see \Zend\Mvc\Controller\AbstractActionController::indexAction()
+     */
+    public function resultPjAction()
+    {
+        $entityManager = $this->getEntityManager();
+        $id = $this->getEvent()
+        ->getRouteMatch()
+        ->getParam('typeAdvertising');
+        $criteria = DoctrineCriteria::create();
+        $criteria->where(DoctrineCriteria::expr()->eq('status', '1'));
+        $criteria->andWhere(DoctrineCriteria::expr()->eq('typeAdvertising', $this->getEntityManager()->find('\Application\Entity\TypeAdvertising', $id)));
+        $adapter = new SelectableAdapter($entityManager->getRepository('Application\Entity\Advertising'), $criteria);
         $paginator = new Paginator($adapter);
         $page = 1;
         if ($this->params()->fromRoute('page')) $page = $this->params()->fromRoute('page');

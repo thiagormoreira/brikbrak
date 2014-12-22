@@ -1,4 +1,28 @@
+<?php 
+function getFileList($dir)
+{
+    // array to hold return value
+    $retval = array();
 
+    // add trailing slash if missing
+    if(substr($dir, -1) != "/") $dir .= "/";
+
+    // open directory for reading
+    $d = new DirectoryIterator($dir) or die("getFileList: Failed opening directory $dir for reading");
+    foreach($d as $fileinfo) {
+        // skip hidden files
+        if($fileinfo->isDot()) continue;
+        $retval[] = array(
+            'name' => "{$dir}{$fileinfo}",
+            'type' => ($fileinfo->getType() == "dir") ? "dir" : mime_content_type($fileinfo->getRealPath()),
+            'size' => $fileinfo->getSize(),
+            'lastmod' => $fileinfo->getMTime()
+        );
+    }
+
+    return $retval;
+}
+?>
 <!-- page specific plugin styles -->
 		<link rel="stylesheet" href="/dashboard/css/bootstrap-duallistbox.min.css" />
 		<link rel="stylesheet" href="/dashboard/css/bootstrap-multiselect.min.css" />
@@ -22,6 +46,27 @@
                 <div class="textarea"><?php echo $this->formTextarea($element) . $this->formElementErrors($element) ?></div>
             <?php elseif ($element instanceof Zend\Form\Element\Radio): ?>
                 <div class="radio"><?php echo $this->formRadio($element) . $this->formElementErrors($element) ?></div>
+            <?php elseif ($element instanceof Zend\Form\Element\File): ?>
+                <div class="form-group">
+                <?php if($this->entity == 'advertising'){
+                	$folder = __DIR__ . '/../../../../../htdocs/assets/images/product/' . $this->id;
+                	if(is_dir($folder)){
+                	    $files = getFileList($folder);
+                	    if($files != null){
+                	    $files = getFileList($folder);
+                			foreach(getFileList($folder) as $key => $image){
+                			    $image['name'] = str_replace(__DIR__ . '/../../../../../htdocs', '', $image['name']);
+                				echo '<img src="'.$image['name'].'" width="100px" alt="" class="img-rounded"> ';
+                			}
+                	    } else {
+                		    echo '<img src="/assets/images/product/sem_foto.gif" width="100px" alt="" class="img-rounded">';
+                	    }
+                	} else {
+                	    echo '<img src="/assets/images/product/sem_foto.gif" width="100px" alt="" class="img-rounded">';
+                    } 
+                } ?>
+                </div>
+                <div class="file"><?php echo $this->formFile($element) . $this->formElementErrors($element) ?></div>
             <?php elseif ($isCheckbox): ?>
                 <div><?php echo $this->formCheckbox($element) ?></div>
             <?php else: ?>

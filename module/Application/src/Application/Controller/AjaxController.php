@@ -91,12 +91,7 @@ class AjaxController extends AbstractActionController
             ->getRouteMatch()
             ->getParam('idstate'));
         $statesB = $query->getResult();
-        /*
-        foreach($statesB as $curr){
-            $states[$curr["idcity"]] = $curr["cityName"];
-        }
-        */
-        //var_dump($states);
+        
         $json = new JsonModel(array(
             'states' => $statesB
         ));
