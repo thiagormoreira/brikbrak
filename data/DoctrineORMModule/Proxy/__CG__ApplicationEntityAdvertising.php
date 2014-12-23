@@ -36,7 +36,7 @@ class Advertising extends \Application\Entity\Advertising implements \Doctrine\O
      *
      * @see \Doctrine\Common\Persistence\Proxy::__getLazyProperties
      */
-    public static $lazyPropertiesDefaults = array('user' => NULL);
+    public static $lazyPropertiesDefaults = array();
 
 
 
@@ -46,60 +46,16 @@ class Advertising extends \Application\Entity\Advertising implements \Doctrine\O
      */
     public function __construct($initializer = null, $cloner = null)
     {
-        unset($this->user);
 
         $this->__initializer__ = $initializer;
         $this->__cloner__      = $cloner;
     }
 
-    /**
-     * 
-     * @param string $name
-     */
-    public function __get($name)
-    {
-        if (array_key_exists($name, $this->__getLazyProperties())) {
-            $this->__initializer__ && $this->__initializer__->__invoke($this, '__get', array($name));
 
-            return $this->$name;
-        }
 
-        trigger_error(sprintf('Undefined property: %s::$%s', __CLASS__, $name), E_USER_NOTICE);
-    }
 
-    /**
-     * 
-     * @param string $name
-     * @param mixed  $value
-     */
-    public function __set($name, $value)
-    {
-        if (array_key_exists($name, $this->__getLazyProperties())) {
-            $this->__initializer__ && $this->__initializer__->__invoke($this, '__set', array($name, $value));
 
-            $this->$name = $value;
 
-            return;
-        }
-
-        $this->$name = $value;
-    }
-
-    /**
-     * 
-     * @param  string $name
-     * @return boolean
-     */
-    public function __isset($name)
-    {
-        if (array_key_exists($name, $this->__getLazyProperties())) {
-            $this->__initializer__ && $this->__initializer__->__invoke($this, '__isset', array($name));
-
-            return isset($this->$name);
-        }
-
-        return false;
-    }
 
     /**
      * 
@@ -108,10 +64,10 @@ class Advertising extends \Application\Entity\Advertising implements \Doctrine\O
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'idadvertising', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'text', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'address', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'item', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'contact', 'user', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'viewCount', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'createDate', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'status');
+            return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'idadvertising', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'text', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'address', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'item', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'contact', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'user', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'typeAdvertising', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'viewCount', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'createDate', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'status');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'idadvertising', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'text', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'address', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'item', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'contact', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'viewCount', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'createDate', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'status');
+        return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'idadvertising', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'text', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'address', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'item', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'contact', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'user', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'typeAdvertising', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'viewCount', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'createDate', '' . "\0" . 'Application\\Entity\\Advertising' . "\0" . 'status');
     }
 
     /**
@@ -133,7 +89,6 @@ class Advertising extends \Application\Entity\Advertising implements \Doctrine\O
                 }
             };
 
-            unset($this->user);
         }
     }
 
@@ -429,6 +384,28 @@ class Advertising extends \Application\Entity\Advertising implements \Doctrine\O
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setStatus', array($status));
 
         return parent::setStatus($status);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTypeAdvertising()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTypeAdvertising', array());
+
+        return parent::getTypeAdvertising();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setTypeAdvertising($typeAdvertising)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTypeAdvertising', array($typeAdvertising));
+
+        return parent::setTypeAdvertising($typeAdvertising);
     }
 
 }

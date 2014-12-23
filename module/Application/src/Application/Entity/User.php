@@ -129,6 +129,17 @@ class User
     }
     
     /**
+     * @ORM\PrePersist
+     */
+    public function defaultRole()
+    {
+        if(is_null($this->getRole())) {
+            $this->role = '1';
+        }
+        return $this;
+    }
+    
+    /**
      *
      * @return the integer
      */

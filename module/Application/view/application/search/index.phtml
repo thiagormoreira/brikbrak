@@ -55,7 +55,8 @@ function getFileList($dir)
 	<!-- DETALHES DO PRODUTO -->
 	<div class="row">
 		<div class="col-sm-12 col-sm-9 col-md-10 col-lg-10 boxResultados">
-						
+		<?php if(is_object($this->advertising_list)) { ?>
+		    <?php if(count($this->advertising_list) > 0) { ?>
 						  <?php foreach($this->advertising_list as $advertising){ //var_dump($advertising);?>
 						  
 						          <!-- PJ -->
@@ -63,7 +64,7 @@ function getFileList($dir)
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 					<div class="col-sx-12 col-sm-12 col-md-7 col-lg-7">
 					<?php 
-					$folder = __DIR__ . '/../../../../../htdocs/assets/images/product/' .  $advertising->getIdadvertising() .'/';
+					$folder = __DIR__ . '/../../../../../htdocs/assets/images/product/' .  $advertising->getAdvertising()->getId() .'/';
     				if(is_dir($folder)){
     				    $files = getFileList($folder);
     				    if($files != null){
@@ -84,17 +85,17 @@ function getFileList($dir)
 					<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 addBorder">
 						<h1>Detalhes do Veículo</h1>
 						<p class="modelo">
-							<span>Modelo: </span> <?php echo $advertising->getItem()->getModel()->getBrand()->getBrandName() ?> - <?php echo $advertising->getItem()->getModel()->getModelName() ?></p>
+							<span>Modelo: </span> <?php //echo $advertising->getModel()->getBrand()->getBrandName() ?> - <?php //echo $advertising->getModel()->getModelName() ?></p>
 						<p class="preco">
-							<span>Preço: </span> R$ <?php if($advertising->getItem()->getValue() == null) { echo 'Não Informado'; } else { echo $advertising->getItem()->getValue(); } ?></p>
+							<span>Preço: </span> R$ <?php if($advertising->getValue() == null) { echo 'Não Informado'; } else { echo $advertising->getValue(); } ?></p>
 						<p>
-							<span>Tipo: </span> <?php echo $advertising->getItem()->getTypeItem()->getTypeName() ?></p>
+							<span>Tipo: </span> <?php echo $advertising->getTypeItem()->getTypeName() ?></p>
 						<p>
-							<span>Marca: </span> <?php echo $advertising->getItem()->getModel()->getBrand()->getBrandName() ?></p>
+							<span>Marca: </span> <?php //echo $advertising->getModel()->getBrand()->getBrandName() ?></p>
 						<p>
-							<span>Ano: </span> <?php if($advertising->getItem()->getYear() == '0' || $advertising->getItem()->getYear() == null) { echo 'Não Informado'; } else { echo $advertising->getItem()->getYear(); } ?></p>
+							<span>Ano: </span> <?php if($advertising->getYear() == '0' || $advertising->getYear() == null) { echo 'Não Informado'; } else { echo $advertising->getYear(); } ?></p>
 						<p>
-							<span>cor: </span> <?php if($advertising->getItem()->getColor() == '0' || $advertising->getItem()->getColor() == null) { echo 'Não Informado'; } else { echo $advertising->getItem()->getColor(); } ?></p>
+							<span>cor: </span> <?php if($advertising->getColor() == '0' || $advertising->getColor() == null) { echo 'Não Informado'; } else { echo $advertising->getColor(); } ?></p>
 						<p>
 							<span>Combustível: </span> <?php
                             $fuels = array(
@@ -106,7 +107,7 @@ function getFileList($dir)
                                 '4' => 'Biodiesel',
                                 '5' => 'Outros'
                             );
-                            echo $fuels[$advertising->getItem()->getFuel()];
+                            echo $fuels[$advertising->getFuel()];
                             ?></p>
 						<p>
 							<span>Transmissão: </span> <?php
@@ -116,11 +117,11 @@ function getFileList($dir)
                                 '1' => 'Manual',
                                 '2' => 'Automático'
                             );
-                            echo $gears[$advertising->getItem()->getGear()];
+                            echo $gears[$advertising->getGear()];
                             ?></p>
 						</p>
 						<p>
-							<span>Quilometragem: </span> <?php if($advertising->getItem()->getKm() == null) { echo 'Não Informado'; } else { echo $advertising->getItem()->getKm() . 'km'; } ?></p>
+							<span>Quilometragem: </span> <?php if($advertising->getKm() == null) { echo 'Não Informado'; } else { echo $advertising->getKm() . 'km'; } ?></p>
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -129,7 +130,7 @@ function getFileList($dir)
 						<ul>
 											<?php
             
-foreach ($advertising->getItem()->getOptions() as $option) {
+foreach ($advertising->getOptions() as $option) {
                 echo '<li>- ' . $option->getOptionsName() . '</li>';
             }
             ?>
@@ -150,15 +151,20 @@ foreach ($advertising->getItem()->getOptions() as $option) {
 							<a href="#" class="button">Ver telefones</a>
 						</div>
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-							<a href="/anuncio/<?php echo $advertising->getIdadvertising() ?>"
+							<a href="/anuncio/<?php echo $advertising->getAdvertising()->getId() ?>"
 								class="button">Ver anúncio completo</a>
 						</div>
 					</div>
 				</div>
 			</article>
 								<?php } ?>
+								
 								<?php echo $this->paginationControl($this->advertising_list, 'Sliding', 'helper/pagination_portal.phtml', array('action' => $this->action)); ?>
-
+								<?php } else { ?>
+								    Sem resultado
+								<?php } ?>
+								<?php } ?>
+								
 						</div>
 		<div class="hidden-xs col-sm-2 col-md-2 col-lg-2 boxPublicidade">
 			<a href="#"> <img src="/assets/images/banners/grey_120x600.gif"

@@ -108,10 +108,10 @@ class Item extends \Application\Entity\Item implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'iditem', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'year', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'value', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'fuel', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'km', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'color', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'gear', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'new', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'model', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'typeItem', 'user', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'options');
+            return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'iditem', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'year', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'value', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'fuel', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'km', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'color', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'gear', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'new', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'model', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'typeItem', 'user', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'advertising', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'options');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'iditem', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'year', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'value', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'fuel', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'km', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'color', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'gear', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'new', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'model', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'typeItem', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'options');
+        return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'iditem', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'year', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'value', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'fuel', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'km', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'color', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'gear', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'new', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'model', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'typeItem', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'advertising', '' . "\0" . 'Application\\Entity\\Item' . "\0" . 'options');
     }
 
     /**
@@ -539,6 +539,28 @@ class Item extends \Application\Entity\Item implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getOption', array());
 
         return parent::getOption();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAdvertising()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAdvertising', array());
+
+        return parent::getAdvertising();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setAdvertising($advertising)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAdvertising', array($advertising));
+
+        return parent::setAdvertising($advertising);
     }
 
 }

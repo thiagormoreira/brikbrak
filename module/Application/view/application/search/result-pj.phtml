@@ -52,7 +52,8 @@ function getFileList($dir)
 	<!-- DETALHES DO PRODUTO -->
 	<div class="row">
 		<div class="col-sm-12 col-sm-9 col-md-10 col-lg-10 boxResultados">
-						
+					<?php if(is_object($this->advertising_list)) { ?>
+						<?php if(count($this->advertising_list) > 0) { ?>
 						  <?php foreach($this->advertising_list as $advertising){ ?>
 						  
 						          <!-- PJ -->
@@ -100,7 +101,12 @@ function getFileList($dir)
 				</div>
 			</article>
 								<?php } ?>
-								<?php echo $this->paginationControl($this->advertising_list, 'Sliding', 'helper/pagination_portal.phtml', array('action' => $this->action)); ?>
+								
+								<?php echo $this->paginationControl($this->advertising_list, 'Sliding', 'helper/pagination_servicos.phtml', array('action' => $this->action, 'typeAdvertising' => $this->typeAdvertising)); ?>
+								<?php } else { ?>
+								    Sem resultado
+								<?php } ?>
+								<?php } ?>
 
 						</div>
 		<div class="hidden-xs col-sm-2 col-md-2 col-lg-2 boxPublicidade">

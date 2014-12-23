@@ -103,6 +103,12 @@ class Item
     public $user;
     
     /**
+     * @ORM\ManyToOne(targetEntity="Application\Entity\Advertising", inversedBy="advertising")
+     * @ORM\JoinColumn(name="advertising_id", referencedColumnName="idadvertising")
+     */
+    private $advertising;
+    
+    /**
      * @var Application\Entity\Option
      *
      * @ORM\ManyToMany(targetEntity="Application\Entity\Option")
@@ -397,4 +403,16 @@ class Item
     {
         return $this->options;
     }
+
+    public function getAdvertising()
+    {
+        return $this->advertising;
+    }
+
+    public function setAdvertising($advertising)
+    {
+        $this->advertising = $advertising;
+        return $this;
+    }
+ 
 }

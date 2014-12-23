@@ -31,7 +31,7 @@ class IndexController extends AbstractActionController
         return $this->em;
     }
     
-    public function modelAction()
+    public function indexAction()
     {
         $dql = 'SELECT COUNT(p) FROM Application\Entity\Item p WHERE p.typeItem = 1 OR p.typeItem = 3 OR p.typeItem = 4';
         $q = $this->getEntityManager()->createQuery($dql);

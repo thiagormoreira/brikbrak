@@ -62,6 +62,22 @@ class Base extends ProvidesEventsForm
             ),
         ));
 
+
+        
+        $this->add(array(
+            'name' => 'userType',
+            'type' => 'Zend\Form\Element\Radio',
+            'options' => array(
+                'label' => 'Tipo de cadastro',
+                'value_options' => array(
+                    '1' => 'Pessoa Física',
+                    '2' => 'Pessoa Jurídica',
+                ),
+            ),
+            'attributes' => array(
+            )
+        ));
+        
         if ($this->getRegistrationOptions()->getUseRegistrationFormCaptcha()) {
             $this->add(array(
                 'name' => 'captcha',

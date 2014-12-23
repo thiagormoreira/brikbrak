@@ -757,33 +757,6 @@ body{
 	width: 36% !important;
 }
 
-.boxFormulario select {
-	font-size: 10px;
-	left: 0;
-	opacity:0;
-	padding:5px;
-	position:absolute;text-transform: uppercase;
-	top:0;
-	width:100%;
-}
-
-.boxFormulario .selectOption {
-	background:url(../images/backgrounds/select-option.png) no-repeat right center transparent;
-	border: 1px solid #0065b1;
-	border-radius: 5px;
-	color:#0065b1;
-	display:block;
-	height:29px;
-	padding:6px 10px;
-	position:relative;
-	text-transform: uppercase;
-	width:100%;
-}
-
-.boxFormulario input[type=radio]{
-	opacity:0;
-}
-
 .boxFormulario .inputRadio {
 	background-color:#0064b0;
 	border-radius: 5px;

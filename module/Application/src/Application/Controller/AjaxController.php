@@ -32,6 +32,24 @@ class AjaxController extends AbstractActionController
         return $this->em;
     }
     
+    public function brandsAction()
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery('SELECT u.idbrand, u.brandName FROM Application\Entity\Brand u');
+        $brands = $query->getResult();
+        
+        return new JsonModel($brands);
+    }
+    
+    public function statesAction()
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery('SELECT u.idstate, u.stateName FROM Application\Entity\State u');
+        $states = $query->getResult();
+        
+        return new JsonModel($states);
+    }
+    
     public function modelsAction()
     {
         $em = $this->getEntityManager();

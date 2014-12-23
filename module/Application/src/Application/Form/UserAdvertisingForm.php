@@ -51,13 +51,12 @@ class UserAdvertisingForm extends Form
             'attributes' => array(
                 'class' => 'form-control input-lg',
                 'id' => 'typeItem',
+                'required' => 'required',
             ),
             'options' => array(
                 'object_manager' => $this->em,
                 'target_class' => 'Application\Entity\TypeItem',
                 'label' => 'Tipo',
-                // 'column-size' => 'sm-9',
-                // 'label_attributes' => array('class' => 'col-sm-3 control-label'),
                 'property' => 'typeName',
                 'empty_option' => 'Selecione o tipo...',
                 'is_method' => true
@@ -69,14 +68,13 @@ class UserAdvertisingForm extends Form
             'attributes' => array(
                 'class' => 'form-control input-lg',
                 'style' => 'display:none',
+                'required' => 'required',
             'id' => 'brand',
             ),
             'options' => array(
                 'object_manager' => $this->em,
                 'target_class' => 'Application\Entity\Brand',
                 'label' => 'Marca',
-                // 'column-size' => 'sm-9',
-                // 'label_attributes' => array('class' => 'col-sm-3 control-label'),
                 'property' => 'brandName',
                 'empty_option' => 'Selecione a marca...',
             'is_method' => true
@@ -88,14 +86,13 @@ class UserAdvertisingForm extends Form
             'attributes' => array(
                 'class' => 'form-control input-lg',
                 'style' => 'display:none',
-            'id' => 'model',
+                'id' => 'model',
+                'required' => 'required',
             ),
             'options' => array(
                 'object_manager' => $this->em,
                 'target_class' => 'Application\Entity\Model',
                 'label' => 'Modelo',
-                // 'column-size' => 'sm-9',
-                // 'label_attributes' => array('class' => 'col-sm-3 control-label'),
                 'property' => 'modelName',
                 'empty_option' => 'Selecione o modelo...',
             'is_method' => true
@@ -107,14 +104,12 @@ class UserAdvertisingForm extends Form
             'attributes' => array(
                 'class' => 'form-control input-lg',
                 'style' => 'display:none',
-            'id' => 'subType',
+                'id' => 'subType',
             ),
             'options' => array(
                 'object_manager' => $this->em,
                 'target_class' => 'Application\Entity\Subtype',
                 'label' => 'SubTipo',
-                // 'column-size' => 'sm-9',
-                // 'label_attributes' => array('class' => 'col-sm-3 control-label'),
                 'property' => 'subtypeName',
                 'empty_option' => 'Selecione o tipo...',
             'is_method' => true
@@ -127,13 +122,12 @@ class UserAdvertisingForm extends Form
                 'class' => 'form-control input-lg',
                 'style' => 'display:none',
                 'id' => 'bodywork',
+                'required' => 'required',
             ),
             'options' => array(
                 'object_manager' => $this->em,
                 'target_class' => 'Application\Entity\Bodywork',
                 'label' => 'Carroceria',
-                // 'column-size' => 'sm-9',
-                // 'label_attributes' => array('class' => 'col-sm-3 control-label'),
                 'property' => 'bodyworkName',
                 'empty_option' => 'Selecione a carroceria...',
             'is_method' => true
@@ -162,6 +156,7 @@ class UserAdvertisingForm extends Form
                 'placeholder' => 'Digite a Cor',
                 'class' => 'form-control input-lg',
                 'style' => 'display:none',
+                'required' => 'required',
             'id' => 'color',
             )
         ));
@@ -175,6 +170,7 @@ class UserAdvertisingForm extends Form
                 'placeholder' => 'Digite o Valor',
                 'class' => 'form-control input-lg',
                 'style' => 'display:none',
+                'required' => 'required',
             'id' => 'value',
             )
         ));
@@ -207,7 +203,8 @@ class UserAdvertisingForm extends Form
             'attributes' => array(
                 'type' => 'text',
                 'placeholder' => 'Endereço',
-                'class' => 'form-control input-lg'
+                'class' => 'form-control input-lg',
+                'required' => 'required',
             )
         ));
         $this->add(array(
@@ -229,7 +226,8 @@ class UserAdvertisingForm extends Form
             'attributes' => array(
                 'type' => 'text',
                 'placeholder' => 'Complemento',
-                'class' => 'form-control input-lg'
+                'class' => 'form-control input-lg',
+                'required' => 'required',
             )
         ));
         $this->add(array(
@@ -240,7 +238,8 @@ class UserAdvertisingForm extends Form
             'attributes' => array(
                 'type' => 'text',
                 'placeholder' => 'Nº',
-                'class' => 'form-control input-lg'
+                'class' => 'form-control input-lg',
+                'required' => 'required',
             )
         ));
         $this->add(array(
@@ -251,7 +250,8 @@ class UserAdvertisingForm extends Form
             'attributes' => array(
                 'type' => 'text',
                 'placeholder' => 'Bairro',
-                'class' => 'form-control input-lg'
+                'class' => 'form-control input-lg',
+                'required' => 'required',
             )
         ));
 
@@ -261,13 +261,12 @@ class UserAdvertisingForm extends Form
             'attributes' => array(
                 'class' => 'form-control select-lg',
                 'id' => 'state',
+                'required' => 'required',
             ),
             'options' => array(
                 'object_manager' => $this->em,
                 'target_class' => 'Application\Entity\State',
                 'label' => 'Estado',
-                // 'column-size' => 'sm-9',
-                // 'label_attributes' => array('class' => 'col-sm-3 control-label'),
                 'property' => 'stateName',
                 'empty_option' => 'Selecione o estado...',
             'is_method' => true
@@ -280,13 +279,12 @@ class UserAdvertisingForm extends Form
             'attributes' => array(
                 'class' => 'form-control select-lg',
                 'id' => 'state',
+                'required' => 'required',
             ),
             'options' => array(
                 'object_manager' => $this->em,
                 'target_class' => 'Application\Entity\City',
                 'label' => 'Estado',
-                // 'column-size' => 'sm-9',
-                // 'label_attributes' => array('class' => 'col-sm-3 control-label'),
                 'property' => 'cityName',
                 'empty_option' => 'Selecione a cidade...',
             'is_method' => true
@@ -302,7 +300,8 @@ class UserAdvertisingForm extends Form
                 'type' => 'text',
                 'placeholder' => 'Telefone',
                 'class' => 'form-control input-lg contact-number',
-                'pattern' => '\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}'
+                'pattern' => '\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}',
+                'required' => 'required',
             )
         ));
         ////// FIM ENDEREÇO
@@ -316,7 +315,8 @@ class UserAdvertisingForm extends Form
             'attributes' => array(
                 'type' => 'textarea',
                 'placeholder' => 'Este texto aparecerá na descrição do seu anúncio...',
-                'class' => 'form-control select-lg'
+                'class' => 'form-control select-lg',
+                'required' => 'required',
             )
         ));
         

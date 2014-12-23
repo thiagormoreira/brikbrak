@@ -115,18 +115,18 @@ return array(
                 'options' => array(
                     'route' => '/anuncio[/:id]',
                     'defaults' => array(
-                        'controller' => 'Application\Controller\Result',
+                        'controller' => 'Application\Controller\Search',
                         'action' => 'detail',
                         'id' => 'none'
                     )
                 )
             ),
-            'result' => array(
+            'search' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '/result[/page/:page]',
+                    'route' => '/search[/page/:page]',
                     'defaults' => array(
-                        'controller' => 'Application\Controller\Result',
+                        'controller' => 'Application\Controller\Search',
                         'action' => 'index',
                     )
                 )
@@ -186,7 +186,7 @@ return array(
                 'options' => array(
                     'route' => '/servicos',
                     'defaults' => array(
-                        'controller' => 'Application\Controller\Result',
+                        'controller' => 'Application\Controller\Search',
                         'action'     => 'resultPj',
                         'typeAdvertising' => 2
                     )
@@ -197,7 +197,7 @@ return array(
                 'options' => array(
                     'route' => '/revenda',
                     'defaults' => array(
-                        'controller' => 'Application\Controller\Result',
+                        'controller' => 'Application\Controller\Search',
                         'action'     => 'resultPj',
                         'typeAdvertising' => 3
                     )
@@ -208,7 +208,7 @@ return array(
                 'options' => array(
                     'route' => '/monitoramento',
                     'defaults' => array(
-                        'controller' => 'Application\Controller\Result',
+                        'controller' => 'Application\Controller\Search',
                         'action'     => 'resultPj',
                         'typeAdvertising' => 4
                     )
@@ -219,7 +219,7 @@ return array(
                 'options' => array(
                     'route' => '/rastreadores',
                     'defaults' => array(
-                        'controller' => 'Application\Controller\Result',
+                        'controller' => 'Application\Controller\Search',
                         'action'     => 'resultPj',
                         'typeAdvertising' => 5
                     )
@@ -275,6 +275,16 @@ return array(
                     )
                 )
             ),
+            'brands' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/ajax/brands',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Ajax',
+                        'action' => 'brands'
+                    )
+                )
+            ),
             'models' => array(
                 'type' => 'Segment',
                 'options' => array(
@@ -302,6 +312,16 @@ return array(
                     'defaults' => array(
                         'controller' => 'Application\Controller\Ajax',
                         'action' => 'bodyworks'
+                    )
+                )
+            ),
+            'states' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/ajax/states',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Ajax',
+                        'action' => 'states'
                     )
                 )
             ),
@@ -385,7 +405,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
-            'Application\Controller\Result' => 'Application\Controller\ResultController',
+            'Application\Controller\Search' => 'Application\Controller\SearchController',
             'Application\Controller\Portal' => 'Application\Controller\PortalController',
             'Application\Controller\Admin' => 'Application\Controller\AdminController',
             'Application\Controller\User' => 'Application\Controller\UserController',

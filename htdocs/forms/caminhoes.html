@@ -1,83 +1,74 @@
-<form action="#" method="POST">
+<form action="/search" method="POST">
 	<div>
-		<span class="inputRadio" data-input-id="situacao" data-input-value="1">
-			<input type="hidden" name="situacao" id="situacao"/>
-		</span>
-		<label for="estado">O Km</label>
-		<span class="inputRadio" data-input-id="situacao" data-input-value="2"></span>
-		<label for="tipo">Usado</label>
+    	<label class="checkbox-inline">
+    		<input name="status" id="status" type="radio" value="1">
+    		0 KM
+    	</label>
+    	<label class="checkbox-inline">
+    		<input name="status" id="status" type="radio" value="0">
+    		Usado
+    	</label>
+	</div>
+	<div class="selectOption">
+		<select id="brand" name="brand" class="form-control" data-type-item="1">
+		</select>
 	</div>
 	<div>
 		<span class="selectOption">
-			<span id="marca">Marca</span>
-			<select name="marca" data-text-id="marca">
-				<option value="">Marca</option>
-				<option value="Fiat">Fiat</option>
-				<option value="">Ford</option>
-			</select>
-		</span>
-	</div>
-	<div>
-		<span class="selectOption">
-			<span id="modelo">Modelo</span>
-			<select name="modelo" data-text-id="modelo">
+			<select id="model" name="model" class="form-control">
 				<option value="">Modelo</option>
 			</select>
 		</span>
 	</div>
 	<div>
 		<span class="selectOption">
-			<span id="tipo">Tipo</span>
-			<select name="tipo" data-text-id="tipo">
-				<option value="">Tipo</option>
+			<select name="subType" id="subType" class="form-control">
+				<option value="1">Tipo2</option>
+				<option value="2">Tipo3</option>
 			</select>
 		</span>
 	</div>
 	<div>
-		<span class="inputRadio" data-input-id="cambio" data-input-value="1">
-			<input type="hidden" name="cambio" id="cambio"/>
+		<span class="selectOption">
+			<select name="bodywork" id="bodywork" class="form-control">
+				<option value="">Carroceria</option>
+			</select>
 		</span>
-		<label for="cambio_automatico">Automático</label>
-		<span class="inputRadio" data-input-id="cambio" data-input-value="2"></span>
-		<label for="cambio_manual">Manual</label>
+	</div>
+	<div>
+    	<label class="checkbox-inline">
+    		<input name="gear" id="gear" type="radio" value="1">
+    		Automático
+    	</label>
+    	<label class="checkbox-inline">
+    		<input name="gear" id="gear" type="radio" value="0">
+    		Manual
+    	</label>
 	</div>
 	<div>
 		ano
-		<input type="text" name="ano_fim" placeholder="até" class="duo">
-		<input type="text" name="ano" placeholder="de" class="duo">
+		<input type="text" name="year_end" placeholder="até" class="duo">
+		<input type="text" name="year" placeholder="de" class="duo">
 		<br/><br/>
 	</div>
 	<div>
 		<span class="selectOption">
-			<span id="uf">Estado</span>
-			<select name="uf" data-text-id="uf">
+			<select name="state" id="state" class="form-control">
 				<option value="">Estado</option>
 			</select>
 		</span>
 	</div>
 	<div>
 		<span class="selectOption">
-			<span id="cidade">Cidade</span>
-			<select name="cidade" data-text-id="cidade">
+			<select name="city" id="city" class="form-control">
 				<option value="">Cidade</option>
 			</select>
 		</span>
 	</div>
 	<div>
-		<span class="selectOption">
-			<span id="carroceria">Carroceria</span>
-			<select name="carroceria" data-text-id="carroceria">
-				<option value="">Carroceria</option>
-			</select>
-		</span>
-	</div>
-	<div>
 		valor
-		<input type="text" name="ano_fim" placeholder="até" class="duo">
-		<input type="text" name="ano" placeholder="de" class="duo">
+		<input type="text" name="value_end" placeholder="até" class="duo">
+		<input type="text" name="value" placeholder="de" class="duo">
 	</div>
 	<input type="submit" value="Buscar"/>
 </form>
-
-<!-- Form Actions -->
-<script src="assets/js/form.actions.js"></script>

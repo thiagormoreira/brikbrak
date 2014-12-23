@@ -4,11 +4,29 @@ $(document).ready(function(){
     return false;
   });
 
-  $(".searchMenu a").click(function() {
+  $(".searchMenu a").click(function(event) {
+	event.preventDefault();
     var formTemplate = "/forms/"+$(this).attr("href");
     $(".searchMenu a").removeClass("active");
     $(this).addClass("active");
     $("#loadForm").load(formTemplate);
+    
+    $.getJSON('/ajax/brands', function(j){
+        var options = '<option value="">Selecione a marca...</option>';
+        for (var i = 0; i < j.length; i++) {
+            options += '<option value="' + j[i].idbrand + '">' + j[i].brandName + '</option>';
+        }	
+        $('#brand').html(options).show();
+	})
+	
+	$.getJSON('/ajax/states', function(j){
+        var options = '<option value="">Selecione o estado...</option>';
+        for (var i = 0; i < j.length; i++) {
+            options += '<option value="' + j[i].idstate + '">' + j[i].stateName + '</option>';
+        }	
+        $('#state').html(options).show();
+	})
+    
     return false;
   });
 
@@ -27,8 +45,8 @@ $(document).ready(function(){
     });
     
 
-	$("#typeItem").change(function() {
-
+	$("#typeItem").change(function(event) {
+		event.preventDefault();
     	//$("#brand").empty();
     	$("#model").empty();
     	$("#subType").empty();
@@ -68,10 +86,10 @@ $(document).ready(function(){
 	    //}
 	});
 	
-	$("#brand").change(function() {
-		
+	$("#brand").change(function(event) {
+		event.preventDefault();
 		if( $(this).val() ) {
-            $.getJSON('/ajax/models/' + $(this).val() + '/typeitem/' + $("#typeItem").val(), function(j){
+            $.getJSON('/ajax/models/' + $(this).val() + '/typeitem/' + $(this).data("type-item"), function(j){
                 var options = '<option value="">Selecione o modelo...</option>';
                 for (var i = 0; i < j['models'].length; i++) {
                     options += '<option value="' + j['models'][i].idmodel + '">' + j['models'][i].modelName + '</option>';
@@ -86,7 +104,8 @@ $(document).ready(function(){
     
 	});
 	
-	$("#model").change(function() {
+	$("#model").change(function(event) {
+		event.preventDefault();
 		if( $(this).val() ) {
             $.getJSON('/ajax/sub-types/' + $(this).val(), function(j){
                 var options = '<option value="">Selecione o tipo...</option>';
@@ -104,8 +123,8 @@ $(document).ready(function(){
 		}
 	});
 	
-	$("#subType").change(function() {
-		
+	$("#subType").change(function(event) {
+		event.preventDefault();
 		if( $(this).val() ) {
             $.getJSON('/ajax/bodyworks/' + $(this).val(), function(j){
                 var options = '<option value="">Selecione a carroceria...</option>';
@@ -136,7 +155,8 @@ $(document).ready(function(){
     	}
 	});
 	
-	$('#state').change(function(){
+	$('#state').change(function(event){
+		event.preventDefault();
         if( $(this).val() ) {
             $.getJSON('/ajax/cities/' + $(this).val(), function(j){
                 var options = '<option value="">Selecione</option>';
@@ -154,4 +174,22 @@ $(document).ready(function(){
 	
 });
 
+
+$(document).ready(function(){
+	$.getJSON('/ajax/brands', function(j){
+        var options = '<option value="">Selecione a marca...</option>';
+        for (var i = 0; i < j.length; i++) {
+            options += '<option value="' + j[i].idbrand + '">' + j[i].brandName + '</option>';
+        }	
+        $('#brand').html(options).show();
+	})
+	
+	$.getJSON('/ajax/states', function(j){
+        var options = '<option value="">Selecione o estado...</option>';
+        for (var i = 0; i < j.length; i++) {
+            options += '<option value="' + j[i].idstate + '">' + j[i].stateName + '</option>';
+        }	
+        $('#state').html(options).show();
+	})
+});
 

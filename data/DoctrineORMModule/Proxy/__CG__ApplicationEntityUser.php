@@ -176,6 +176,17 @@ class User extends \Application\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
+    public function defaultRole()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'defaultRole', array());
+
+        return parent::defaultRole();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getUserId()
     {
         if ($this->__isInitialized__ === false) {

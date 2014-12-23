@@ -24,13 +24,13 @@ $form->setAttribute('class', 'form');
             ->render($form->get('username'));
         ?>
     </div>
-<?php endif; ?>
     
+<?php endif; ?>
+
     <?php if($form->has('firstName')): ?>
     <?php $form->get('firstName')->setAttribute('class','form-control'); ?>
     <?php $form->get('firstName')->setLabelAttributes(array('class' => 'control-label col-lg-2')); ?>
-<div
-	class="form-group <?php if ($this->formElementErrors($form->get('firstName'))) echo 'has-error'; ?>">
+<div class="form-group <?php if ($this->formElementErrors($form->get('firstName'))) echo 'has-error'; ?>">
         <?php echo $this->formLabel($form->get('firstName')); ?>
             <div class="input-group col-lg-3">
 		<span class="input-group-addon glyphicon glyphicon-user"></span>
@@ -109,6 +109,26 @@ $form->setAttribute('class', 'form');
 							Crie a sua Conta!<small> É rápido e fácil.</small>
 						</h2>
 						<hr class="colorgraph">
+						
+						    <?php if($form->has('userType')): ?>
+                            <?php $form->get('userType')->setAttribute('class',''); ?>
+                            <?php $form->get('userType')->setLabelAttributes(array('class' => 'control-label col-lg-2')); ?>
+						<div class="form-group <?php if ($this->formElementErrors($form->get('userType'))) echo 'has-error'; ?>">
+                                <?php //echo $this->formLabel($form->get('userType')); ?>
+                                    <div class="input-group col-lg-3">
+                                        <?php echo $this->formRadio($form->get('userType'))?>
+                                    </div>
+                                    <?php
+                                
+                                echo $this->formElementErrors()
+                                    ->setMessageOpenFormat('<span class="help-block">')
+                                    ->setMessageSeparatorString('</span><span class="help-block">')
+                                    ->setMessageCloseString('</span>')
+                                    ->render($form->get('userType'));
+                                ?>
+                            </div>
+                        <?php endif; ?>
+                        
 						    <?php if($form->has('display_name')): ?>
                             <?php $form->get('display_name')->setAttribute('class','form-control input-lg'); ?>
                             <?php $form->get('display_name')->setAttribute('placeholder','Nome'); ?>

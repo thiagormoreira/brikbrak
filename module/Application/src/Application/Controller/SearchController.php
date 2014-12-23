@@ -20,7 +20,7 @@ use Application\Entity\Advertising;
 use Application\Entity\Message;
 use Zend\Mail;
 
-class ResultController extends AbstractActionController
+class SearchController extends AbstractActionController
 {
 
     /**
@@ -44,10 +44,59 @@ class ResultController extends AbstractActionController
      */
     public function indexAction()
     {
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            //var_dump($this->params()->fromPost());
+            
+            /* array(11) {
+                ["brand"]=> "1"
+                ["model"]=> "1"
+                ["subType"]=> "1"
+                ["bodywork"]=> "1"
+                ["gear"]=> "1"
+                ["year_end"]=> "2015"
+                ["year"]=> "1950"
+                ["state"]=> "19"
+                ["city"]=> "3593"
+                ["value_end"]=> "100000000"
+                ["value"]=> "10000"
+            } */
+            
+        }
+        
         $entityManager = $this->getEntityManager();
-        $expr = DoctrineCriteria::expr()->eq('status', '1');
-        $criteria = new DoctrineCriteria($expr);
-        $adapter = new SelectableAdapter($entityManager->getRepository('Application\Entity\Advertising'), $criteria);
+        
+        $criteria = DoctrineCriteria::create();
+        
+        //$criteria->where(DoctrineCriteria::expr()->eq('status', '1'));
+        //$criteria->andWhere(DoctrineCriteria::expr()->eq('typeAdvertising', $this->getEntityManager()->find('\Application\Entity\TypeAdvertising', 1 )));
+
+        $criteria->andWhere(DoctrineCriteria::expr()->eq('typeItem', $this->getEntityManager()->find('\Application\Entity\TypeItem', $this->params()->fromPost('typeItem'))));
+        
+        if($this->params()->fromPost('new') != null){
+            $criteria->where(DoctrineCriteria::expr()->eq('new', $this->params()->fromPost('status')));
+        }
+        if($this->params()->fromPost('model') != null){
+            $criteria->andWhere(DoctrineCriteria::expr()->eq('model', $this->getEntityManager()->find('\Application\Entity\Model', $this->params()->fromPost('model'))));
+        }
+        if($this->params()->fromPost('gear') != null){
+            $criteria->andWhere(DoctrineCriteria::expr()->eq('gear', $this->params()->fromPost('gear')));
+        }
+        if($this->params()->fromPost('year') != null){
+            $criteria->andWhere(DoctrineCriteria::expr()->gt('year', $this->params()->fromPost('year')));
+        }
+        if($this->params()->fromPost('year_end') != null){
+            $criteria->andWhere(DoctrineCriteria::expr()->lt('year', $this->params()->fromPost('year_end')));
+        }
+        if($this->params()->fromPost('value') != null){
+            $criteria->andWhere(DoctrineCriteria::expr()->gt('value', $this->params()->fromPost('value')));
+        }
+        if($this->params()->fromPost('value_end') != null){
+            $criteria->andWhere(DoctrineCriteria::expr()->lt('value', $this->params()->fromPost('value_end')));
+        }
+            
+        
+        $adapter = new SelectableAdapter($entityManager->getRepository('Application\Entity\Item'), $criteria);
         $paginator = new Paginator($adapter);
         $page = 1;
         if ($this->params()->fromRoute('page')) $page = $this->params()->fromRoute('page');
@@ -81,7 +130,8 @@ class ResultController extends AbstractActionController
         ->setAction('advertising');
         return new ViewModel(array(
             'advertising_list' => $paginator,
-            'action' => 'result'
+            'action' => 'result',
+            'typeAdvertising' => $id
         ));
     }
 
