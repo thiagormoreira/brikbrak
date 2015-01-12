@@ -59,9 +59,11 @@ $(document).ready(function(){
     	$("#model").css('display', 'none');
     	$("#subType").css('display', 'none');
     	$("#bodywork").css('display', 'none');
+    	$("#km").css('display', 'none');
     	
 		if ($("#typeItem").val() == '') {
 	    	($("#brand").css('display', 'none'));
+	    	($("#brandN").css('display', 'none'));
 	    	($("#year").css('display', 'none'));
 	    	($("#color").css('display', 'none'));
 	    	($("#fuel").css('display', 'none'));
@@ -69,13 +71,17 @@ $(document).ready(function(){
 	    	($("#model").css('display', 'none'));
 	    	($("#subType").css('display', 'none'));
 	    	($("#bodywork").css('display', 'none'));
+	    	$("#km").css('display', 'none');
 	    	$("#brand").empty();
+	    	$("#brandN").empty();
 	    	$("#color").empty();
 	    	$("#value").empty();
+	    	$("#km").empty();
 	    	//$("#model").empty();
 	    	//$("#subType").empty();
 	    } else {
 	    	($("#brand").css('display', 'block'));
+	    	($("#brandN").css('display', 'block'));
 	    }
 	    //if ($("#typeItem").val() == '1' || $("#typeItem").val() == '2' || $("#typeItem").val() == '3' || $("#typeItem").val() == '4'|| $("#typeItem").val() == '5') {
 	    	//($("#brand").css('display', 'block'));
@@ -90,6 +96,25 @@ $(document).ready(function(){
 		event.preventDefault();
 		if( $(this).val() ) {
             $.getJSON('/ajax/models/' + $(this).val() + '/typeitem/' + $(this).data("type-item"), function(j){
+                var options = '<option value="">Selecione o modelo...</option>';
+                for (var i = 0; i < j['models'].length; i++) {
+                    options += '<option value="' + j['models'][i].idmodel + '">' + j['models'][i].modelName + '</option>';
+                }	
+                $('#model').html(options).show();
+            });
+        } else {
+            $('#model').html('<option value="0">-- Escolha uma marca --</option>');
+        }
+		
+    	($("#model").css('display', 'block'));
+    
+	});
+	
+	
+	$("#brandN").change(function(event) {
+		event.preventDefault();
+		if( $(this).val() ) {
+            $.getJSON('/ajax/models/' + $(this).val() + '/typeitem/' + $("#typeItem").val(), function(j){
                 var options = '<option value="">Selecione o modelo...</option>';
                 for (var i = 0; i < j['models'].length; i++) {
                     options += '<option value="' + j['models'][i].idmodel + '">' + j['models'][i].modelName + '</option>';
@@ -143,11 +168,13 @@ $(document).ready(function(){
         	($("#fuel").css('display', 'none'));
         	($("#value").css('display', 'none'));
         	($("#bodywork").css('display', 'none'));
+        	($("#km").css('display', 'none'));
     	} else {
     		($("#year").css('display', 'block'));
         	($("#color").css('display', 'block'));
         	($("#fuel").css('display', 'block'));
         	($("#value").css('display', 'block'));
+        	($("#km").css('display', 'block'));
         	
     		if ($("#typeItem").val() == '1' || $("#typeItem").val() == '3') {
     			($("#bodywork").css('display', 'block'));
@@ -182,6 +209,7 @@ $(document).ready(function(){
             options += '<option value="' + j[i].idbrand + '">' + j[i].brandName + '</option>';
         }	
         $('#brand').html(options).show();
+        $('#brandN').html(options).show();
 	})
 	
 	$.getJSON('/ajax/states', function(j){

@@ -111,11 +111,8 @@ $form->setAttribute('class', 'form');
 						<hr class="colorgraph">
 						
 						    <?php if($form->has('userType')): ?>
-                            <?php $form->get('userType')->setAttribute('class',''); ?>
-                            <?php $form->get('userType')->setLabelAttributes(array('class' => 'control-label col-lg-2')); ?>
-						<div class="form-group <?php if ($this->formElementErrors($form->get('userType'))) echo 'has-error'; ?>">
-                                <?php //echo $this->formLabel($form->get('userType')); ?>
-                                    <div class="input-group col-lg-3">
+						<div class="radio-inline <?php if ($this->formElementErrors($form->get('userType'))) echo 'has-error'; ?>">
+                                    <div class="radio">
                                         <?php echo $this->formRadio($form->get('userType'))?>
                                     </div>
                                     <?php

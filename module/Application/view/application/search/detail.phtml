@@ -38,27 +38,30 @@ $flash->setMessageOpenFormat('<div%s>
 							<a href="#" class="pull-left">< Voltar para lista anterior</a>
 						</div>
 						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 navegacaoProduto">
-						<?php if($this->advertising->getUser()->getId() == $this->zfcUserIdentity()->getId()) : ?>
-						<br>
-							<?php /*<div class="btn-group" data-toggle="buttons">
-                              <label class="btn btn-primary active">
-                                <input type="radio" name="options" id="option1" autocomplete="off" <?php ($this->advertising->getStatus() == '1')? "checked" : ""; ?>> Publicado
-                              </label>
-                              <label class="btn btn-primary">
-                                <input type="radio" name="options" id="option2" autocomplete="off" <?php ($this->advertising->getStatus() == '0')? "checked" : ""; ?>> Não publicado
-                              </label>
-                            </div> */ ?>
-							<ul class="pull-right">
-							    <li style="list-style: none; display: inline;">
-    							    <a href="#">Editar</a>
-    							</li>
-    							<li style="list-style: none; display: inline;">|</li>
-    							<li style="list-style: none; display: inline;">
-    							    <a href="<?php echo $this->url('user-delete-ad', array( 'idanuncio' => $this->advertising->getId())); ?>" 
-    							    onclick="return confirm('<?php echo $this->translate('Tem certeza que deseja deletar esse anúncio?') ?>')">Deletar</a>
-    							</li>
-							</ul>
-							<?php endif; ?>
+						<!-- Test if the User is connected -->
+						<?php if($this->zfcUserIdentity()): ?>
+    						<?php if($this->advertising->getUser()->getId() == $this->zfcUserIdentity()->getId()) : ?>
+    						<br>
+    							<?php /*<div class="btn-group" data-toggle="buttons">
+                                  <label class="btn btn-primary active">
+                                    <input type="radio" name="options" id="option1" autocomplete="off" <?php ($this->advertising->getStatus() == '1')? "checked" : ""; ?>> Publicado
+                                  </label>
+                                  <label class="btn btn-primary">
+                                    <input type="radio" name="options" id="option2" autocomplete="off" <?php ($this->advertising->getStatus() == '0')? "checked" : ""; ?>> Não publicado
+                                  </label>
+                                </div> */ ?>
+    							<ul class="pull-right">
+    							    <li style="list-style: none; display: inline;">
+        							    <a href="#">Editar</a>
+        							</li>
+        							<li style="list-style: none; display: inline;">|</li>
+        							<li style="list-style: none; display: inline;">
+        							    <a href="<?php echo $this->url('user-delete-ad', array( 'idanuncio' => $this->advertising->getId())); ?>" 
+        							    onclick="return confirm('<?php echo $this->translate('Tem certeza que deseja deletar esse anúncio?') ?>')">Deletar</a>
+        							</li>
+    							</ul>
+    							<?php endif; ?>
+							<?php endif?>
 						</div>
 					</div>
 
@@ -135,7 +138,8 @@ $flash->setMessageOpenFormat('<div%s>
 									<h2><span>preço: </span><?php echo $this->currencyFormat($this->advertising->getItem()->getValue(), "BRL", "pt_BR") ?></h2>
 									<p>
 										Tipo: <?php echo $this->advertising->getItem()->getTypeItem()->getTypeName() ?><br/>
-										marca: <?php echo $this->advertising->getItem()->getModel()->getBrand()->getBrandName() ?><br/>
+										Marca: <?php echo $this->advertising->getItem()->getModel()->getBrand()->getBrandName() ?><br/>
+										Modelo: <?php echo $this->advertising->getItem()->getModel()->getModelName() ?><br/>
 										Ano: <?php if($this->advertising->getItem()->getYear() == null) { echo 'Não Informado'; } else { echo $advertising->getItem()->getYear(); } ?><br/>
 										Cor: <?php if($this->advertising->getItem()->getColor() == null) { echo 'Não Informado'; } else { echo $advertising->getItem()->getColor(); } ?><br/>
 										Combustível: <?php 
@@ -159,7 +163,7 @@ $flash->setMessageOpenFormat('<div%s>
     										);
     										echo $gears[$this->advertising->getItem()->getGear()];
 										?><br/>
-										Quilometragem: <?php if($this->advertising->getItem()->getKm() == null) { echo 'Não Informado'; } else { echo number_format($this->advertising->getItem()->getKm(), 0, ',', '.') . ' km'; } ?>
+										Quilometragem: <?php if($this->advertising->getItem()->getKm() === null) { echo 'Não Informado'; } else { echo number_format($this->advertising->getItem()->getKm(), 0, ',', '.') . ' km'; } ?>
 									</p>
 									<h3>Acessórios</h3>
 									<ul>

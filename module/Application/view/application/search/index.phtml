@@ -85,13 +85,13 @@ function getFileList($dir)
 					<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 addBorder">
 						<h1>Detalhes do Veículo</h1>
 						<p class="modelo">
-							<span>Modelo: </span> <?php //echo $advertising->getModel()->getBrand()->getBrandName() ?> - <?php //echo $advertising->getModel()->getModelName() ?></p>
+							<span>Modelo: </span> <?php echo $advertising->getModel()->getModelName() ?></p>
 						<p class="preco">
 							<span>Preço: </span> R$ <?php if($advertising->getValue() == null) { echo 'Não Informado'; } else { echo $advertising->getValue(); } ?></p>
 						<p>
 							<span>Tipo: </span> <?php echo $advertising->getTypeItem()->getTypeName() ?></p>
 						<p>
-							<span>Marca: </span> <?php //echo $advertising->getModel()->getBrand()->getBrandName() ?></p>
+							<span>Marca: </span> <?php echo $advertising->getModel()->getBrand()->getBrandName() ?></p>
 						<p>
 							<span>Ano: </span> <?php if($advertising->getYear() == '0' || $advertising->getYear() == null) { echo 'Não Informado'; } else { echo $advertising->getYear(); } ?></p>
 						<p>

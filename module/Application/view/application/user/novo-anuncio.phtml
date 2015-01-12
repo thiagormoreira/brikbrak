@@ -1,8 +1,7 @@
-
-        
 <?php
 $form = $this->form;
 $form->prepare();
+$form->setAttribute('class', 'form-horizontal');
 // $form->setAttribute('action', $this->url('zfcadmin/zfcuseradmin/create'));
 $form->setAttribute('method', 'post');
 ?>
@@ -24,190 +23,209 @@ $form->setAttribute('method', 'post');
 			</div>
 		</div>
 	</div>
-	<?php echo $this->form()->openTag($form)?>
-		<div class="row">
-		<div class="col-md-12">
-			<section style="background: #efefe9;">
-				<div class="board">
-					<!--BEM VINDO AO REGISTRO DE ANUNCIOS!-->
-					<div class="board-inner">
-						<ul class="nav nav-tabs" id="myTab">
-							<div class="liner"></div>
-							<li class="active"><a href="#home" data-toggle="tab"
-								title="Passo 1 - Preencha o seu Anúncio"> <span
-									class="round-tabs one"> <i class="glyphicon glyphicon-home"></i>
-								</span>
-							</a></li>
-
-							<li><a href="#profile" data-toggle="tab"
-								title="Passo 2 - Informe as suas Informações"> <span
-									class="round-tabs two"> <i class="glyphicon glyphicon-globe"></i>
-								</span>
-							</a></li>
-							<li><a href="#imagens" data-toggle="tab"
-								title="Passo 3 - Adicione as Imagens e Publique!"> <span
-									class="round-tabs three"> <i
-										class="glyphicon glyphicon-picture"></i>
-								</span>
-							</a></li>
-
-
-						</ul>
-					</div>
-
-					<div class="tab-content">
-						<div class="tab-pane fade in active" id="home">
-
-							<div class="row">
-								<div
-									class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-									<fieldset>
-										<hr class="colorgraph">
-
-										<div class="form-group">
-												<?php echo $this->formSelect($form->get('typeItem')) . $this->formElementErrors($form->get('typeItem'))?>
-										</div>
-										<div class="form-group">
-												<?php echo $this->formInput($form->get('km')) . $this->formElementErrors($form->get('km'))?>
-											</div>
-										<div class="form-group">
-												<?php echo $this->formSelect($form->get('brand')) . $this->formElementErrors($form->get('brand'))?>
-										</div>
-										<div class="form-group">
-													<?php echo $this->formSelect($form->get('model')) . $this->formElementErrors($form->get('model'))?>
-										</div>
-										<div class="form-group">
-												    <?php echo $this->formSelect($form->get('subType')) . $this->formElementErrors($form->get('subType'))?>
-										</div>
-										<div class="form-group">
-													<?php echo $this->formSelect($form->get('bodywork')) . $this->formElementErrors($form->get('bodywork'))?>
-												</span>
-										</div>
-										<div class="form-group">
-											<select name="year" id="year" class="form-control input-lg" style="display:none">
-												<option>Ano</option>
-                                    			<?php for($i=2015;$i >= 1950;$i--) {?>
-                                    				<option value="<?php echo $i ?>"><?php echo $i ?></option>
-                                    				<?php } ?>
-                                    			</select>
-										</div>
-										<div class="form-group">
-												<?php echo $this->formInput($form->get('color')) . $this->formElementErrors($form->get('color'))?>
-											</div>
-										<div class="form-group">
-											<select name="fuel" id="fuel" class="form-control input-lg" style="display:none">
-												<option>Combustível</option>
-            											    <?php
-                        $fuels = array(
-                            '1' => 'Gasolina',
-                            '2' => 'Álcool',
-                            '3' => 'Diesel',
-                            '4' => 'Biodiesel',
-                            '5' => 'Outros'
-                        );
-                        foreach ($fuels as $key => $fuel) {
-                            echo '<option value="' . $key . '">' . $fuel . '</option>';
-                        }
-                        ?>
-                                                        </select> </span>
-										</div>
-										<div class="form-group">
-												<?php echo $this->formInput($form->get('value')) . $this->formElementErrors($form->get('value'))?>
-											</div>
-
-										<div class="form-group ac">
-
-											<h4>SELECIONE OS ACESSÓRIOS</h4>
-												<?php //echo $this->formMultiCheckbox($form->get('options')) . $this->formElementErrors($form->get('options'))?>
-
-											</div>
-										<a href="#profile" data-toggle="tab"
-											title="Passo 2 - Informe as suas Informações"> <input
-											type="submit" value="AVANÇAR" />
-										</a> <br>
-										<hr class="colorgraph">
-									</fieldset>
-								</div>
-							</div>
-						</div>
-						<div class="tab-pane fade" id="profile">
-
-							<div class="row">
-								<div
-									class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-									<fieldset>
-										<hr class="colorgraph">
-
-										<div class="form-group">
-												<?php echo $this->formInput($form->get('address')) . $this->formElementErrors($form->get('address'))?>
-											</div>
-										<div class="form-group">
-												<?php echo $this->formInput($form->get('number')) . $this->formElementErrors($form->get('number'))?>
-											</div>
-										<div class="form-group">
-												<?php echo $this->formInput($form->get('complement')) . $this->formElementErrors($form->get('complement'))?>
-											</div>
-										<div class="form-group">
-												<?php echo $this->formSelect($form->get('state')) . $this->formElementErrors($form->get('state'))?>
-										</div>
-										<div class="form-group">
-											<select name="city" id="city" class="form-control input-lg" style="display:none">
-											</select>
-										</div>
-										<div class="form-group">
-												<?php echo $this->formInput($form->get('district_name')) . $this->formElementErrors($form->get('district_name'))?>
-											</div>
-										<div class="form-group">
-												<?php echo $this->formInput($form->get('contact-number')) . $this->formElementErrors($form->get('contact-number'))?>
-											</div>
-
-										<hr class="colorgraph">
-
-									</fieldset>
-
-									<p class="text-center">
-										<a href="#imagens" data-toggle="tab"
-											title="Passo 3 - Adicione as Imagens e Publique!"
-											class="btn btn-success btn-outline-rounded green"> AVANÇAR </span>
-										</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="tab-pane fade" id="imagens">
-							<div class="row">
-								<div
-									class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-									<h3 class="head text-center">Escreva o seu anúncio</h3>
-									<fieldset>
-										<div class="form-group">
-												<?php echo $this->formTextarea($form->get('text')) . $this->formElementErrors($form->get('text'))?>
-										</div>
-										<div class="form-group">
-												<?php echo $this->formFile($form->get('image-file')) . $this->formElementErrors($form->get('image-file'))?>
-										</div>
-										<div class="form-group">
-												<input type="submit"
-												class="btn btn-success btn-outline-rounded green"
-												value="Publicar Anúncio">
-										</div>
-
-									</fieldset>
-								</div>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-
+    <?php echo $this->form()->openTag($form)?>
+    	<h1>Veiculo</h1>
+    	<fieldset>
+    	    <legend>Informações do Veículo</legend>
+    		<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+    			<div class="form-group">
+    				<?php echo $this->formLabel($form->get('typeItem')) ?>
+    				<div class="col-sm-6">
+    				    <?php echo $this->formSelect($form->get('typeItem')) . $this->formElementErrors($form->get('typeItem'))?>
+    				</div>
+    			</div>
+    			<div class="form-group">
+    				<?php echo $this->formLabel($form->get('brandN')) ?>
+    				<div class="col-sm-6">
+    				    <?php echo $this->formSelect($form->get('brandN')) . $this->formElementErrors($form->get('brandN'))?>
+				    </div>
+    			</div>
+    			<div class="form-group">
+					<?php echo $this->formLabel($form->get('model')) ?>
+    				<div class="col-sm-6">
+    				    <?php echo $this->formSelect($form->get('model')) . $this->formElementErrors($form->get('model'))?>
+				    </div>
 				</div>
-		
-		</div>
-	</div>
-	<?php echo $this->form()->closeTag()?>
+    			<div class="form-group">
+					<?php echo $this->formLabel($form->get('subType')) ?>
+    				<div class="col-sm-6">
+    				    <?php echo $this->formSelect($form->get('subType')) . $this->formElementErrors($form->get('subType'))?>
+    				</div>
+				</div>
+    			<div class="form-group">
+					<?php echo $this->formLabel($form->get('bodywork')) ?>
+    				<div class="col-sm-6">
+    				    <?php echo $this->formSelect($form->get('bodywork')) . $this->formElementErrors($form->get('bodywork'))?>
+				    </div>
+    			</div>
+    			<div class="form-group">
+    			    <label for="year" class="col-sm-4 control-label">Ano</label>
+    				<div class="col-sm-6">
+    				    <select name="year" id="year" class="form-control input-lg required">
+    					    <option value="">Ano</option>
+            			<?php for($i=2015;$i >= 1950;$i--) {?>
+            				<option value="<?php echo $i ?>"><?php echo $i ?></option>
+            				<?php } ?>
+            			</select>
+        			</div>
+    			</div>
+    			<div class="form-group">
+					<?php echo $this->formLabel($form->get('color')) ?>
+    				<div class="col-sm-6">
+    				    <?php echo $this->formInput($form->get('color')) . $this->formElementErrors($form->get('color'))?>
+				    </div>
+				</div>
+    			<div class="form-group">
+    			    <label for="fuel" class="col-sm-4 control-label">Combustível</label>
+    				<div class="col-sm-6">
+    				    <select name="fuel" id="fuel" class="form-control input-lg required">
+        					<option value="">Combustível</option>
+                    		<?php
+                                $fuels = array(
+                                    '1' => 'Gasolina',
+                                    '2' => 'Álcool',
+                                    '3' => 'Diesel',
+                                    '4' => 'Biodiesel',
+                                    '5' => 'Outros'
+                                );
+                                foreach ($fuels as $key => $fuel) {
+                                    echo '<option value="' . $key . '">' . $fuel . '</option>';
+                                }
+                            ?>
+                        </select>
+                    </div>
+    			</div>
+    			<div class="form-group">
+    				<?php echo $this->formLabel($form->get('km')) ?>
+    				<div class="col-sm-6">
+    				    <?php echo $this->formInput($form->get('km')) . $this->formElementErrors($form->get('km'))?>
+				    </div>
+    			</div>
+    			<div class="form-group">
+					<?php echo $this->formLabel($form->get('value')) ?>
+    				<div class="col-sm-6">
+    				    <?php echo $this->formInput($form->get('value')) . $this->formElementErrors($form->get('value'))?>
+				    </div>
+				</div>
+    
+    			<div class="form-group ac">
+    
+    				<h4>SELECIONE OS ACESSÓRIOS</h4>
+    												<?php //echo $this->formMultiCheckbox($form->get('options')) . $this->formElementErrors($form->get('options'))?>
+    
+    											</div>
+    		</div>
+    	</fieldset>
+    
+    	<h1>Endereço</h1>
+    	<fieldset>
+    	    <legend>Informações do Endereço</legend>
+    		<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+    			<div class="form-group">
+					<?php echo $this->formLabel($form->get('address')) ?>
+    				<div class="col-sm-6">
+    				   <?php echo $this->formInput($form->get('address')) . $this->formElementErrors($form->get('address'))?>
+				   </div>
+				</div>
+    			<div class="form-group">
+					<?php echo $this->formLabel($form->get('number')) ?>
+    				<div class="col-sm-6">
+    				   <?php echo $this->formInput($form->get('number')) . $this->formElementErrors($form->get('number'))?>
+				   </div>
+				</div>
+    			<div class="form-group">
+					<?php echo $this->formLabel($form->get('complement')) ?>
+    				<div class="col-sm-6">
+    				   <?php echo $this->formInput($form->get('complement')) . $this->formElementErrors($form->get('complement'))?>
+				   </div>
+				</div>
+    			<div class="form-group">
+					<?php echo $this->formLabel($form->get('state')) ?>
+    				<div class="col-sm-6">
+    				    <?php echo $this->formSelect($form->get('state')) . $this->formElementErrors($form->get('state'))?>
+				    </div>
+				</div>
+    			<div class="form-group">
+					<label for="fuel" class="col-sm-4 control-label">Cidade</label>
+        				<div class="col-sm-6">
+            				<select name="city" id="city" class="form-control input-lg">
+            				</select>
+        				</div>
+        			</div>
+    			<div class="form-group">
+					<?php echo $this->formLabel($form->get('district_name')) ?>
+    				<div class="col-sm-6">
+    				    <?php echo $this->formInput($form->get('district_name')) . $this->formElementErrors($form->get('district_name'))?>
+				    </div>
+				</div>
+    			<div class="form-group">
+					<?php echo $this->formLabel($form->get('contact-number')) ?>
+    				<div class="col-sm-6">
+    				    <?php echo $this->formInput($form->get('contact-number')) . $this->formElementErrors($form->get('contact-number'))?>
+				    </div>
+    			</div>
+    		</div>
+    	</fieldset>
+    
+    	<h1>Anúncio</h1>
+    	<fieldset>
+    	    <legend>Digite o seu anúncio</legend>
+    		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    			<div class="form-group">
+					<?php echo $this->formLabel($form->get('text')) ?>
+    				<div class="col-sm-8">
+						<?php echo $this->formTextarea($form->get('text')) . $this->formElementErrors($form->get('text'))?>
+					</div>
+				</div>
+    			<div class="form-group">
+					<?php echo $this->formLabel($form->get('image-file')) ?>
+    				<div class="col-sm-8">
+						<?php echo $this->formFile($form->get('image-file')) . $this->formElementErrors($form->get('image-file'))?>
+					</div>
+				</div>
+    		</div>
+    	</fieldset>
+    <?php echo $this->form()->closeTag()?>
 </div>
 <!-- Form Actions -->
+<script src="/assets/js/jquery.steps.js"></script>
+<script src="/assets/js/jquery.validate.js"></script>
 <script src="/assets/js/form.actions.js"></script>
-
 <script>
-
+var form = $("#newAdvertisingUserSteps").show();  
+form.validate({
+    errorPlacement: function errorPlacement(error, element) { element.before(error); },
+    rules: {
+        confirm: {
+            //equalTo: "#password"
+        }
+    }
+});                      
+form.steps({
+    	headerTag: "h1",
+    	bodyTag: "fieldset",
+    	labels: {
+            cancel: "Cancelar",
+            current: "current step:",
+            finish: "Finalizar",
+            next: "Próximo",
+            previous: "Anterior",
+            loading: "Carregando ..."
+        },
+        transitionEffect: "slideLeft",
+        onStepChanging: function (event, currentIndex, newIndex)
+        {
+            form.validate().settings.ignore = ":disabled,:hidden";
+            return form.valid();
+        },
+        onFinishing: function (event, currentIndex)
+        {
+            form.validate().settings.ignore = ":disabled";
+            return form.valid();
+        },
+        onFinished: function (event, currentIndex)
+        {
+        	return form.submit();
+        }
+    });
 </script>

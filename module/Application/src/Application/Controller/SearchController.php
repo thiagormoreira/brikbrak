@@ -83,16 +83,16 @@ class SearchController extends AbstractActionController
             $criteria->andWhere(DoctrineCriteria::expr()->eq('gear', $this->params()->fromPost('gear')));
         }
         if($this->params()->fromPost('year') != null){
-            $criteria->andWhere(DoctrineCriteria::expr()->gt('year', $this->params()->fromPost('year')));
+            $criteria->andWhere(DoctrineCriteria::expr()->gte('year', $this->params()->fromPost('year')));
         }
         if($this->params()->fromPost('year_end') != null){
-            $criteria->andWhere(DoctrineCriteria::expr()->lt('year', $this->params()->fromPost('year_end')));
+            $criteria->andWhere(DoctrineCriteria::expr()->lte('year', $this->params()->fromPost('year_end')));
         }
         if($this->params()->fromPost('value') != null){
-            $criteria->andWhere(DoctrineCriteria::expr()->gt('value', $this->params()->fromPost('value')));
+            $criteria->andWhere(DoctrineCriteria::expr()->gte('value', $this->params()->fromPost('value')));
         }
         if($this->params()->fromPost('value_end') != null){
-            $criteria->andWhere(DoctrineCriteria::expr()->lt('value', $this->params()->fromPost('value_end')));
+            $criteria->andWhere(DoctrineCriteria::expr()->lte('value', $this->params()->fromPost('value_end')));
         }
             
         

@@ -1483,3 +1483,10 @@ padding-top: 50px;
     /*border: 2px solid #5cb85c;*/
     color: #ffffff;
 }
+
+#newAdvertisingUserSteps label{
+	font-size: 20px;
+}
+#text{
+	height: 150px;
+}

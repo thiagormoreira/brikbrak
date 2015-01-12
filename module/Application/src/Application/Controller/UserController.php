@@ -159,7 +159,7 @@ class UserController extends AbstractActionController
         ->getParam('idanuncio');
         $item = $this->getEntityManager()->find('\Application\Entity\Advertising', $id);
         
-        $imagesFolder = __DIR__.'/../../../../../htdocs/assets/images/product/' . $advertising->getId();
+        $imagesFolder = __DIR__.'/../../../../../htdocs/assets/images/product/' . $item->getId();
         umask($imagesFolder);
         
         if (null === $id) {
