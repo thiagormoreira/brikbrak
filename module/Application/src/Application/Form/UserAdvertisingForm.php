@@ -179,7 +179,7 @@ class UserAdvertisingForm extends Form
             'attributes' => array(
                 'type' => 'text',
                 'placeholder' => 'Digite a Kilometragem',
-                'class' => 'form-control input-lg required number',
+                'class' => 'form-control input-lg number',
                 //'style' => 'display:none',
                 'id' => 'km',
             )
@@ -218,24 +218,24 @@ class UserAdvertisingForm extends Form
                 'id' => 'value',
             )
         ));
-            /*
-            $this->add(array(
-                'name' => 'options',
-                'type' => 'DoctrineModule\Form\Element\ObjectMultiCheckbox',
-                //'type' => 'DoctrineModule\Form\Element\ObjectSelect',
-                'options' => array(
-                    'label' => 'Opcionais',
-                    'object_manager' => $this->em,
-                    'target_class' => 'Application\Entity\Option',
-                    'property' => 'optionsName'
-                    ),
-                'attributes' => array(
-                    'multiple' => true,
-                    'class' => 'multiselect',
-                    //'expanded' => true, // Render as checkboxes
-                    )
-                ));
-            */
+        
+        $this->add(array(
+            'name' => 'options',
+            'type' => 'DoctrineModule\Form\Element\ObjectMultiCheckbox',
+            //'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+            'options' => array(
+                'label' => 'Opcionais',
+                'object_manager' => $this->em,
+                'target_class' => 'Application\Entity\Option',
+                'property' => 'optionsName'
+                ),
+            'attributes' => array(
+                'multiple' => true,
+                'class' => 'multiselect ac',
+                //'expanded' => true, // Render as checkboxes
+                )
+            ));
+        
         /////// FIM ITEM
         
         /////// ENDEREÇO

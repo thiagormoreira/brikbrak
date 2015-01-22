@@ -118,7 +118,7 @@ class User
      * @ORM\Column(name="user_type", type="integer", length=45, nullable=true)
      */
     private $userType;
-
+    
     /**
      * Constructor
      */
@@ -134,7 +134,8 @@ class User
     public function defaultRole()
     {
         if(is_null($this->getRole())) {
-            $this->role = '1';
+            //$this->role = '1';
+            //$this->setRole(1);
         }
         return $this;
     }

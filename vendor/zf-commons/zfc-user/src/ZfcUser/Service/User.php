@@ -80,6 +80,7 @@ class User extends EventProvider implements ServiceManagerAwareInterface
         $bcrypt = new Bcrypt;
         $bcrypt->setCost($this->getOptions()->getPasswordCost());
         $user->setPassword($bcrypt->create($user->getPassword()));
+        $user->setRole($this->getEntityManager()->find('\Application\Entity\Role', 1));
 
         if ($this->getOptions()->getEnableUsername()) {
             $user->setUsername($data['username']);
@@ -309,5 +310,18 @@ class User extends EventProvider implements ServiceManagerAwareInterface
     {
         $this->formHydrator = $formHydrator;
         return $this;
+    }
+    
+
+
+
+    private $em;
+    
+    public function getEntityManager()
+    {
+        if (null === $this->em) {
+            $this->em = $this->getServiceManager()->get('doctrine.entitymanager.orm_default');
+        }
+        return $this->em;
     }
 }

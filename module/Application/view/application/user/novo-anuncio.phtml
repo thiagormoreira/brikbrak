@@ -96,6 +96,33 @@ $form->setAttribute('method', 'post');
                     </div>
     			</div>
     			<div class="form-group">
+    			    <label for="gear" class="col-sm-4 control-label">Transmissão</label>
+    				<div class="col-sm-6">
+    				    <select name="gear" id="gear" class="form-control input-lg required">
+        					<option value="">Transmissão</option>
+                    		<?php
+                                $gears = array(
+                                    '1' => 'Manual',
+                                    '2' => 'Automático',
+                                );
+                                foreach ($gears as $key => $gear) {
+                                    echo '<option value="' . $key . '">' . $gear . '</option>';
+                                }
+                            ?>
+                        </select>
+                    </div>
+    			</div>
+    			<div class="form-group">
+    			<label for="new" class="col-sm-4 control-label">Estado do veículo</label>
+    			<span class="col-sm-1 control-label"></span>
+    			    <label class="radio-inline">
+                      <input type="radio" name="new" id="new1" value="1" class="required"> Novo
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="new" id="new2" value="0" class="required"> Usado
+                    </label>
+    			</div>
+    			<div class="form-group">
     				<?php echo $this->formLabel($form->get('km')) ?>
     				<div class="col-sm-6">
     				    <?php echo $this->formInput($form->get('km')) . $this->formElementErrors($form->get('km'))?>
@@ -108,12 +135,15 @@ $form->setAttribute('method', 'post');
 				    </div>
 				</div>
     
-    			<div class="form-group ac">
-    
+    			<div class="form-group">
     				<h4>SELECIONE OS ACESSÓRIOS</h4>
-    												<?php //echo $this->formMultiCheckbox($form->get('options')) . $this->formElementErrors($form->get('options'))?>
-    
-    											</div>
+    				<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+    				    <div class="checkbox">
+    				        <?php echo $this->formMultiCheckbox($form->get('options')) . $this->formElementErrors($form->get('options'))?>
+				        </div>
+					</div>
+				</div>
+				
     		</div>
     	</fieldset>
     

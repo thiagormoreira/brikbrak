@@ -199,6 +199,19 @@ $(document).ready(function(){
 	
 	$("#published").bootstrapSwitch();
 	
+	$('#new1').change(function(event){
+		if( $('input[name=new]:checked', '#newAdvertisingUserSteps').val() == 1) {
+        	$("#km").attr('readonly', true);
+        	$("#km").removeClass('required');
+		}
+    });
+	
+	$('#new2').change(function(event){
+		if( $('input[name=new]:checked', '#newAdvertisingUserSteps').val() == 0) {
+			$("#km").removeAttr('readonly');
+        	$("#km").addClass('required');
+		}
+    });
 });
 
 

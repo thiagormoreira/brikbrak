@@ -1462,8 +1462,8 @@ li.active:after {
 .tab-content{
 }
 .tab-pane{
-   position: relative;
-padding-top: 50px;
+   	position: relative;
+	padding-top: 50px;
 }
 .tab-content .head{
     font-family: 'Roboto Condensed', sans-serif;
@@ -1485,8 +1485,31 @@ padding-top: 50px;
 }
 
 #newAdvertisingUserSteps label{
-	font-size: 20px;
+	font-size: 17px;
 }
 #text{
 	height: 150px;
+}
+
+.ac{
+	background-color: aqua;
+}
+label.error{
+	position: absolute;
+	left: 350px;
+	top: 10px;
+	float: right;
+	margin-left: 10px;
+	width: auto;
+	display: inline;
+}
+#text-error{
+	position: relative;
+	left: 0px;
+	top: 0px;
+}
+#image-file-error{
+	position: absolute;
+	left: 350px;
+	top: 50px;
 }

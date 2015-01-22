@@ -124,7 +124,6 @@ class AdvertisingForm extends Form
         ->setAttribute('id', 'image-file')
         ->setAttribute('multiple', true);
         $this->add($file);
-        
     }
 
     public function createInputFilter()
